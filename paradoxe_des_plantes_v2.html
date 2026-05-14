@@ -1,0 +1,2172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Paradoxe des Plantes – Résumé Interactif</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Noto+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg:        #f4f8f4;
+    --bg2:       #eaf2ea;
+    --surface:   #ffffff;
+    --card:      #ffffff;
+    --sage:      #d8ead8;
+    --sage-mid:  #c0d8c0;
+    --sage-dark: #90b890;
+    --gold:      #6B9B4A;
+    --gold-lt:   #8BBF66;
+    --gold-dk:   #4A7A2A;
+    --text:      #1a2a1a;
+    --text-mid:  #3a5a3a;
+    --muted:     #708a70;
+    --border:    #d0e4d0;
+    --border-dk: #b8d4b8;
+    --teal:      #3a7a5a;
+    --teal-lt:   #5aaa7a;
+    --danger:    #b05040;
+    --green:     #4a8a5a;
+    --phase1:    #4a9e7a;
+    --phase2:    #6B9B4A;
+    --phase3:    #c8a040;
+    --accent2:   #c8a040;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Lora', Georgia, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-size: 17px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 56px 20px 44px;
+    background: linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-badge {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    display: block;
+  }
+  .hero h1 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(1.8rem, 5vw, 3.2rem);
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: 0.02em;
+    margin-bottom: 8px;
+    line-height: 1.15;
+  }
+  .hero h1 em { color: var(--gold); font-style: italic; }
+  .hero-rule {
+    width: 60px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 18px auto;
+  }
+  .hero-sub {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .hero-quote {
+    max-width: 560px;
+    margin: 24px auto 0;
+    font-size: 1.2rem;
+    color: var(--text-mid);
+    font-style: italic;
+    line-height: 1.9;
+    border-left: 3px solid var(--gold);
+    padding-left: 18px;
+    text-align: left;
+    font-family: 'Lora', Georgia, serif;
+  }
+
+  /* ── NAV ── */
+  .nav-tabs {
+    display: flex;
+    gap: 0;
+    padding: 0 16px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border-dk);
+    overflow-x: auto;
+    scrollbar-width: none;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    justify-content: center;
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  @media(max-width:900px){ .nav-tabs { justify-content: flex-start; } }
+  .tab-btn {
+    flex-shrink: 0;
+    padding: 14px 16px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    color: var(--muted);
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    letter-spacing: 0.03em;
+  }
+  .tab-btn:hover { color: var(--gold); }
+  .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+  /* ── RULES GRID ── */
+  .rules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  @media(max-width:600px){ .rules-grid { grid-template-columns: 1fr; } }
+  .rule-chip {
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    line-height: 1.9;
+    font-family: 'Lora', Georgia, serif;
+    background: #f4f9f1;
+    border: 1px solid var(--border-dk);
+  }
+  .rule-chip strong {
+    display: block;
+    margin-bottom: 6px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold-dk);
+  }
+  .rule-chip.red { background: rgba(176,80,64,0.05); border-color: rgba(176,80,64,0.25); }
+  .rule-chip.red strong { color: var(--danger); }
+  .rule-chip.gold { background: rgba(200,160,64,0.07); border-color: rgba(200,160,64,0.3); }
+  .rule-chip.gold strong { color: #7a5a10; }
+
+  /* ── PHASE HEADER ── */
+  .phase-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 20px;
+    background: #f0f7ec;
+    border: 1px solid var(--border-dk);
+  }
+  .phase-header.p1 { background: rgba(74,158,122,0.08); border-color: rgba(74,158,122,0.3); }
+  .phase-header.p2 { background: rgba(107,155,74,0.08); border-color: rgba(107,155,74,0.3); }
+  .phase-header.p3 { background: rgba(200,160,64,0.08); border-color: rgba(200,160,64,0.3); }
+  .phase-header h3 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .phase-header p { font-size: 1.05rem; color: var(--muted); font-family: 'Lora', Georgia, serif; line-height: 1.78; }
+
+  /* ── DAY BLOCK ── */
+  .day-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .day-label {
+    background: var(--sage);
+    padding: 8px 16px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold-dk);
+    border-bottom: 1px solid var(--sage-mid);
+  }
+  .day-meals { padding: 4px 0; }
+  .meal-row {
+    display: flex;
+    gap: 12px;
+    padding: 9px 16px;
+    border-bottom: 1px dashed var(--border);
+    font-size: 1.05rem;
+    font-family: 'Lora', Georgia, serif;
+    align-items: baseline;
+  }
+  .meal-row:last-child { border-bottom: none; }
+  .meal-type {
+    flex-shrink: 0;
+    width: 115px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--gold);
+    padding-top: 2px;
+  }
+  .meal-content { color: var(--text-mid); line-height: 1.9; }
+  .meal-content em { color: var(--gold-dk); font-style: italic; }
+
+  /* ── RECIPE INNER ── */
+  .recipe-body { display: none; padding: 18px; border-top: 1px solid var(--border); background: #ffffff; }
+  .recipe-body.open { display: block; }
+  .recipe-inner { display: flex; flex-direction: column; gap: 14px; }
+  .recipe-info {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.05rem;
+    color: var(--muted);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .recipe-ingr h5, .recipe-steps h5 {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold-dk);
+    margin-bottom: 8px;
+    margin-top: 10px;
+  }
+  .recipe-ingr h5:first-child, .recipe-steps h5:first-child { margin-top: 0; }
+  .recipe-ingr ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 4px;
+  }
+  .recipe-ingr ul li {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    padding: 5px 0 5px 16px;
+    border-bottom: 1px dotted var(--border);
+    line-height: 1.78;
+    position: relative;
+  }
+  .recipe-ingr ul li:last-child { border-bottom: none; }
+  .recipe-ingr ul li::before {
+    content: '·';
+    position: absolute;
+    left: 4px;
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 1.08rem;
+  }
+  .recipe-steps p {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    line-height: 1.9;
+  }
+  .recipe-variants {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .recipe-variants span {
+    background: rgba(107,155,74,0.08);
+    border: 1px solid rgba(107,155,74,0.25);
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 0.88rem;
+    color: var(--gold-dk);
+    font-weight: 600;
+  }
+  .recipe-tag {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-right: 8px;
+  }
+  .recipe-tag.p1 { background: rgba(74,158,122,0.12); color: #2a7a5a; border: 1px solid rgba(74,158,122,0.3); }
+  .recipe-tag.p2 { background: rgba(107,155,74,0.12); color: var(--gold-dk); border: 1px solid rgba(107,155,74,0.3); }
+  .recipe-section-title {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text);
+    padding: 16px 0 8px;
+    border-bottom: 1px solid var(--border);
+    margin: 20px 0 12px;
+  }
+
+  /* ── SUB SECTION ── */
+  .sub-section { display: none; }
+  .sub-section.active { display: block; }
+
+  /* ── INGREDIENT GUIDE ── */
+  .ingredient-guide {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 6px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .ingredient-guide:hover { border-color: var(--gold-lt); }
+  .ingredient-guide summary {
+    padding: 12px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    list-style: none;
+    user-select: none;
+  }
+  .ingredient-guide summary::-webkit-details-marker { display: none; }
+  .ingredient-guide summary span {
+    color: var(--gold);
+    font-size: 1.05rem;
+    transition: transform 0.3s;
+    font-family: 'Noto Sans', sans-serif;
+  }
+  .ingredient-guide[open] summary span { transform: rotate(90deg); display: inline-block; }
+  .ingredient-guide[open] { border-color: var(--gold-lt); }
+  .ig-body {
+    padding: 14px 18px 16px;
+    border-top: 1px solid var(--border);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    line-height: 1.9;
+    background: #ffffff;
+  }
+  .ig-body strong { color: var(--gold-dk); }
+
+  /* ── CONTENT ── */
+  .content { max-width: 960px; margin: 0 auto; padding: 32px 20px 80px; }
+  .section { display: none; animation: fadeIn 0.3s ease; }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+
+  .section-title {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+  .section-title span { color: var(--gold); font-style: italic; }
+  .section-desc {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.9;
+    margin-bottom: 26px;
+    max-width: 660px;
+    font-family: 'Lora', Georgia, serif;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold-dk), var(--gold-lt));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .card:hover { border-color: var(--border-dk); box-shadow: 0 2px 12px rgba(107,155,74,0.1); }
+  .card:hover::before { opacity: 1; }
+
+  .card-title {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card-title .icon {
+    width: 32px; height: 32px;
+    background: var(--sage);
+    border: 1px solid var(--sage-mid);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+  }
+  .card p { color: var(--text-mid); line-height: 1.9; font-size: 1.05rem; font-family: 'Lora', Georgia, serif; }
+  .card p + p { margin-top: 10px; }
+
+  /* ── CONCEPT BOX ── */
+  .concept-box {
+    background: #f2f8f0;
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px;
+    margin: 12px 0;
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    line-height: 1.78;
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+  }
+  .concept-box strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 1.05rem;
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold-dk);
+    font-family: 'Noto Sans', sans-serif;
+  }
+
+  /* ── WARNING BOX ── */
+  .warning-box {
+    background: rgba(176,80,64,0.05);
+    border: 1px solid rgba(176,80,64,0.2);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    font-size: 1.05rem;
+    color: #6a3030;
+    line-height: 1.78;
+    font-family: 'Lora', Georgia, serif;
+  }
+  .warning-box strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--danger);
+    font-family: 'Noto Sans', sans-serif;
+  }
+
+  /* ── TIP BOX ── */
+  .tip-box {
+    background: #f4f9f1;
+    border: 1px solid rgba(107,155,74,0.3);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    line-height: 1.78;
+    font-family: 'Lora', Georgia, serif;
+  }
+  .tip-box strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gold-dk);
+    font-family: 'Noto Sans', sans-serif;
+  }
+
+  /* ── GRID ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .mini-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+  }
+  .mini-card h4 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--gold-dk);
+    margin-bottom: 8px;
+  }
+  .mini-card p { font-size: 1.05rem; color: var(--text-mid); line-height: 1.78; font-family: 'Lora', Georgia, serif; }
+
+  /* ── NUM LIST ── */
+  .num-list { list-style: none; padding: 0; }
+  .num-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 1.2rem;
+    color: var(--text-mid);
+    line-height: 1.78;
+    font-family: 'Lora', Georgia, serif;
+  }
+  .num-list li:last-child { border-bottom: none; }
+  .num-list li .num {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    background: var(--danger);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    font-family: 'Noto Sans', sans-serif;
+  }
+  .num-list li strong { color: var(--text); font-family: 'Lora', Georgia, serif; font-size: 1.05rem; }
+
+  /* ── ACCORDION ── */
+  .accordion { margin-bottom: 8px; }
+  .accordion-header {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 13px 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    color: var(--text-mid);
+    transition: all 0.2s;
+    user-select: none;
+    font-family: 'Lora', Georgia, serif;
+  }
+  .accordion-header:hover { border-color: var(--gold-lt); color: var(--gold-dk); background: #f4f9f1; }
+  .accordion-header.open { border-color: var(--gold); border-radius: 8px 8px 0 0; color: var(--gold-dk); background: #f4f9f1; }
+  .accordion-header .chevron { transition: transform 0.3s; color: var(--gold); font-size: 1.05rem; }
+  .accordion-header.open .chevron { transform: rotate(180deg); }
+  .accordion-body {
+    background: #f4f9f1;
+    border: 1px solid var(--gold-lt);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    padding: 0 16px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.2s;
+    font-family: 'Lora', Georgia, serif;
+  }
+  .accordion-body.open { max-height: 800px; padding: 14px 16px; }
+  .accordion-body p { font-size: 1.05rem; color: var(--text-mid); line-height: 1.9; }
+  .accordion-body p + p { margin-top: 8px; }
+
+  /* ── FOOD CHIPS ── */
+  .food-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 8px; margin: 14px 0; }
+  .food-chip {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 13px;
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    text-align: center;
+    font-family: 'Noto Sans', sans-serif;
+  }
+  .food-chip.good { border-color: var(--gold); color: var(--gold-dk); background: #f0f7ec; }
+  .food-chip.bad  { border-color: rgba(176,80,64,0.4); color: var(--danger); background: rgba(176,80,64,0.04); }
+
+  /* ── PHASE STEPS ── */
+  .phase-steps { display: flex; flex-direction: column; gap: 16px; margin: 20px 0; }
+  .phase-step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+  }
+  .phase-num {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    color: #fff;
+    font-size: 1.05rem;
+    font-family: 'Noto Sans', sans-serif;
+  }
+  .phase-step h4 { font-family: 'Lora', Georgia, serif; font-size: 1.08rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .phase-step p { font-size: 1.05rem; color: var(--text-mid); line-height: 1.78; font-family: 'Lora', Georgia, serif; }
+
+  /* ── STORY CARD ── */
+  .story-card {
+    background: var(--card);
+    border: 1px solid var(--border-dk);
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 16px;
+    transition: box-shadow 0.2s;
+  }
+  .story-card:hover { box-shadow: 0 2px 12px rgba(107,155,74,0.1); }
+  .story-card .story-name {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--gold-dk);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .story-card .story-name::before { content: '✦'; color: var(--gold); font-size: 0.88rem; }
+  .story-card p { font-size: 1.05rem; color: var(--text-mid); line-height: 1.9; font-family: 'Lora', Georgia, serif; }
+
+  /* ── SUPP LIST ── */
+  .supp-list { display: flex; flex-direction: column; gap: 10px; margin: 16px 0; }
+  .supp-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 1.05rem;
+    transition: border-color 0.2s;
+  }
+  .supp-item:hover { border-color: var(--gold-lt); }
+  .supp-item .supp-name { color: var(--text); font-weight: 600; font-family: 'Lora', Georgia, serif; font-size: 1.05rem; }
+  .supp-item .supp-dose { color: var(--gold-dk); font-size: 1.05rem; text-align: right; font-family: 'Noto Sans', sans-serif; font-weight: 600; }
+  .supp-item .supp-why { color: var(--muted); font-size: 1.05rem; margin-top: 3px; font-family: 'Lora', Georgia, serif; }
+  .supp-left { flex: 1; }
+
+  /* ── PHASE BADGE ── */
+  .phase-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-family: 'Noto Sans', sans-serif;
+    margin-bottom: 6px;
+  }
+  .phase-badge.p1 { background: rgba(74,158,122,0.12); color: #2a7a5a; border: 1px solid rgba(74,158,122,0.3); }
+  .phase-badge.p2 { background: rgba(107,155,74,0.12); color: var(--gold-dk); border: 1px solid rgba(107,155,74,0.3); }
+  .phase-badge.p3 { background: rgba(200,160,64,0.12); color: #8a6a20; border: 1px solid rgba(200,160,64,0.3); }
+
+  /* ── RECIPE CARD ── */
+  .recipe-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .recipe-card:hover { border-color: var(--gold-lt); }
+  .recipe-header {
+    padding: 14px 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--surface);
+    user-select: none;
+  }
+  .recipe-header:hover { background: #f4f9f1; }
+  .recipe-title-block { flex: 1; }
+  .recipe-title {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+  .recipe-meta { font-size: 1.05rem; color: var(--muted); font-family: 'Noto Sans', sans-serif; display:flex; align-items:center; gap:4px; }
+  .recipe-chevron { color: var(--gold); transition: transform 0.3s; font-size: 1.05rem; }
+  .recipe-chevron.open { transform: rotate(180deg); }
+  /* recipe-body defined below in full CSS block */
+
+  .ing-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 1.05rem; }
+  .ing-table th {
+    background: var(--sage);
+    color: var(--gold-dk);
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 700;
+    border-bottom: 2px solid var(--sage-mid);
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .ing-table td {
+    padding: 7px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-mid);
+    font-family: 'Lora', Georgia, serif;
+  }
+  .ing-table tr:last-child td { border-bottom: none; }
+  .ing-table tr:hover td { background: #f0f7ec; }
+  .ing-table td:first-child { font-weight: 600; color: var(--text); }
+  .ing-table td.qty { color: var(--gold-dk); font-weight: 700; font-family: 'Noto Sans', sans-serif; text-align: right; width: 90px; }
+
+  /* recipe steps and step-num now defined in RECIPE INNER block above */
+
+  /* ── PHASE TAB SELECTOR ── */
+  .phase-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .phase-tab-btn {
+    padding: 8px 18px;
+    border-radius: 20px;
+    border: 1px solid var(--border-dk);
+    background: var(--card);
+    color: var(--muted);
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+  .phase-tab-btn:hover { border-color: var(--gold-lt); color: var(--gold-dk); }
+  .phase-tab-btn.active { background: var(--gold); border-color: var(--gold); color: #fff; }
+  .phase-tab-btn.p2.active { background: var(--gold-dk); border-color: var(--gold-dk); }
+  .phase-tab-btn.p3.active { background: #c8a040; border-color: #c8a040; }
+
+  .recipes-phase { display: none; }
+  .recipes-phase.active { display: block; }
+
+  /* ── MENU PLAN ── */
+  .menu-day {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .menu-day-header {
+    padding: 12px 16px;
+    background: var(--sage);
+    border-bottom: 1px solid var(--sage-mid);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .menu-day-header strong {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--gold-dk);
+  }
+  .menu-day-body { padding: 14px 16px; }
+  .menu-meal {
+    display: flex;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border);
+    font-size: 1.05rem;
+    font-family: 'Lora', Georgia, serif;
+  }
+  .menu-meal:last-child { border-bottom: none; }
+  .meal-label {
+    flex-shrink: 0;
+    width: 100px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gold);
+    padding-top: 2px;
+  }
+  .meal-desc { color: var(--text-mid); line-height: 1.78; }
+
+  hr.divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--sage-mid); border-radius: 3px; }
+
+/* ── IDENTIQUE CARNET CORAN ── */
+body { font-family: 'Lora', Georgia, serif !important; font-size: 17px !important; line-height: 1.9 !important; }
+p, li, td, em, i { font-family: 'Lora', Georgia, serif !important; font-size: 1.05rem !important; line-height: 1.9 !important; }
+h1, h2, h3, h4, .card-title, .section-title, .bloc-title { font-family: 'Lora', Georgia, serif !important; }
+.label, .tag, .badge, .tab-btn, .eyebrow, small, .caption { font-family: 'Noto Sans', sans-serif !important; }
+
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="hero-badge">Dr. Steven R. Gundry</div>
+  <h1>Le <em>Paradoxe</em> des Plantes</h1>
+  <p class="hero-sub">Résumé interactif complet · Programme PPP · Plans de menus & Recettes</p>
+  <div class="hero-quote">
+    « Les dangers cachés dans les aliments "sains" qui vous rendent malade — et comment s'en protéger. »
+  </div>
+</div>
+
+<nav class="nav-tabs">
+  <button class="tab-btn active" onclick="showTab('intro')">🌿 Intro</button>
+  <button class="tab-btn" onclick="showTab('lectines')">⚠️ Lectines</button>
+  <button class="tab-btn" onclick="showTab('intestin')">🔬 L'intestin</button>
+  <button class="tab-btn" onclick="showTab('perturbateurs')">💊 7 Perturbateurs</button>
+  <button class="tab-btn" onclick="showTab('programme')">🍽️ Programme PPP</button>
+  <button class="tab-btn" onclick="showTab('menus')">📅 Menus & Recettes</button>
+  <button class="tab-btn" onclick="showTab('complements')">🧪 Compléments</button>
+  <button class="tab-btn" onclick="showTab('stories')">⭐ Cas cliniques</button>
+</nav>
+
+<div class="content">
+
+<!-- ===== INTRO ===== -->
+<div class="section active" id="intro">
+  <div class="section-title">Le <span>Paradoxe</span> des Plantes</div>
+  <p class="section-desc">Un chirurgien cardiaque reconverti en pionnier de la nutrition. Le Dr Gundry révèle pourquoi certains aliments réputés sains peuvent en réalité nous rendre malades.</p>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">🌱</div>Le paradoxe central</div>
+    <p>Les plantes ne veulent pas être mangées. Au fil de millions d'années d'évolution, elles ont développé des armes chimiques pour se défendre : les <strong>lectines</strong>. Ces protéines, présentes en grande quantité dans les céréales, légumineuses, solanacées et certains légumes, sont à l'origine de nombreux problèmes de santé modernes.</p>
+    <div class="concept-box">
+      <strong>Idée clé</strong>
+      Ce que nous pensons être "bon pour la santé" — pain complet, légumineuses, tomates — contient souvent des lectines qui attaquent silencieusement notre intestin.
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="mini-card">
+      <h4>🧬 Qui est le Dr Gundry ?</h4>
+      <p>Ancien chef de chirurgie cardiothoracique à l'Université de Loma Linda. A transformé sa pratique après avoir guéri un patient en surpoids grâce à des changements alimentaires radicaux. Dirige le Centre de médecine réparatrice en Californie.</p>
+    </div>
+    <div class="mini-card">
+      <h4>📊 L'ampleur du problème</h4>
+      <p>Ses patients arrivent en moyenne avec 7 médicaments différents. Il affirme avoir guéri des centaines de maladies auto-immunes, cardiaques et métaboliques uniquement par l'alimentation et des compléments ciblés.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">🤝</div>La relation symbiotique</div>
+    <p>90% des cellules qui vous constituent ne sont pas humaines. Votre holobiome (microbiote + microbes de la peau + nuage bactérien) est essentiel à votre survie. 99% de vos gènes ne sont pas humains. Vous êtes littéralement <em>plus microbe qu'humain</em>.</p>
+    <div class="tip-box">
+      <strong>Analogie du pays</strong>
+      Vos cellules humaines sont les citoyens, vos microbes sont les "travailleurs" — ils vivent dans votre intestin, travaillent pour vous, et vous dépendez entièrement d'eux.
+    </div>
+  </div>
+</div>
+
+<!-- ===== LECTINES ===== -->
+<div class="section" id="lectines">
+  <div class="section-title">Les <span>Lectines</span></div>
+  <p class="section-desc">L'arme chimique des plantes et le fil conducteur de tout le livre.</p>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">🔍</div>Qu'est-ce qu'une lectine ?</div>
+    <p>Les lectines sont des protéines que les plantes produisent pour se protéger des prédateurs. Elles se lient à des récepteurs de sucre sur les cellules, perturbant leur fonctionnement. Certaines peuvent traverser la paroi intestinale et déclencher des réponses immunitaires massives.</p>
+    <div class="warning-box">
+      <strong>Le gluten n'est qu'une lectine parmi d'autres</strong>
+      Le blé contient du WGA (agglutinine du germe de blé), une des lectines les plus petites et dangereuses, capable de traverser directement la barrière intestinale.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">🌾</div>Aliments riches en lectines à éviter</div>
+    <div class="food-grid">
+      <div class="food-chip bad">Blé & céréales</div>
+      <div class="food-chip bad">Haricots & lentilles</div>
+      <div class="food-chip bad">Soja</div>
+      <div class="food-chip bad">Maïs</div>
+      <div class="food-chip bad">Tomates</div>
+      <div class="food-chip bad">Aubergines</div>
+      <div class="food-chip bad">Poivrons</div>
+      <div class="food-chip bad">Pommes de terre</div>
+      <div class="food-chip bad">Arachides</div>
+      <div class="food-chip bad">Noix de cajou</div>
+      <div class="food-chip bad">Courges</div>
+      <div class="food-chip bad">Quinoa</div>
+    </div>
+    <div class="tip-box">
+      <strong>Astuce : réduire les lectines</strong>
+      La cuisson sous pression détruit la plupart des lectines dans les légumineuses et solanacées. Le trempage, la fermentation et l'épluchage les réduisent aussi significativement.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">✅</div>Aliments approuvés (sans lectines)</div>
+    <div class="food-grid">
+      <div class="food-chip good">Avocat</div>
+      <div class="food-chip good">Légumes crucifères</div>
+      <div class="food-chip good">Épinards</div>
+      <div class="food-chip good">Asperges</div>
+      <div class="food-chip good">Artichaut</div>
+      <div class="food-chip good">Noix macadamia</div>
+      <div class="food-chip good">Pistaches</div>
+      <div class="food-chip good">Poisson sauvage</div>
+      <div class="food-chip good">Poulet à l'herbe</div>
+      <div class="food-chip good">Huile d'olive</div>
+      <div class="food-chip good">Sorgho & Millet</div>
+      <div class="food-chip good">Algues marines</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== INTESTIN ===== -->
+<div class="section" id="intestin">
+  <div class="section-title">L'<span>Intestin</span> : votre deuxième cerveau</div>
+  <p class="section-desc">Tout commence et finit dans l'intestin. La santé globale dépend de l'intégrité de cette barrière d'une seule cellule d'épaisseur.</p>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">🏰</div>La forteresse intestinale</div>
+    <p>Votre tube digestif est littéralement votre peau retournée. Sa surface déployée équivaut à un court de tennis, mais sa paroi n'a que l'épaisseur d'<strong>une seule cellule</strong>. Quand les lectines ou les LPS franchissent cette barrière, votre système immunitaire ordonne de stocker de la graisse pour "l'effort de guerre".</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">🧠</div>Le cerveau intestinal</div>
+    <p>Il y a 9 fois plus de fibres nerveuses allant de l'intestin vers le cerveau que l'inverse. 95% de la sérotonine est produite dans l'intestin. Votre holobiome <strong>contrôle votre cerveau</strong> — vos envies alimentaires, votre humeur, vos décisions sont influencées par vos microbes.</p>
+    <div class="concept-box">
+      <strong>La sérotonine : produite dans l'intestin</strong>
+      Si vous prenez des antidépresseurs, c'est peut-être parce que votre microbiote est dévasté — pas parce que votre cerveau manque de sérotonine.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">👶</div>L'héritage de Maman</div>
+    <p>En passant dans le vagin, vous avez reçu votre premier lot de microbes. Le lait maternel contient des oligosaccharides <em>indigestibles pour le bébé</em> mais essentiels pour nourrir ses microbes. Les enfants nés par césarienne mettent 6 mois à acquérir un microbiome normal.</p>
+  </div>
+</div>
+
+<!-- ===== 7 PERTURBATEURS ===== -->
+<div class="section" id="perturbateurs">
+  <div class="section-title">Les 7 <span>Perturbateurs Mortels</span></div>
+  <p class="section-desc">Sept changements survenus au cours des 50 dernières années ont irréversiblement altéré notre santé.</p>
+
+  <ul class="num-list">
+    <li><div class="num">1</div><div><strong>Les antibiotiques à large spectre</strong><br>Tuent toutes les bactéries sans discrimination. Un seul traitement peut mettre 2 ans à être compensé. En élevage, ils font grossir les animaux plus vite — et font de même chez l'humain.</div></li>
+    <li><div class="num">2</div><div><strong>Les AINS (ibuprofène, aspirine, naproxène…)</strong><br>Dévastent la paroi de l'intestin grêle. Créent des trous béants dans le mucus protecteur. Cercle vicieux : douleur → AINS → intestin perméable → plus de douleur.</div></li>
+    <li><div class="num">3</div><div><strong>Les antiacides (IPP : Prilosec, Nexium…)</strong><br>L'acide gastrique est essentiel pour tuer les mauvaises bactéries. Les IPP augmentent de 44% le risque de démence et causent une carence en protéines (sarcopénie).</div></li>
+    <li><div class="num">4</div><div><strong>Les édulcorants artificiels</strong><br>Détruisent jusqu'à 50% de la flore intestinale (une seule dose de Splenda). Trompent le cerveau qui pousse à chercher du sucre réel, ce qui augmente les fringales.</div></li>
+    <li><div class="num">5</div><div><strong>Les perturbateurs endocriniens (BPA, parabènes…)</strong><br>Présents dans les plastiques, cosmétiques, tickets de caisse. Imitent les œstrogènes et restent fixés en permanence sur les récepteurs cellulaires.</div></li>
+    <li><div class="num">6</div><div><strong>Les OGM et le Roundup (glyphosate)</strong><br>Le glyphosate bloque la production de tryptophane (sérotonine) dans les bactéries intestinales. 93% des urines testées contiennent du glyphosate. Classé "cancérogène probable" par l'OMS en 2015.</div></li>
+    <li><div class="num">7</div><div><strong>L'exposition permanente à la lumière bleue</strong><br>Signale à votre corps que c'est l'été. Votre corps stocke alors des graisses en anticipation d'un hiver qui n'arrive jamais. Bloque la mélatonine et perturbe le sommeil.</div></li>
+  </ul>
+</div>
+
+<!-- ===== PROGRAMME ===== -->
+<div class="section" id="programme">
+  <div class="section-title">Le Programme <span>PPP</span></div>
+  <p class="section-desc">Le Programme du Paradoxe des Plantes en 3 phases pour réparer votre intestin et retrouver la santé.</p>
+
+  <div class="phase-steps">
+    <div class="phase-step">
+      <div class="phase-num">1</div>
+      <div>
+        <h4>Phase 1 — Nettoyage de 3 jours</h4>
+        <p>Un jeûne modifié pour chasser les mauvaises bactéries et réinitialiser le microbiome. Légumes uniquement, un peu de poisson sauvage ou poulet à l'herbe, avocats, huiles saines. Pas de céréales, fruits, légumineuses, produits laitiers, sucre ou solanacées. En 3 jours, la composition bactérienne de votre intestin change complètement.</p>
+      </div>
+    </div>
+    <div class="phase-step">
+      <div class="phase-num">2</div>
+      <div>
+        <h4>Phase 2 — Réparation et reconstruction (6 semaines minimum)</h4>
+        <p>Régime longue durée pour consolider les gains. Introduction d'aliments sains sans lectines. Favorise les bonnes bactéries. La plupart des patients constatent des améliorations notables en 1 à 3 mois.</p>
+      </div>
+    </div>
+    <div class="phase-step">
+      <div class="phase-num">3</div>
+      <div>
+        <h4>Phase 3 — Récolter les fruits (longue durée)</h4>
+        <p>Continuation de la phase 2 avec réduction des protéines animales à 60g/repas (120g/jour). Possibilité de tester la tolérance aux lectines en les réintroduisant progressivement. Option : jeûne vegan modifié de 5 jours une fois par mois, et programme cétogène soins intensifs.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">📋</div>Règles générales du PPP</div>
+    <div class="rules-grid">
+      <div class="rule-chip red"><strong>🚫 Toujours éviter</strong>Céréales, légumineuses (sauf phase 3+), solanacées (tomates, poivrons, aubergines, pommes de terre), sucre ajouté, huiles végétales raffinées (maïs, soja, colza), produits laitiers conventionnels, viande industrielle</div>
+      <div class="rule-chip"><strong>✅ Toujours privilégier</strong>Légumes variés et bio, avocat (1 entier/jour), huiles saines (avocat, olive, coco, périlla), poisson sauvage, poulet à l'herbe, noix nature, algues marines, épices et herbes</div>
+      <div class="rule-chip gold"><strong>⚖️ Protéines animales max</strong>Phase 1-2 : max 120g/repas (240g/jour). Phase 3 : max 60g/repas (120g/jour). Préférer poisson sauvage, coquillages, poulet à l'herbe. Les vegan peuvent substituer avec tempeh sans céréales, tofu de chanvre, produits Quorn (certains)</div>
+      <div class="rule-chip"><strong>🥥 Graisses saines illimitées</strong>Huile d'avocat, olive extra-vierge, noix de coco, périlla, MCT, ghee. Avocat, olives, noix de macadamia, pistaches, noix nature (30g/en-cas)</div>
+    </div>
+    <div class="tip-box">
+      <strong>Versions vegan & végétarien</strong>
+      Toutes les recettes ont des alternatives. Pour remplacer les protéines animales : tempeh sans céréales, tofu de chanvre (Hefu), « steaks » de chou-fleur poêlés dans l'huile d'avocat, Veganegg, produits Quorn autorisés. Les vegan peuvent consommer légumineuses cuites à l'autocuiseur dès la phase 2.
+    </div>
+  </div>
+</div>
+
+<!-- ===== MENUS & RECETTES ===== -->
+<div class="section" id="menus">
+  <div class="section-title">Plans de <span>Menus</span> & Recettes</div>
+  <p class="section-desc">36 recettes réparties par phase. Les recettes en gras dans le livre sont disponibles ici en détail. ✱ = contient poulet, poisson ou œufs (version vegan/végétarienne disponible).</p>
+
+  <!-- SUB TABS -->
+  <div style="display:flex;gap:6px;margin-bottom:24px;flex-wrap:wrap;">
+    <button class="tab-btn active" style="font-size:0.8rem;" onclick="showSubTab('phase1menus')">Phase 1 — 3 Jours</button>
+    <button class="tab-btn" style="font-size:0.8rem;" onclick="showSubTab('phase2menus')">Phase 2 — Sem. 1 & 2</button>
+    <button class="tab-btn" style="font-size:0.8rem;" onclick="showSubTab('phase3menus')">Phase 3 & Kéto</button>
+    <button class="tab-btn" style="font-size:0.8rem;" onclick="showSubTab('recettesP1')">Recettes Phase 1</button>
+    <button class="tab-btn" style="font-size:0.8rem;" onclick="showSubTab('recettesP2')">Recettes Phase 2</button>
+    <button class="tab-btn" style="font-size:0.8rem;" onclick="showSubTab('ingredients')">Guide ingrédients</button>
+  </div>
+
+  <!-- PHASE 1 MENUS -->
+  <div id="phase1menus" class="sub-section active">
+    <div class="phase-header p1">
+      <div class="phase-badge p1">1</div>
+      <div>
+        <h3>Phase 1 — Nettoyage coup d'envoi · 3 jours</h3>
+        <p>Smoothie vert chaque matin · Feuilles de romaine au guacamole en en-cas · Tous poissons doivent être sauvages, poulets nourris à l'herbe · Recettes pages 416–425</p>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label">Jour 1</div>
+      <div class="day-meals">
+        <div class="meal-row"><div class="meal-type">🌅 Petit déj.</div><div class="meal-content"><em>Smoothie vert</em></div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">Feuilles de laitue romaine au guacamole</div></div>
+        <div class="meal-row"><div class="meal-type">☀️ Déjeuner</div><div class="meal-content"><em>Salade de roquette au poulet avec vinaigrette au citron ✱</em></div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">Feuilles de laitue romaine au guacamole</div></div>
+        <div class="meal-row"><div class="meal-type">🌙 Dîner</div><div class="meal-content"><em>Sauté de chou au saumon et à l'avocat ✱</em></div></div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label">Jour 2</div>
+      <div class="day-meals">
+        <div class="meal-row"><div class="meal-type">🌅 Petit déj.</div><div class="meal-content"><em>Smoothie vert</em></div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">Feuilles de laitue romaine au guacamole</div></div>
+        <div class="meal-row"><div class="meal-type">☀️ Déjeuner</div><div class="meal-content"><em>Salade romaine à l'avocat et au poulet avec pesto de coriandre ✱</em></div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">Feuilles de laitue romaine au guacamole</div></div>
+        <div class="meal-row"><div class="meal-type">🌙 Dîner</div><div class="meal-content">Choux de Bruxelles citronnés, chou kale et oignons avec « steak » de chou</div></div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label">Jour 3</div>
+      <div class="day-meals">
+        <div class="meal-row"><div class="meal-type">🌅 Petit déj.</div><div class="meal-content"><em>Smoothie vert</em></div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">Feuilles de laitue romaine au guacamole</div></div>
+        <div class="meal-row"><div class="meal-type">☀️ Déjeuner</div><div class="meal-content"><em>Poulet-roquette-avocat dans un wrap de feuille d'algue avec dip à la coriandre ✱</em></div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">Feuilles de laitue au guacamole</div></div>
+        <div class="meal-row"><div class="meal-type">🌙 Dîner</div><div class="meal-content"><em>Brocolis rôtis avec « riz » de chou-fleur et oignons sautés</em></div></div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <strong>Conseils pratiques Phase 1</strong>
+      Préparez le smoothie vert pour 3 jours d'avance (divisez en 3 portions). Doublez la vinaigrette au citron (utilisable pour les 2 salades du midi). Faites le « riz » de chou-fleur à l'avance et réchauffez. Variante vegan : remplacer les protéines animales par du tempeh sans céréales, du tofu de chanvre ou un « steak » de chou-fleur poêlé.
+    </div>
+  </div>
+
+  <!-- PHASE 2 MENUS -->
+  <div id="phase2menus" class="sub-section" style="display:none;">
+    <div class="phase-header p2">
+      <div class="phase-badge p2">2</div>
+      <div>
+        <h3>Phase 2 — Réparer et reconstituer · 6+ semaines</h3>
+        <p>Alternez les semaines ou créez votre propre menu · Max 120g de protéines animales par repas · 30g de noix crues en en-cas · Recettes pages 425–465</p>
+      </div>
+    </div>
+
+    <p style="font-size:0.85rem;color:var(--muted);margin-bottom:16px;">✱ = contient poulet, poisson, coquillages ou œufs</p>
+
+    <!-- SEMAINE 1 -->
+    <div style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--accent2);margin-bottom:10px;padding:8px 0;border-bottom:1px solid var(--border);">── Semaine 1 ──</div>
+
+    <div class="day-block">
+      <div class="day-label">Jour 1</div>
+      <div class="day-meals">
+        <div class="meal-row"><div class="meal-type">🌅 Petit déj.</div><div class="meal-content"><em>Smoothie vert</em></div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">30g de noix crues</div></div>
+        <div class="meal-row"><div class="meal-type">☀️ Déjeuner</div><div class="meal-content">Blanc de poulet (120g) et salade de chou dans des feuilles de laitue avec ½ avocat en tranches ✱</div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">Feuilles de laitue au guacamole</div></div>
+        <div class="meal-row"><div class="meal-type">🌙 Dîner</div><div class="meal-content"><em>Pizza à l'épinard avec pâte de chou-fleur</em> ; salade variée de légumes verts avec vinaigrette à base d'huile d'avocat</div></div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label">Jour 2</div>
+      <div class="day-meals">
+        <div class="meal-row"><div class="meal-type">🌅 Petit déj.</div><div class="meal-content"><em>Smoothie Paradox</em></div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">30g de noix crues</div></div>
+        <div class="meal-row"><div class="meal-type">☀️ Déjeuner</div><div class="meal-content">Petite boîte ou filet de saumon écrasé (120g) avec ½ avocat, arrosé de vinaigre balsamique, enveloppé de feuilles de salade ✱</div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">Feuilles de laitue au guacamole</div></div>
+        <div class="meal-row"><div class="meal-type">🌙 Dîner</div><div class="meal-content"><em>Gaufres à la farine de manioc avec collagène marin ✱</em> ; brocolis grillés à l'huile de périlla ou d'avocat avec 1 c. à café d'huile de sésame</div></div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label">Jour 3</div>
+      <div class="day-meals">
+        <div class="meal-row"><div class="meal-type">🌅 Petit déj.</div><div class="meal-content"><em>Muffin « vert » à l'œuf et à la dinde ✱</em></div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">30g de noix crues</div></div>
+        <div class="meal-row"><div class="meal-type">☀️ Déjeuner</div><div class="meal-content">2 œufs durs de poule nourrie à l'herbe avec <em>pesto de basilic ✱</em> ; salade selon votre choix avec vinaigrette</div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">Feuilles de laitue au guacamole</div></div>
+        <div class="meal-row"><div class="meal-type">🌙 Dîner</div><div class="meal-content"><em>Saumon sauvage grillé ✱</em> ; <em>purée de chou-fleur rôti parfumée au parmesan</em> ; salade d'asperges aux graines de sésame et vinaigrette d'huile de sésame</div></div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label">Jour 4</div>
+      <div class="day-meals">
+        <div class="meal-row"><div class="meal-type">🌅 Petit déj.</div><div class="meal-content"><em>Muffin à la cannelle et aux graines de lin dans une tasse ✱</em></div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">30g de noix crues</div></div>
+        <div class="meal-row"><div class="meal-type">☀️ Déjeuner</div><div class="meal-content"><em>Soupe de champignons « crus »</em> ; salade selon votre choix avec vinaigrette</div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">Feuilles de laitue romaine au guacamole</div></div>
+        <div class="meal-row"><div class="meal-type">🌙 Dîner</div><div class="meal-content"><em>Salade de sorgho et salade trévise</em> avec 3 ou 4 crevettes sauvages grillées ou 120g de chair de crabe ✱</div></div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label">Jour 5</div>
+      <div class="day-meals">
+        <div class="meal-row"><div class="meal-type">🌅 Petit déj.</div><div class="meal-content"><em>Smoothie vert</em></div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">30g de noix crues</div></div>
+        <div class="meal-row"><div class="meal-type">☀️ Déjeuner</div><div class="meal-content">Nouilles de konjac cuites avec huile d'olive, sel et poivre ; salade de laitue avec vinaigrette</div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">Feuilles de laitue romaine au guacamole</div></div>
+        <div class="meal-row"><div class="meal-type">🌙 Dîner</div><div class="meal-content"><em>Chips d'okra « anti-lectines » cuites au four</em> ; blanc de poulet (120g) nourri à l'herbe ✱ ; épinards et oignons rouges en salade avec vinaigrette</div></div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label">Jour 6</div>
+      <div class="day-meals">
+        <div class="meal-row"><div class="meal-type">🌅 Petit déj.</div><div class="meal-content"><em>Crêpes parfaites au plantain ✱</em></div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">30g de noix crues</div></div>
+        <div class="meal-row"><div class="meal-type">☀️ Déjeuner</div><div class="meal-content"><em>Soupe de jeunes pousses de céleri-rave</em> ; salade selon votre choix avec vinaigrette</div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">Feuilles de laitue romaine au guacamole</div></div>
+        <div class="meal-row"><div class="meal-type">🌙 Dîner</div><div class="meal-content"><em>Mini « pizzas » de champignons portobello grillés au pesto</em> ; salade selon votre choix avec vinaigrette ; artichaut à la vapeur</div></div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label">Jour 7</div>
+      <div class="day-meals">
+        <div class="meal-row"><div class="meal-type">🌅 Petit déj.</div><div class="meal-content"><em>Muffin à la farine d'amande et de noix de coco dans une tasse ✱</em></div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">30g de noix crues</div></div>
+        <div class="meal-row"><div class="meal-type">☀️ Déjeuner</div><div class="meal-content"><em>Poulet-roquette-avocat dans un wrap de feuille d'algue avec dip à la coriandre ✱</em></div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">Feuilles de laitue romaine au guacamole</div></div>
+        <div class="meal-row"><div class="meal-type">🌙 Dîner</div><div class="meal-content"><em>Curry de légumes avec « nouilles » de patates douces</em> ; « riz » de chou-fleur ; salade selon votre choix avec vinaigrette</div></div>
+      </div>
+    </div>
+
+    <!-- SEMAINE 2 -->
+    <div style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--accent2);margin:20px 0 10px;padding:8px 0;border-bottom:1px solid var(--border);">── Semaine 2 ──</div>
+
+    <div class="day-block">
+      <div class="day-label">Jour 1</div>
+      <div class="day-meals">
+        <div class="meal-row"><div class="meal-type">🌅 Petit déj.</div><div class="meal-content"><em>Smoothie vert</em></div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">30g de noix crues</div></div>
+        <div class="meal-row"><div class="meal-type">☀️ Déjeuner</div><div class="meal-content">Blanc de poulet nourri à l'herbe grillé (120g) ✱ ; <em>chou-rave à la poire croquante et aux noix</em></div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">Feuilles de salade romaine au guacamole</div></div>
+        <div class="meal-row"><div class="meal-type">🌙 Dîner</div><div class="meal-content"><em>Saumon sauvage grillé ✱</em> ; cœurs d'artichauts « frits » cuits au four ; choux et carottes en salade avec huile de sésame et vinaigre de cidre</div></div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label">Jour 2</div>
+      <div class="day-meals">
+        <div class="meal-row"><div class="meal-type">🌅 Petit déj.</div><div class="meal-content"><em>Smoothie Paradox</em></div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">30g de noix crues</div></div>
+        <div class="meal-row"><div class="meal-type">☀️ Déjeuner</div><div class="meal-content">Sardines en boîte à l'huile d'olive écrasées (120g) avec ½ avocat et vinaigre balsamique, dans des feuilles de laitue ✱</div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">Feuilles de laitue romaine au guacamole</div></div>
+        <div class="meal-row"><div class="meal-type">🌙 Dîner</div><div class="meal-content"><em>Burgers protéinés aux champignons et aux noix</em> ; asperges grillées avec huile de périlla ou d'avocat et 1 c. à café d'huile de sésame</div></div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label">Jour 3</div>
+      <div class="day-meals">
+        <div class="meal-row"><div class="meal-type">🌅 Petit déj.</div><div class="meal-content"><em>Muffin aux cranberries et à l'orange ✱</em> ; 2 œufs de poule nourrie à l'herbe brouillés avec un avocat en tranches</div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">30g de mélange de noix</div></div>
+        <div class="meal-row"><div class="meal-type">☀️ Déjeuner</div><div class="meal-content">3 <em>gâteaux de millet</em> avec champignons et légumes verts ✱ ; salade selon votre choix avec vinaigrette</div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">Feuilles de laitue romaine au guacamole</div></div>
+        <div class="meal-row"><div class="meal-type">🌙 Dîner</div><div class="meal-content"><em>Saumon sauvage grillé ✱</em> ; <em>purée de chou-fleur rôti parfumée au parmesan</em> ; salade d'endives et de roquette avec graines de sésame et vinaigrette</div></div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label">Jour 4–7</div>
+      <div class="day-meals">
+        <div class="meal-row"><div class="meal-type">☀️ Déjeuner J4</div><div class="meal-content"><em>Salade de roquette avec poulet (120g) et vinaigrette au citron ✱</em> / Dîner : <em>Salade de sorgho et salade trévise avec saumon sauvage ✱</em></div></div>
+        <div class="meal-row"><div class="meal-type">☀️ Déjeuner J5</div><div class="meal-content"><em>Soupe de jeunes pousses de céleri-rave</em> / Dîner : <em>Sauté de chou avec saumon et avocat ✱</em> ; « riz » de chou-fleur</div></div>
+        <div class="meal-row"><div class="meal-type">☀️ Déjeuner J6</div><div class="meal-content"><em>Salade romaine à l'avocat et au poulet avec pesto de coriandre ✱</em> / Dîner : <em>« Steaks » grillés de chou-fleur mariné</em> ; cresson, jicama et salade de radis ; artichaut à la vapeur avec ghee</div></div>
+        <div class="meal-row"><div class="meal-type">☀️ Déjeuner J7</div><div class="meal-content">Salade de roquette avec une petite boîte de thon à l'huile de périlla et vinaigre ✱ / Dîner : <em>Curry de légumes avec « nouilles » de patates douces</em> ; chips d'okra « anti-lectines » cuites au four</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 3 MENUS -->
+  <div id="phase3menus" class="sub-section" style="display:none;">
+    <div class="phase-header p3">
+      <div class="phase-badge p3">3</div>
+      <div>
+        <h3>Phase 3 — Jeûne vegan modifié de 5 jours (optionnel, 1x/mois)</h3>
+        <p>Continuer les menus phase 2 · Réduire protéines animales à 60g/repas (120g/jour) · Tester progressivement la tolérance aux lectines · Autocuiseur obligatoire pour légumineuses</p>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <strong>Règles spécifiques Phase 3</strong>
+      Toutes les protéines animales remplacées par des alternatives vegan (tempeh sans céréales, tofu de chanvre, « steaks » de chou-fleur poêlés dans l'huile d'avocat). Maximum 120g/jour total de protéines animales si maintenues. Vous pouvez tester les légumineuses cuites à l'autocuiseur (1 aliment à la fois, par petites quantités).
+    </div>
+
+    <div class="day-block">
+      <div class="day-label">Jour 1</div>
+      <div class="day-meals">
+        <div class="meal-row"><div class="meal-type">🌅 Petit déj.</div><div class="meal-content"><em>Smoothie vert</em></div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">Feuilles de laitue romaine au guacamole</div></div>
+        <div class="meal-row"><div class="meal-type">☀️ Déjeuner</div><div class="meal-content">Version vegan de la <em>salade de roquette avec poulet et vinaigrette au citron</em> — remplacer le poulet par du tofu de chanvre (120g)</div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">Feuilles de laitue romaine au guacamole</div></div>
+        <div class="meal-row"><div class="meal-type">🌙 Dîner</div><div class="meal-content">Version vegan du <em>sauté de chou avec saumon et avocat</em> — remplacer le saumon par du tofu de chanvre sans céréales (120g)</div></div>
+      </div>
+    </div>
+
+    <div class="day-block">
+      <div class="day-label">Jours 2 à 5</div>
+      <div class="day-meals">
+        <div class="meal-row"><div class="meal-type">J2 Déjeuner</div><div class="meal-content">Version vegan de la <em>salade romaine à l'avocat et au poulet avec pesto de coriandre</em> — tempeh sans céréales (120g)</div></div>
+        <div class="meal-row"><div class="meal-type">J2 Dîner</div><div class="meal-content">Choux de Bruxelles citronnés, chou kale et oignons avec « steak » de chou</div></div>
+        <div class="meal-row"><div class="meal-type">J3 Déjeuner</div><div class="meal-content">Version vegan du <em>poulet-roquette-avocat dans un wrap de feuille d'algue</em> — tofu de chanvre (120g)</div></div>
+        <div class="meal-row"><div class="meal-type">J3 Dîner</div><div class="meal-content">Brocolis grillés avec « riz » de chou-fleur et oignons sautés</div></div>
+        <div class="meal-row"><div class="meal-type">J4–5 Déjeuner</div><div class="meal-content">Versions vegan des salades phase 2 avec tofu de chanvre ou tempeh sans céréales (120g)</div></div>
+        <div class="meal-row"><div class="meal-type">J4–5 Dîner</div><div class="meal-content">Légumes rôtis ou sautés sans protéines animales, avec huile d'avocat ou d'olive généreusement</div></div>
+      </div>
+    </div>
+
+    <div class="phase-header pketo" style="margin-top:28px;">
+      <div class="phase-badge pketo">K</div>
+      <div>
+        <h3>Programme Cétogène Soins Intensifs du PPP</h3>
+        <p>Pour cas sévères · Max 200g/jour de protéines animales · Vinaigrette « céto » (huile d'olive + huile MCT à parts égales) · 30g noix de macadamia en en-cas · Recettes phase 2 pages 413–465</p>
+      </div>
+    </div>
+
+    <div class="warning-box">
+      <strong>Différences clés avec la phase 2</strong>
+      Ajouter 1 c. à soupe d'huile MCT au smoothie vert du matin. Remplacer l'en-cas par 1 c. à soupe d'huile de noix de coco ou d'huile MCT. Utiliser la vinaigrette « céto » (huile d'olive + MCT à parts égales + vinaigre). Cuire le curry avec de la crème de noix de coco en boîte. Les variantes vegan et végétariennes sont indiquées entre parenthèses.
+    </div>
+
+    <div class="day-block">
+      <div class="day-label">Jour 1 (Kéto PPP)</div>
+      <div class="day-meals">
+        <div class="meal-row"><div class="meal-type">🌅 Petit déj.</div><div class="meal-content"><em>Smoothie vert</em> + 1 c. à soupe d'huile MCT</div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">30g de noix de macadamia ou feuilles de laitue romaine au guacamole</div></div>
+        <div class="meal-row"><div class="meal-type">☀️ Déjeuner</div><div class="meal-content">Quorn Chik'n Cutlets et salade de chou dans une feuille de salade avec 2 c. à soupe de mayonnaise d'avocat et un avocat en tranches — boire 1 c. à soupe d'huile MCT (vegan : « Steak » grillé de chou-fleur mariné)</div></div>
+        <div class="meal-row"><div class="meal-type">🍎 En-cas</div><div class="meal-content">1 c. à soupe d'huile de noix de coco ou 1 c. à soupe d'huile MCT</div></div>
+        <div class="meal-row"><div class="meal-type">🌙 Dîner</div><div class="meal-content"><em>Pizza aux épinards avec pâte de chou-fleur</em> arrosée d'huile d'olive ou MCT (vegan : « steaks » grillés de chou-fleur mariné) ; salade verte variée avec avocat et vinaigrette « céto »</div></div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <strong>Jours 2 à 7 (Kéto PPP)</strong>
+      Suivez les menus de la semaine 1 de la phase 2 en ajoutant 1 c. à soupe d'huile MCT à chaque repas, en utilisant systématiquement la vinaigrette « céto », et en cuisant avec de la crème de noix de coco. Les jours 6 et 7 introduisent des petits déjeuners riches en lipides : avocat farci au jaune d'œuf passé au gril, ou omelette aux 3 jaunes d'œufs avec œuf entier, champignons et épinards cuits dans l'huile de noix de coco.
+    </div>
+  </div>
+
+  <!-- RECETTES PHASE 1 -->
+  <div id="recettesP1" class="sub-section" style="display:none;">
+    <div class="phase-header p1">
+      <div class="phase-badge p1">R1</div>
+      <div>
+        <h3>Recettes Phase 1 — Nettoyage de 3 jours</h3>
+        <p>Ingrédients bio, locaux, de saison · Poissons sauvages, poulets nourris à l'herbe · Toutes les recettes sont pour 1 personne sauf indication contraire</p>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-header" onclick="toggleRecipe(this)">
+        <div class="recipe-title">🥤 Smoothie vert</div>
+        <div class="recipe-meta"><span class="recipe-tag p1">Phase 1-3</span><span class="recipe-chevron">▼</span></div>
+      </div>
+      <div class="recipe-body">
+        <div class="recipe-inner">
+          <div class="recipe-info"><span>⏱ 5 min</span><span>👤 1 personne</span></div>
+          <div class="recipe-ingr">
+            <h5>Ingrédients</h5>
+            <ul>
+              <li>50g de laitue romaine coupée en morceaux</li>
+              <li>25g de pousses d'épinards</li>
+              <li>1 branche de menthe avec tige</li>
+              <li>½ avocat</li>
+              <li>4 c. à soupe de jus de citron fraîchement pressé</li>
+              <li>3 à 6 gouttes d'extrait de stévia</li>
+              <li>2 à 3 glaçons</li>
+              <li>250 ml d'eau du robinet ou filtrée</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <h5>Préparation</h5>
+            <p>Placer tous les ingrédients dans un mixeur à vitesse maximale et laisser tourner jusqu'à ce que le mélange soit lisse et mousseux. Vous pouvez ajouter des glaçons si vous le désirez. Conseil : faites pour 3 jours d'avance, divisez en 3 portions et conservez au réfrigérateur dans un récipient en verre.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-header" onclick="toggleRecipe(this)">
+        <div class="recipe-title">🥗 Salade de roquette au poulet avec vinaigrette au citron ✱</div>
+        <div class="recipe-meta"><span class="recipe-tag p1">Phase 1-3</span><span class="recipe-chevron">▼</span></div>
+      </div>
+      <div class="recipe-body">
+        <div class="recipe-inner">
+          <div class="recipe-info"><span>⏱ 15 min</span><span>👤 1 personne</span></div>
+          <div class="recipe-ingr">
+            <h5>Ingrédients — Poulet</h5>
+            <ul>
+              <li>1 c. à soupe d'huile d'avocat</li>
+              <li>120g de blanc de poulet nourri à l'herbe, coupé en bandes de 1,5 cm</li>
+              <li>1 c. à soupe de jus de citron fraîchement pressé</li>
+              <li>¼ c. à café de sel de mer iodé · Zeste de ½ citron (facultatif)</li>
+            </ul>
+            <h5 style="margin-top:10px;">Vinaigrette au citron</h5>
+            <ul>
+              <li>2 c. à soupe d'huile d'olive extra-vierge</li>
+              <li>1 c. à soupe de jus de citron fraîchement pressé</li>
+              <li>1 pincée de sel de mer iodé</li>
+            </ul>
+            <h5 style="margin-top:10px;">Salade</h5>
+            <ul><li>30g de roquette</li></ul>
+          </div>
+          <div class="recipe-steps">
+            <h5>Préparation</h5>
+            <p><strong>Poulet :</strong> Chauffer l'huile d'avocat dans une poêle à feu vif. Mettre les bandes de poulet, arroser du jus de citron. Saler. Laisser cuire 2 min, retourner et cuire 2 min de l'autre côté jusqu'à cuisson complète. Ôter du feu.<br><br><strong>Vinaigrette :</strong> Mettre tous les ingrédients dans un bocal hermétique et secouer jusqu'à homogénéité.<br><br><strong>Servir :</strong> Ajouter la roquette à la vinaigrette, le poulet sur le dessus. Ajouter le zeste de citron si vous le désirez.</p>
+          </div>
+          <div class="recipe-variants">
+            <span>Vegan : tempeh sans céréales ou « steak » de chou-fleur</span>
+            <span>Végétarien : produits Quorn acceptables</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-header" onclick="toggleRecipe(this)">
+        <div class="recipe-title">🥑 Feuilles de laitue romaine au guacamole</div>
+        <div class="recipe-meta"><span class="recipe-tag p1">Phase 1-3</span><span class="recipe-chevron">▼</span></div>
+      </div>
+      <div class="recipe-body">
+        <div class="recipe-inner">
+          <div class="recipe-info"><span>⏱ 5 min</span><span>👤 1 personne</span></div>
+          <div class="recipe-ingr">
+            <h5>Ingrédients</h5>
+            <ul>
+              <li>½ avocat Hass</li>
+              <li>1 c. à soupe d'oignon rouge finement coupé</li>
+              <li>1 c. à soupe de coriandre hachée</li>
+              <li>1 c. à soupe de jus de citron fraîchement pressé</li>
+              <li>1 pincée de sel de mer iodé</li>
+              <li>4 feuilles de laitue romaine, lavées et séchées</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <h5>Préparation</h5>
+            <p>Mettre l'avocat, l'oignon, la coriandre, le jus de citron et le sel dans un bol. Écraser avec une fourchette jusqu'à l'obtention d'un mélange lisse. Répartir une quantité égale de guacamole dans chaque feuille de laitue.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-header" onclick="toggleRecipe(this)">
+        <div class="recipe-title">🥬 Choux de Bruxelles citronnés, chou kale et oignons avec « steak » de chou</div>
+        <div class="recipe-meta"><span class="recipe-tag p1">Phase 1-3</span><span class="recipe-chevron">▼</span></div>
+      </div>
+      <div class="recipe-body">
+        <div class="recipe-inner">
+          <div class="recipe-info"><span>⏱ 20 min</span><span>👤 1 personne</span></div>
+          <div class="recipe-ingr">
+            <h5>Ingrédients</h5>
+            <ul>
+              <li>4 c. à soupe d'huile d'avocat</li>
+              <li>1 tranche de chou rouge de 2,5 cm d'épaisseur (« steak »)</li>
+              <li>¼ c. à café + 1 pincée de sel de mer iodé</li>
+              <li>½ oignon rouge, finement haché</li>
+              <li>85g de choux de Bruxelles finement hachés</li>
+              <li>100g de chou kale émincé</li>
+              <li>1 c. à soupe de jus de citron fraîchement pressé</li>
+              <li>Huile d'olive extra-vierge (facultative)</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <h5>Préparation</h5>
+            <p>Placer une poêle sur feu vif. Quand elle est chaude, ajouter 1 c. à soupe d'huile d'avocat et poêler la tranche de chou rouge 3 min de chaque côté jusqu'à ce qu'elles soient dorées. Saler, mettre sur une assiette, couvrir pour garder au chaud. Essuyer la poêle.<br><br>Chauffer 2 c. à soupe d'huile d'avocat à température moyenne. Ajouter l'oignon et les choux de Bruxelles, faire frire 3 min jusqu'à ce qu'ils soient tendres. Ajouter la dernière c. à soupe d'huile, le kale et le jus de citron, faire sauter 3 autres min. Ajouter ¼ c. à café de sel. Servir les légumes sautés sur le « steak » de chou. Arroser d'huile d'olive selon le goût.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-header" onclick="toggleRecipe(this)">
+        <div class="recipe-title">🐟 Sauté de chou au saumon et à l'avocat ✱</div>
+        <div class="recipe-meta"><span class="recipe-tag p1">Phase 1-3</span><span class="recipe-chevron">▼</span></div>
+      </div>
+      <div class="recipe-body">
+        <div class="recipe-inner">
+          <div class="recipe-info"><span>⏱ 20 min</span><span>👤 1 personne</span></div>
+          <div class="recipe-ingr">
+            <h5>Ingrédients</h5>
+            <ul>
+              <li>½ avocat en dés</li>
+              <li>3 c. à soupe de jus de citron fraîchement pressé</li>
+              <li>4 pincées de sel de mer iodé</li>
+              <li>3 c. à soupe d'huile d'avocat</li>
+              <li>100g de chou vert finement coupé</li>
+              <li>½ oignon rouge émincé</li>
+              <li>150g de saumon sauvage</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <h5>Préparation</h5>
+            <p>Ajouter à l'avocat en dés 1 c. à soupe de jus de citron et 1 pincée de sel. Réserver.<br><br>Chauffer une poêle à feu moyen. Quand elle est chaude, ajouter 2 c. à soupe d'huile d'avocat, le chou et l'oignon. Faire sauter jusqu'à tendreté, environ 10 min. Ajouter 2 pincées de sel. Avec une écumoire, enlever et mettre en attente.<br><br>Ajouter la cuillère d'huile restante, chauffer à feu vif, ajouter 2 c. à soupe de jus de citron ainsi que le saumon. Poêler le saumon en le retournant après 3 min jusqu'à cuisson complète (6 min). Saler avec le sel restant.<br><br>Servir le saumon et l'avocat sur le chou et les oignons.</p>
+          </div>
+          <div class="recipe-variants">
+            <span>Vegan : tempeh sans céréales, tofu de chanvre ou « steak » de chou-fleur</span>
+            <span>Végétarien : produits Quorn acceptables</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-header" onclick="toggleRecipe(this)">
+        <div class="recipe-title">🥦 Brocolis rôtis avec « riz » de chou-fleur et sauté d'oignons</div>
+        <div class="recipe-meta"><span class="recipe-tag p1">Phase 1-3</span><span class="recipe-chevron">▼</span></div>
+      </div>
+      <div class="recipe-body">
+        <div class="recipe-inner">
+          <div class="recipe-info"><span>⏱ 20 min</span><span>👤 1 personne</span><span>🌡 Four 180°C</span></div>
+          <div class="recipe-ingr">
+            <h5>« Riz » de chou-fleur</h5>
+            <ul>
+              <li>½ tête de chou-fleur moyen, râpé grossièrement</li>
+              <li>1 c. à soupe d'huile d'avocat · 1 c. à soupe de jus de citron frais</li>
+              <li>¼ c. à café de poudre de curry · 1 pincée de sel de mer iodé</li>
+            </ul>
+            <h5 style="margin-top:10px;">Brocoli</h5>
+            <ul>
+              <li>125g de fleurs de brocoli en morceaux</li>
+              <li>1½ c. à soupe d'huile d'avocat · 1 pincée de sel de mer iodé</li>
+            </ul>
+            <h5 style="margin-top:10px;">Oignons sautés</h5>
+            <ul>
+              <li>½ c. à soupe d'huile d'avocat</li>
+              <li>½ oignon rouge, finement haché · 1 pincée de sel de mer iodé</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <h5>Préparation</h5>
+            <p>Chauffer le four à 180°C. Faire revenir le chou-fleur râpé dans une poêle moyenne pendant 3 à 5 min avec l'huile, le jus de citron, la poudre de curry et le sel jusqu'à ce qu'il soit tendre (ne pas trop écraser). Mettre en assiette et garder au chaud.<br><br>Mettre les brocolis dans un plat Pyrex avec 1 c. à soupe d'huile d'avocat. Cuire au four 15 min en remuant deux fois, jusqu'à ce qu'ils soient tendres. Saler.<br><br>Chauffer à nouveau la poêle à température moyenne, ajouter la ½ c. à soupe d'huile restante et l'oignon émincé. Poêler jusqu'à tendreté, environ 5 min. Saler.<br><br>Servir le « riz » de chou-fleur garni des brocolis et des oignons sautés.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECETTES PHASE 2 -->
+  <div id="recettesP2" class="sub-section" style="display:none;">
+    <div class="phase-header p2">
+      <div class="phase-badge p2">R2</div>
+      <div>
+        <h3>Recettes Phase 2 — Petit-déjeuners, En-cas & Plats principaux</h3>
+        <p>Valables aussi pour la phase 3 (réduire alors les protéines animales à 60g/portion) · Toutes avec variantes vegan et végétariennes</p>
+      </div>
+    </div>
+
+    <div class="recipe-section-title">🌅 Petit-déjeuners</div>
+
+    <div class="recipe-card">
+      <div class="recipe-header" onclick="toggleRecipe(this)">
+        <div class="recipe-title">🧁 Muffin à la farine de noix de coco et d'amande dans une tasse</div>
+        <div class="recipe-meta"><span class="recipe-tag p2">Phase 2-3</span><span class="recipe-chevron">▼</span></div>
+      </div>
+      <div class="recipe-body">
+        <div class="recipe-inner">
+          <div class="recipe-info"><span>⏱ 3 min prép. + 1-2 min cuisson</span><span>👤 1 personne</span></div>
+          <div class="recipe-ingr">
+            <h5>Ingrédients</h5>
+            <ul>
+              <li>1 c. à soupe d'huile de noix de coco extra-vierge, fondue</li>
+              <li>1 c. à soupe d'huile d'olive extra-vierge ou d'huile de macadamia</li>
+              <li>1 c. à soupe de farine de noix de coco</li>
+              <li>1 c. à soupe de farine d'amandes</li>
+              <li>½ c. à café de levure sans aluminium</li>
+              <li>1 pincée de sel de mer iodé</li>
+              <li>10 gouttes de stévia ou 2 c. à café de Just Like Sugar</li>
+              <li>1 c. à soupe d'eau</li>
+              <li>1 gros œuf de poule nourrie à l'herbe, légèrement battu</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <h5>Préparation</h5>
+            <p>Mettre les ingrédients dans un récipient de 250 à 350 ml adapté au micro-ondes en les mélangeant bien avec une fourchette. Laisser reposer quelques secondes. Passer au micro-ondes pendant 1 min 25 à 30 secondes. Renverser le récipient pour faire sortir le muffin. Laisser refroidir quelques minutes avant de manger.<br><br>Conseil : doublez la recette et réchauffez le deuxième muffin le lendemain. Variez avec 1 c. à café de poudre de cacao, un zeste d'orange ou de citron, ou des feuilles de menthe.</p>
+          </div>
+          <div class="recipe-variants">
+            <span>Vegan : remplacer l'œuf par un œuf vegan</span>
+            <span>Sans micro-ondes : verser dans une poêle à frire et servir comme une crêpe</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-header" onclick="toggleRecipe(this)">
+        <div class="recipe-title">🧁 Muffin aux cranberries et à l'orange ✱</div>
+        <div class="recipe-meta"><span class="recipe-tag p2">Phase 2-3</span><span class="recipe-chevron">▼</span></div>
+      </div>
+      <div class="recipe-body">
+        <div class="recipe-inner">
+          <div class="recipe-info"><span>⏱ 10 min prép. + 20 min cuisson</span><span>👤 6 personnes</span><span>🌡 Four 180°C</span></div>
+          <div class="recipe-ingr">
+            <h5>Ingrédients</h5>
+            <ul>
+              <li>30g de farine de noix de coco</li>
+              <li>¼ c. à café de sel de mer iodé · ¼ c. à café de bicarbonate de soude</li>
+              <li>50 ml d'huile de noix de coco extra-vierge, fondue</li>
+              <li>50g de Just Like Sugar ou de xylitol</li>
+              <li>3 gros œufs de poule nourrie à l'herbe ou oméga 3</li>
+              <li>1 c. à soupe de zeste d'orange</li>
+              <li>75g de cranberries séchées sans sucre</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <h5>Préparation</h5>
+            <p>Préchauffer le four à 180°C. Mélanger la farine de noix de coco, le sel et le bicarbonate dans un robot à lame en S. Ajouter l'huile de noix de coco, Just Like Sugar, les œufs et le zeste d'orange. Quand le mélange est lisse, arrêter le robot et ajouter à la main les cranberries. Diviser la pâte en 6 portions et remplir les moules juste en dessous du bord. Cuire 20 min. Laisser refroidir 15 min avant de servir.</p>
+          </div>
+          <div class="recipe-variants">
+            <span>Vegan : remplacer les œufs par des œufs vegan</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-header" onclick="toggleRecipe(this)">
+        <div class="recipe-title">🧁 Muffin à la cannelle et aux graines de lin dans une tasse ✱</div>
+        <div class="recipe-meta"><span class="recipe-tag p2">Phase 2-3</span><span class="recipe-chevron">▼</span></div>
+      </div>
+      <div class="recipe-body">
+        <div class="recipe-inner">
+          <div class="recipe-info"><span>⏱ 3 min prép. + 1 min cuisson</span><span>👤 1 personne</span></div>
+          <div class="recipe-ingr">
+            <h5>Ingrédients</h5>
+            <ul>
+              <li>25g de graines de lin moulues fraîches (moudre au moulin à café)</li>
+              <li>1 c. à café de cannelle</li>
+              <li>1 gros œuf de poule nourrie à l'herbe ou oméga 3</li>
+              <li>1 c. à soupe d'huile de noix de coco extra-vierge, fondue</li>
+              <li>1 c. à café de levure sans aluminium · 10 gouttes de stévia</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <h5>Préparation</h5>
+            <p>Mettre tous les ingrédients dans un récipient de 250 à 350 ml allant au micro-ondes et bien mélanger. Laisser reposer quelques secondes. Cuire à haute température pendant 1 min. Vérifier et remettre à cuire 5 à 10 secondes si le muffin semble encore mou au centre. Renverser sur une assiette et laisser refroidir quelques minutes.</p>
+          </div>
+          <div class="recipe-variants"><span>Vegan : remplacer l'œuf par un œuf vegan</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-header" onclick="toggleRecipe(this)">
+        <div class="recipe-title">🧆 Muffins « verts » à l'œuf et à la dinde ✱</div>
+        <div class="recipe-meta"><span class="recipe-tag p2">Phase 2-3</span><span class="recipe-chevron">▼</span></div>
+      </div>
+      <div class="recipe-body">
+        <div class="recipe-inner">
+          <div class="recipe-info"><span>⏱ 15 min prép. + 35 min cuisson</span><span>👤 12 muffins</span><span>🌡 Four 180°C</span></div>
+          <div class="recipe-ingr">
+            <h5>Ingrédients</h5>
+            <ul>
+              <li>500g de chorizo de dinde Diestel Farms ou dinde hachée assaisonnée</li>
+              <li>300g d'épinards bio congelés hachés (ou chou kale haché)</li>
+              <li>5 œufs de poules nourries à l'herbe ou oméga 3</li>
+              <li>2 c. à soupe d'huile d'olive extra-vierge ou d'huile de périlla</li>
+              <li>2 têtes d'ail pelées ou 1 c. à café de poudre d'ail</li>
+              <li>2 c. à soupe d'assaisonnement italien ou d'herbes de Provence</li>
+              <li>2 c. à soupe d'oignons émincés séchés</li>
+              <li>½ c. à café de sel de mer iodé · ½ c. à café de poivre noir écrasé</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <h5>Préparation</h5>
+            <p>Faire chauffer le four à 180°C. Faire cuire la dinde à température moyenne pendant 8 à 10 min dans une poêle sans téflon en remuant fréquemment, jusqu'à ce qu'elle commence à dorer. Réserver.<br><br>Chauffer les épinards au micro-ondes 3 min. Égoutter et presser pour ôter l'eau. Mettre les épinards égouttés, les œufs, l'huile, l'ail, l'assaisonnement, l'oignon, le sel et le poivre dans un mixeur et faire tourner jusqu'à ce que les ingrédients soient bien mélangés. Transférer dans un grand saladier, ajouter la dinde et remuer jusqu'à ce que le mélange soit compact.<br><br>Remplir les moules à muffins. Faire cuire 30 à 35 min, jusqu'à ce que le dessus brunisse. Sortir et laisser refroidir avant de démouler. Se conservent au réfrigérateur ou au congélateur.</p>
+          </div>
+          <div class="recipe-variants">
+            <span>Végétarien : produits Quorn pour la dinde + 1 c. à café de graines de fenouil</span>
+            <span>Vegan : 5 œufs vegan + 1 bloc de tempeh émietté + graines de fenouil</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-header" onclick="toggleRecipe(this)">
+        <div class="recipe-title">🥤 Smoothie Paradox</div>
+        <div class="recipe-meta"><span class="recipe-tag p2">Phase 2-3</span><span class="recipe-chevron">▼</span></div>
+      </div>
+      <div class="recipe-body">
+        <div class="recipe-inner">
+          <div class="recipe-info"><span>⏱ 2 min</span><span>👤 1 personne</span></div>
+          <div class="recipe-ingr">
+            <h5>Ingrédients</h5>
+            <ul>
+              <li>1 c. à soupe de poudre de grenade ou 1 mesure de GundryMD Vital Reds</li>
+              <li>2 c. à soupe de graines de lin moulues ou 1 mesure de GundryMD PrebioThrive</li>
+              <li>1 mesure de pectine de citron modifiée ou 1 mesure de GundryMD Primal Plants (parfum pomme)</li>
+              <li>½ banane verte en tranches</li>
+              <li>1 c. à soupe d'huile de noix de coco extra vierge</li>
+              <li>1 c. à café de Just Like Sugar ou de stévia</li>
+              <li>125 ml de lait de noix de coco sans sucre</li>
+              <li>375 ml d'eau du robinet ou filtrée · 3 ou 4 glaçons</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <h5>Préparation</h5>
+            <p>Mettre les trois premiers ingrédients dans un mixeur puissant. Ajouter la banane verte, l'huile de noix de coco, Just Like Sugar, le lait de noix de coco, l'eau et les glaçons et faire tourner jusqu'à ce que le mélange soit lisse et mousseux.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-header" onclick="toggleRecipe(this)">
+        <div class="recipe-title">🥞 Crêpes parfaites au plantain ✱</div>
+        <div class="recipe-meta"><span class="recipe-tag p2">Phase 2-3</span><span class="recipe-chevron">▼</span></div>
+      </div>
+      <div class="recipe-body">
+        <div class="recipe-inner">
+          <div class="recipe-info"><span>⏱ 10 min prép. + 20 min cuisson</span><span>👤 4 personnes (≈ 8 crêpes)</span></div>
+          <div class="recipe-ingr">
+            <h5>Ingrédients</h5>
+            <ul>
+              <li>2 gros plantains pelés et coupés en morceaux</li>
+              <li>4 gros œufs de poule nourrie à l'herbe ou oméga 3</li>
+              <li>2 c. à café d'extrait pur de vanille</li>
+              <li>4 à 5 c. à soupe d'huile de noix de coco extra-vierge</li>
+              <li>50g de Just Like Sugar · ¼ c. à café de sel de mer iodé · ½ c. à café de bicarbonate de soude</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <h5>Préparation</h5>
+            <p>Mettre les morceaux de plantain dans un mixeur ou robot et convertir en purée (environ 500-600g). Ajouter les œufs et mélanger pour obtenir une pâte lisse. Ajouter la vanille, 3 c. à soupe d'huile de noix de coco fondue, Just Like Sugar, le sel et le bicarbonate. Mixer 2 à 3 min jusqu'à ce que tous les ingrédients soient bien incorporés.<br><br>Faire chauffer 1 c. à soupe d'huile de noix de coco dans une poêle à température moyenne. Quand l'huile frémit, verser environ 100 ml de pâte. Cuire 4 à 5 min jusqu'à ce que le dessus semble relativement sec et ait peu de bulles. Retourner et laisser cuire 1 min 30 à 2 min supplémentaires. Ajouter de l'huile si nécessaire.</p>
+          </div>
+          <div class="recipe-variants"><span>Vegan : remplacer les œufs par des œufs vegan</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-section-title">🍽️ Plats principaux & accompagnements</div>
+
+    <div class="recipe-card">
+      <div class="recipe-header" onclick="toggleRecipe(this)">
+        <div class="recipe-title">🍵 Soupe de jeunes pousses de céleri-rave</div>
+        <div class="recipe-meta"><span class="recipe-tag p2">Phase 2-3</span><span class="recipe-chevron">▼</span></div>
+      </div>
+      <div class="recipe-body">
+        <div class="recipe-inner">
+          <div class="recipe-info"><span>⏱ 25 min prép. + 35 min cuisson</span><span>👤 4 personnes</span></div>
+          <div class="recipe-ingr">
+            <h5>Ingrédients</h5>
+            <ul>
+              <li>3 c. à soupe d'huile d'olive extra-vierge, d'avocat ou de périlla</li>
+              <li>500g de céleri-rave, pelé et coupé en morceaux de 2,5 cm</li>
+              <li>2 tiges de céleri avec ses feuilles, coupées en morceaux de 2,5 cm</li>
+              <li>½ oignon rouge émincé</li>
+              <li>1 c. à soupe de feuilles de romarin fraîches hachées (ou 1 c. à café séché)</li>
+              <li>¼ c. à café de sel de mer iodé · ½ c. à café de poivre noir moulu</li>
+              <li>750 ml de bouillon de légumes bio · ½ citron</li>
+              <li>3 c. à soupe de persil plat haché pour la garniture</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <h5>Préparation</h5>
+            <p>Dans une grande cocotte, chauffer l'huile à feu moyen. Ajouter le céleri-rave, le céleri, l'oignon, le romarin, sel et poivre et laisser cuire 5 min jusqu'à ce que le céleri-rave et le céleri commencent à ramollir et foncer légèrement.<br><br>Ajouter le bouillon et le citron et amener à ébullition. Réduire la chaleur, couvrir et laisser frémir 30 min en remuant de temps en temps. Quand le céleri-rave est tendre, arrêter la cuisson et ôter le citron.<br><br>Transférer environ la moitié du mélange dans un blender et faire tourner à vitesse maximale jusqu'à l'obtention d'une soupe lisse et crémeuse. Répéter avec le reste puis réchauffer l'ensemble 5 min dans la cocotte. Verser dans des bols, garnir de persil et arroser d'huile d'olive.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-header" onclick="toggleRecipe(this)">
+        <div class="recipe-title">🍕 Pizza aux épinards avec pâte de chou-fleur ✱</div>
+        <div class="recipe-meta"><span class="recipe-tag p2">Phase 2-3</span><span class="recipe-chevron">▼</span></div>
+      </div>
+      <div class="recipe-body">
+        <div class="recipe-inner">
+          <div class="recipe-info"><span>⏱ 30 min prép. + 35 min cuisson</span><span>👤 2 personnes</span><span>🌡 Four 230°C</span></div>
+          <div class="recipe-ingr">
+            <h5>Pâte</h5>
+            <ul>
+              <li>Huile d'olive pour graisser le plat · 1 petit chou-fleur, coupé en morceaux</li>
+              <li>3 œufs de poule nourrie à l'herbe, battus légèrement</li>
+              <li>50g de mozzarella de buffle ou de chèvre émiettée</li>
+              <li>½ c. à café de sel de mer iodé · ½ c. à café de poivre noir concassé · ½ c. à café d'origan séché</li>
+            </ul>
+            <h5 style="margin-top:10px;">Garniture</h5>
+            <ul>
+              <li>75g de mozzarella de buffle ou de chèvre émiettée</li>
+              <li>30g d'épinards cuits et égouttés · Légumes de votre choix en morceaux (optionnel)</li>
+              <li>25g de fromage Peccorino-Romano râpé · 1 pincée de sel iodé</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <h5>Préparation</h5>
+            <p>Confectionner le « riz » de chou-fleur. Cuire au micro-ondes à haute température environ 8 min jusqu'à ce qu'il soit cuit. Laisser refroidir en remuant de temps en temps. Mettre le chou-fleur dans une serviette et la tordre pour enlever toute l'humidité. Transférer dans un saladier. Ajouter l'œuf, la mozzarella, le sel, le poivre et l'origan. Bien mélanger. Répartir le mélange dans une poêle à frire.<br><br>Chauffer la pâte sur feu moyen quelques minutes pour la rendre croustillante. Transférer dans le four et cuire 15 min jusqu'à ce qu'elle soit dorée. Laisser refroidir 5 min et ajouter la garniture. Éparpiller la mozzarella, ajouter les épinards et d'éventuels autres légumes. Ajouter le Peccorino-Romano et le sel. Cuire encore 10 min jusqu'à ce que le fromage soit fondu.</p>
+          </div>
+          <div class="recipe-variants">
+            <span>Vegan : œufs vegan + « fromage » Kite Hill Ricotta</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-header" onclick="toggleRecipe(this)">
+        <div class="recipe-title">🍄 Mini « pizzas » de champignons portobello grillés au pesto</div>
+        <div class="recipe-meta"><span class="recipe-tag p2">Phase 2-3</span><span class="recipe-chevron">▼</span></div>
+      </div>
+      <div class="recipe-body">
+        <div class="recipe-inner">
+          <div class="recipe-info"><span>⏱ 30 min prép. + 20 min cuisson</span><span>👤 2 personnes</span></div>
+          <div class="recipe-ingr">
+            <h5>Pesto au basilic</h5>
+            <ul>
+              <li>30g de feuilles de basilic fraîches · 50 ml d'huile d'olive extra-vierge</li>
+              <li>25g de pignons ou de noix · 2 cubes de 2,5 cm de Parmigiano-Reggiano</li>
+            </ul>
+            <h5 style="margin-top:10px;">Mini « pizzas »</h5>
+            <ul>
+              <li>2 grands champignons portobello sans les pieds</li>
+              <li>Huile extra-vierge de noix de coco ou d'olive · 2 tranches de prosciutto italien</li>
+              <li>1 boule de mozarella coupée en tranches de 1 à 1,25 cm d'épaisseur</li>
+              <li>Sel de mer iodé · Poivre noir concassé</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <h5>Préparation</h5>
+            <p><strong>Pesto :</strong> Dans un robot mettre le basilic, l'huile d'olive, les pignons et le fromage jusqu'à ce que le mélange soit homogène.<br><br><strong>Pizzas :</strong> Enduire d'huile le chapeau des champignons, placer sur le gril chapeau vers le haut et faire griller 5 min jusqu'à ce qu'ils deviennent légèrement bruns. Les retourner et les laisser griller à nouveau 5 min. Enlever du gril.<br><br>Mettre 3 c. à soupe de pesto sur le côté des lamelles d'un champignon, ajouter 1 tranche de prosciutto et la moitié des tranches de mozzarella. Faire de même avec l'autre champignon. Remettre les champignons sur le gril, fermer le couvercle et laisser griller jusqu'à ce que le fromage commence à fondre, environ 5 min. Saler, poivrer, servir.</p>
+          </div>
+          <div class="recipe-variants">
+            <span>Végétarien : enlever le prosciutto</span>
+            <span>Vegan : levure nutritive Kite Hill Ricotta + pesto sans parmesan</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-header" onclick="toggleRecipe(this)">
+        <div class="recipe-title">🍔 Burgers protéinés aux champignons et aux noix</div>
+        <div class="recipe-meta"><span class="recipe-tag p2">Phase 2-3</span><span class="recipe-chevron">▼</span></div>
+      </div>
+      <div class="recipe-body">
+        <div class="recipe-inner">
+          <div class="recipe-info"><span>⏱ 25 min prép. + 10 min cuisson</span><span>👤 4 personnes</span></div>
+          <div class="recipe-ingr">
+            <h5>Ingrédients</h5>
+            <ul>
+              <li>200g de noix en morceaux · 150g de champignons en morceaux · 130g de betterave rouge en morceaux</li>
+              <li>2 gousses d'ail pelées ou ¼ c. à café de poudre d'ail</li>
+              <li>60g d'oignon rouge émincé · 1 c. à café de paprika hongrois · 1 c. à soupe de persil séché</li>
+              <li>Sel de mer iodé · Poivre noir concassé · 15g de basilic ou sauge finement émincés</li>
+              <li>2 c. à soupe de farine de manioc ou de tapioca</li>
+              <li>3 c. à soupe d'huile d'olive ou d'avocat pour frire</li>
+              <li>8 feuilles de salade romaine ou de laitue · 1 avocat Hass coupé en tranches</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <h5>Préparation</h5>
+            <p>Mettre les noix, champignons, betterave, ail, la moitié d'oignon, le paprika, le persil, ¼ c. à café de sel, ¼ c. à café de poivre dans le robot à lame en S. Laisser tourner jusqu'à ce que le mélange soit bien homogène mais encore avec des morceaux.<br><br>Transférer dans un saladier et ajouter le basilic, le reste d'oignons et la farine. Enduire ses mains d'huile pour malaxer le mélange. Sur une feuille de papier sulfurisé, former 4 galettes de 10 cm de diamètre et 3 cm d'épaisseur.<br><br>Faire chauffer une poêle à chaleur moyenne. Verser 3 c. à soupe d'huile. Faire cuire les galettes 4 à 5 min de chaque côté jusqu'à ce qu'elles brunissent. Servir chacune sur une feuille de laitue avec mayonnaise d'avocat (facultatif), les tranches d'avocat et recouvrir d'une deuxième feuille de salade.</p>
+          </div>
+          <div class="recipe-variants">
+            <span>Version viande : ajouter 250g de bœuf haché ou dinde élevés à l'herbe</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-header" onclick="toggleRecipe(this)">
+        <div class="recipe-title">🥦 Purée de chou-fleur rôti parfumée au parmesan</div>
+        <div class="recipe-meta"><span class="recipe-tag p2">Phase 2-3</span><span class="recipe-chevron">▼</span></div>
+      </div>
+      <div class="recipe-body">
+        <div class="recipe-inner">
+          <div class="recipe-info"><span>⏱ 10 min prép. + 60 min cuisson</span><span>👤 4 personnes</span><span>🌡 Four 200°C</span></div>
+          <div class="recipe-ingr">
+            <h5>Ingrédients</h5>
+            <ul>
+              <li>1 gros chou-fleur, épluché et divisé en bouquets</li>
+              <li>60 ml d'huile d'olive extra-vierge · Sel de mer iodé · Poivre noir concassé</li>
+              <li>2 c. à soupe de beurre doux français ou beurre de chèvre ou ghee (optionnel)</li>
+              <li>125g de fromage Parmigiano-Reggiano finement râpé</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <h5>Préparation</h5>
+            <p>Préchauffer le four à 200°C. Mettre les bouquets de chou-fleur dans un grand saladier, ajouter l'huile d'olive et secouer pour bien imprégner, puis saler et poivrer généreusement.<br><br>Étaler une grande feuille de papier sulfurisé, plier à la moitié, rouvrir. Transférer le chou-fleur au milieu d'une des moitiés. Rabattre l'autre moitié et pincer les bords pour fermer le paquet. Mettre sur une plaque à gâteau à mi-hauteur du four. Cuire environ 1 h jusqu'à ce que le chou-fleur soit tendre et légèrement brun.<br><br>Laisser refroidir 10 min. Mettre le chou-fleur et son jus dans un robot, ajouter le beurre si voulu, ainsi que le parmesan. Laisser tourner jusqu'à l'obtention d'une purée lisse et dense. Assaisonner de sel et de poivre. Servir immédiatement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-header" onclick="toggleRecipe(this)">
+        <div class="recipe-title">🌿 Curry de légumes avec « nouilles » de patates douces</div>
+        <div class="recipe-meta"><span class="recipe-tag p2">Phase 2-3</span><span class="recipe-chevron">▼</span></div>
+      </div>
+      <div class="recipe-body">
+        <div class="recipe-inner">
+          <div class="recipe-info"><span>⏱ 10 min prép. + 25 min cuisson</span><span>👤 2 personnes</span></div>
+          <div class="recipe-ingr">
+            <h5>Curry de légumes</h5>
+            <ul>
+              <li>½ c. à soupe d'huile de noix de coco extra-vierge</li>
+              <li>1 grosse carotte en spirale ou en julienne · 80g de brocolis en petits morceaux</li>
+              <li>50g d'oignons émincés · 1 c. à café de gingembre frais haché</li>
+              <li>1 c. à soupe de poudre de curry jaune</li>
+              <li>400 ml de lait entier de noix de coco ou crème de noix de coco en boîte sans BPA</li>
+            </ul>
+            <h5 style="margin-top:10px;">« Nouilles » de patates douces</h5>
+            <ul>
+              <li>½ c. à soupe d'huile de noix de coco · 1 grosse patate douce, pelée et en spirales</li>
+              <li>1 pincée de sel · 4 c. à soupe de coriandre hachée pour garnir</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <h5>Préparation</h5>
+            <p><strong>Curry :</strong> Faire chauffer l'huile de noix de coco à température moyenne. Ajouter la carotte et faire cuire environ 3 min. Baisser encore le feu et ajouter le brocoli, l'oignon, le gingembre. Faire cuire jusqu'à ce qu'ils ramollissent et brunissent, environ 5 min. Ajouter la poudre de curry jaune et poursuivre la cuisson 1 min. Ajouter le lait de noix de coco, saler et remuer pour bien amalgamer. Amener à ébullition, baisser le feu et laisser mijoter 15 min en remuant de temps en temps jusqu'à ce que la sauce commence à épaissir.<br><br><strong>Nouilles :</strong> Faire chauffer l'huile de noix de coco dans une poêle à température moyenne. Ajouter les nouilles de patate douce et laisser cuire environ 10 min en remuant de temps en temps jusqu'à ce qu'elles soient tendres. Saler.<br><br>Diviser les nouilles entre les deux assiettes, verser le curry sur le dessus. Parsemer de coriandre et servir.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-header" onclick="toggleRecipe(this)">
+        <div class="recipe-title">🫒 Cœurs d'artichauts « frits » cuits au four</div>
+        <div class="recipe-meta"><span class="recipe-tag p2">Phase 2-3</span><span class="recipe-chevron">▼</span></div>
+      </div>
+      <div class="recipe-body">
+        <div class="recipe-inner">
+          <div class="recipe-info"><span>⏱ 20 min prép. + 25 min cuisson</span><span>👤 2 personnes</span><span>🌡 Four 200°C</span></div>
+          <div class="recipe-ingr">
+            <h5>Ingrédients</h5>
+            <ul>
+              <li>4 c. à soupe d'huile d'olive extra-vierge (ou de périlla)</li>
+              <li>Jus d'un ½ citron ou 2 c. à soupe de jus de citron en bouteille</li>
+              <li>⅛ c. à café de poudre de poivre de Cayenne</li>
+              <li>10 cœurs d'artichauts décongelés et essuyés avec de l'essuie-tout</li>
+              <li>25g de farine d'amandes, de noix de coco ou de manioc</li>
+              <li>¼ c. à café de sel de mer iodé · ¼ c. à café de poivre noir concassé</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <h5>Préparation</h5>
+            <p>Préchauffer le four à 200°C. Verser 3 c. à soupe d'huile d'olive, le jus de citron et le poivre de Cayenne dans un bol et remuer jusqu'à ce que le mélange soit amalgamé. Ajouter les cœurs d'artichauts et remuer pour bien les imprégner.<br><br>Étaler sur une feuille de papier sulfurisé la c. à soupe d'huile d'olive restante. Mettre la farine, le sel et le poivre dans un sac plastique refermable. Mettre les artichauts dans le sac et secouer. Placer sur la feuille de cuisson et faire cuire pendant 20 à 25 min, en les retournant jusqu'à ce qu'ils soient bruns et croustillants. Ajouter un peu de sel et servir avec des quartiers de citron.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-header" onclick="toggleRecipe(this)">
+        <div class="recipe-title">🧇 Gaufres à la farine de manioc avec collagène ✱</div>
+        <div class="recipe-meta"><span class="recipe-tag p2">Phase 2-3</span><span class="recipe-chevron">▼</span></div>
+      </div>
+      <div class="recipe-body">
+        <div class="recipe-inner">
+          <div class="recipe-info"><span>⏱ 5 min prép. + 15 min cuisson</span><span>👤 4 personnes (4-8 gaufres)</span></div>
+          <div class="recipe-ingr">
+            <h5>Ingrédients</h5>
+            <ul>
+              <li>4 œufs de poule nourrie à l'herbe ou oméga 3</li>
+              <li>50g de collagène marin Vital Proteins (optionnel)</li>
+              <li>60g de farine de manioc</li>
+              <li>50 ml d'huile de noix de coco extra-vierge</li>
+              <li>1 c. à soupe de miel local ou de miel de Manuka, ou 3 c. à soupe de Just Like Sugar</li>
+              <li>½ c. à café de levure · ¼ c. à café de sel</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <h5>Préparation</h5>
+            <p>Faire chauffer le gaufrier. Mettre les œufs, le collagène marin (si utilisé), la farine de manioc, l'huile de noix de coco, le miel, la levure et le sel dans un mixeur. Faire tourner 45 secondes ou jusqu'à ce que le mélange soit bien compact et légèrement mousseux. Avec une louche, verser la pâte dans le gaufrier et faire cuire en suivant les instructions d'emploi de l'appareil. Vérifier de temps en temps car le mélange cuit très vite.</p>
+          </div>
+          <div class="recipe-variants">
+            <span>Vegan : 4 œufs vegan + sans collagène</span>
+            <span>Végétarien : sans collagène</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-section-title">🍰 Desserts</div>
+
+    <div class="recipe-card">
+      <div class="recipe-header" onclick="toggleRecipe(this)">
+        <div class="recipe-title">🍫 Gâteau sans farine au beurre d'amande et au chocolat ✱</div>
+        <div class="recipe-meta"><span class="recipe-tag p2">Phase 2-3</span><span class="recipe-chevron">▼</span></div>
+      </div>
+      <div class="recipe-body">
+        <div class="recipe-inner">
+          <div class="recipe-info"><span>⏱ 10 min prép. + 1 min cuisson (micro-ondes)</span><span>👤 1 personne</span></div>
+          <div class="recipe-ingr">
+            <h5>Ingrédients</h5>
+            <ul>
+              <li>2 c. à soupe de poudre de cacao non sucrée (non alcalinisée)</li>
+              <li>2 c. à soupe de Just Like Sugar, Swerve ou xylitol</li>
+              <li>¼ c. à café de levure sans aluminium</li>
+              <li>1 gros œuf de poule nourrie à l'herbe ou oméga 3</li>
+              <li>1 c. à soupe de crème entière de vache</li>
+              <li>½ c. à café d'extrait de vanille pur</li>
+              <li>1 c. à café de beurre salé français ou beurre de chèvre ou ghee</li>
+              <li>1 c. à soupe de beurre d'amandes bio avec ou sans morceaux</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <h5>Préparation</h5>
+            <p>Mettre la poudre de cacao, l'édulcorant et la levure dans un petit bol. Avec une fourchette, remuer pour agglomérer et écraser tout grumeau de levure. Mettre l'œuf, la crème épaisse et l'extrait de vanille dans un autre petit bol et fouetter pour agglomérer. Verser les ingrédients humides dans les secs et mélanger jusqu'à ce que tous les ingrédients soient bien intégrés.<br><br>Graisser le fond et les côtés d'un ramequin de 10 cm de diamètre avec le beurre. Verser la pâte. Passer au micro-ondes à haute température pendant 1 min 20 secondes. Faire ramollir le beurre d'amandes dans le four à micro-ondes, en parsemer le dessus du gâteau et servir.</p>
+          </div>
+          <div class="recipe-variants">
+            <span>Vegan : lait ou crème de noix de coco + huile de noix de coco + œuf vegan</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-section-title">🥤 Boissons</div>
+
+    <div class="recipe-card">
+      <div class="recipe-header" onclick="toggleRecipe(this)">
+        <div class="recipe-title">☕ Cappuccino « get up and go »</div>
+        <div class="recipe-meta"><span class="recipe-tag p2">Phase 2-3</span><span class="recipe-chevron">▼</span></div>
+      </div>
+      <div class="recipe-body">
+        <div class="recipe-inner">
+          <div class="recipe-info"><span>⏱ 1 min</span><span>👤 1 personne</span></div>
+          <div class="recipe-ingr">
+            <h5>Ingrédients</h5>
+            <ul>
+              <li>1 tasse (250 ml) de café chaud</li>
+              <li>1 c. à soupe d'huile MCT</li>
+              <li>1 c. à soupe de beurre français ou italien, de beurre de chèvre ou de ghee</li>
+              <li>1 paquet de stévia (optionnel)</li>
+            </ul>
+          </div>
+          <div class="recipe-steps">
+            <h5>Préparation</h5>
+            <p>Verser tous les ingrédients dans un mixeur et laisser tourner pendant 30 s. Verser dans une tasse et servir.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- GUIDE INGRÉDIENTS -->
+  <div id="ingredients" class="sub-section" style="display:none;">
+    <div class="section-title" style="margin-bottom:16px;">Guide des <span>ingrédients</span> spéciaux</div>
+    <p style="font-size:0.88rem;color:var(--muted);margin-bottom:20px;">Les ingrédients inhabituels se trouvent généralement en magasin bio, chez Whole Foods, ou en ligne (Amazon, Vitacost, Thrive Market).</p>
+
+    <details class="ingredient-guide"><summary>🥑 Avocat<span>›</span></summary><div class="ig-body">Préférer les <strong>avocats Hass</strong> à peau noire ou vert foncé granuleuse. Ils contiennent plus de graisses mono-insaturées bénéfiques pour le cœur que les avocats de Floride à peau lisse et plus aqueux. D'autres variétés sont aussi acceptables.</div></details>
+
+    <details class="ingredient-guide"><summary>🍫 Chocolat<span>›</span></summary><div class="ig-body">Utiliser un produit <strong>sans sucre ajouté comportant au moins 72% de cacao</strong> pour un dessert occasionnel. Trader Joe's, Lindt, Valrona et beaucoup d'autres produisent du chocolat noir à 85-90% de cacao. Dagoba et Lily's font d'excellentes chips de chocolat.</div></details>
+
+    <details class="ingredient-guide"><summary>🐟 Collagène marin<span>›</span></summary><div class="ig-body">Bien que fabriqué à partir de poisson, ce collagène <strong>n'a pas le goût de poisson</strong> ni aucun autre goût. Amazon en vend une version <strong>Vital Proteins</strong>. Il apporte des protéines de poisson et est excellent dans les gaufres et smoothies.</div></details>
+
+    <details class="ingredient-guide"><summary>🥥 Crème de noix de coco<span>›</span></summary><div class="ig-body">Ne pas confondre avec la boisson vendue dans un emballage carton. La crème de noix de coco est parfois appelée lait de noix de coco mais elle est <strong>plus épaisse et vendue en boîte de conserve</strong>. Évitez tout produit comprenant du sucre ajouté tel que le Cocoloco, et assurez-vous que le revêtement intérieur de la boîte ne contient pas le perturbateur mortel qu'est le BPA. <strong>Trader Joe's</strong> vend une excellente crème de noix de coco bien épaisse.</div></details>
+
+    <details class="ingredient-guide"><summary>🌾 Farine d'amandes<span>›</span></summary><div class="ig-body">Issue d'amandes finement moulues, on la trouve dans les magasins bio et en ligne. Dans l'idéal, utiliser un produit <strong>non OGM</strong>.</div></details>
+
+    <details class="ingredient-guide"><summary>🌿 Farine de manioc<span>›</span></summary><div class="ig-body">Bien qu'elle provienne de la même racine (manioc ou yucca), la farine de manioc n'est <strong>pas identique à celle de tapioca</strong>. C'est le secret des gâteaux légers sans gluten. Amazon vend <strong>Moon Rabbit, Otto's Natural</strong> et d'autres encore.</div></details>
+
+    <details class="ingredient-guide"><summary>🥞 Farine de noix de coco<span>›</span></summary><div class="ig-body">Plus dense que les farines de céréales, ce qui signifie qu'elle <strong>absorbe plus de liquide</strong>. Il est donc préférable de suivre fidèlement une recette jusqu'à ce que vous soyez familiarisé avec les propriétés de cette farine. <strong>Bob's Red Mill, Nutivia, Let's Do</strong> proposent tous des farines bio à la noix de coco.</div></details>
+
+    <details class="ingredient-guide"><summary>🌾 Farine d'arrow-root<span>›</span></summary><div class="ig-body">Appelée aussi amidon d'arrow-root, cette farine <strong>ne contient ni gluten ni d'autres lectines</strong> et peut être mélangée aux autres farines dans les produits boulangers, les gaufres et les crêpes. Elle peut également servir à épaissir les sauces en remplacement de l'amidon de maïs.</div></details>
+
+    <details class="ingredient-guide"><summary>🧈 Ghee<span>›</span></summary><div class="ig-body">Beurre clarifié ou ghee, ingrédient essentiel de la cuisine indienne. Le ghee <strong>ne contient pas de caséine A-1</strong> parce qu'il est constitué à 100% de matières grasses et non de protéines. Privilégiez les marques <strong>Pure ou Pure Indian Foods</strong>, provenant de vaches nourries à l'herbe.</div></details>
+
+    <details class="ingredient-guide"><summary>🫒 Huile d'avocat<span>›</span></summary><div class="ig-body">Riche en graisses mono-insaturées, dépourvue de goût et avec l'avantage d'un des <strong>points de fumée les plus élevés</strong>, l'huile d'avocat est une huile excellente pour toutes les préparations. Disponible chez <strong>Costco</strong> et dans la plupart des supermarchés.</div></details>
+
+    <details class="ingredient-guide"><summary>🌺 Huile de périlla<span>›</span></summary><div class="ig-body">Extraite des graines de périlla, c'est l'huile la plus utilisée en Asie et qui a le <strong>plus fort taux d'acide alpha linoléique</strong> de toutes les huiles, une huile oméga 3 qui protège le cœur. Vous la trouverez sur les marchés asiatiques, dans les magasins bio, chez Whole Foods et en ligne.</div></details>
+
+    <details class="ingredient-guide"><summary>🍬 Just Like Sugar / Stévia<span>›</span></summary><div class="ig-body"><strong>Just Like Sugar</strong> est extrait de racines de chicorée ou d'agave et contient de l'inuline polysaccharide que votre microbiote adore mais que vous ne pouvez pas métaboliser. <strong>Stévia</strong> est environ 300 fois plus sucrée que le sucre. Préférer <strong>Sweet Leaf</strong> qui ne contient pas de maltodextrine. Le premier ingrédient de sa version en poudre est l'inuline.</div></details>
+
+    <details class="ingredient-guide"><summary>🌾 Millet<span>›</span></summary><div class="ig-body">Le millet n'a pas de coque, ce qui veut dire — paradoxalement — que <strong>c'est une céréale sans lectines</strong>. C'était la céréale de base de l'Inde avant que le riz ne la supplante. Vous en trouvez facilement dans la plupart des supermarchés comme <strong>Bob's Red Mill</strong> et autres.</div></details>
+
+    <details class="ingredient-guide"><summary>🍄 Produits Quorn<span>›</span></summary><div class="ig-body">Ces aliments sont fabriqués à partir de « racines » de champignons que le fabriquant appelle des mycoprotéines. Ils ont la texture et un léger parfum de poulet ou de dinde. <strong>N'utiliser que les versions autorisées de la liste des « oui ».</strong> Certains contiennent une petite quantité de blanc d'œuf, ce qui ne convient pas aux vegan. Les produits de la ligne vegan contiennent un peu de pommes de terre et de gluten ce qui les rend inacceptables.</div></details>
+
+    <details class="ingredient-guide"><summary>🌾 Sorgho<span>›</span></summary><div class="ig-body">Le sorgho, l'une des deux seules céréales sans coque, <strong>ne contient pas de lectines</strong>. C'était la céréale de base de l'Inde avant que le riz ne la supplante. Le sorgho de <strong>Bob's Red Mill</strong> est disponible dans tous les magasins bien fournis.</div></details>
+
+    <details class="ingredient-guide"><summary>🧆 Tempeh sans céréales<span>›</span></summary><div class="ig-body">Le tempeh est constitué de soja fermenté riche en protéines. On le trouve réfrigéré ou congelé dans les magasins bio et dans la plupart des supermarchés. <strong>N'achetez que du tempeh sans céréales.</strong></div></details>
+
+    <details class="ingredient-guide"><summary>🌿 Tofu de chanvre<span>›</span></summary><div class="ig-body">Appelé parfois <strong>Hefu</strong>, ce produit fermenté est fabriqué de la même façon que le tofu mais avec des graines de chanvre plutôt que des haricots de soja. Le résultat est un peu plus dense et compact que le tofu de soja. Le <strong>tofu de chanvre Living Harvest Tempt sans OGM</strong> est disponible chez Whole Foods.</div></details>
+  </div>
+</div>
+
+<!-- ===== COMPLÉMENTS ===== -->
+<div class="section" id="complements">
+  <div class="section-title">Le <span>G6</span> — Compléments essentiels</div>
+  <p class="section-desc">Les 6 classes de compléments indispensables selon le Dr Gundry. Notre sol moderne est si appauvri qu'une alimentation même parfaite ne suffit plus.</p>
+
+  <div class="tip-box">
+    <strong>Note importante</strong>
+    Depuis 1936, un rapport du Sénat américain alertait déjà sur l'appauvrissement des sols en nutriments essentiels. La situation n'a fait qu'empirer avec les fertilisants chimiques et le Roundup. La supplémentation est donc une nécessité, pas un luxe.
+  </div>
+
+  <div class="supp-list">
+    <div class="supp-item">
+      <div class="supp-left"><div class="supp-name">☀️ Vitamine D3</div><div class="supp-why">Répare la paroi intestinale, régule l'immunité, protège contre les maladies auto-immunes et le cancer</div></div>
+      <div class="supp-dose">5 000 UI/jour<br><span style="font-size:0.75rem;color:var(--muted)">10 000 si auto-immune</span></div>
+    </div>
+    <div class="supp-item">
+      <div class="supp-left"><div class="supp-name">🧠 Vitamine B (Méthylfolate + Méthyl B12)</div><div class="supp-why">Plus de 50% de la population a une mutation MTHFR. Réduisent l'homocystéine (risque cardio-vasculaire)</div></div>
+      <div class="supp-dose">1000 µg/jour chacune</div>
+    </div>
+    <div class="supp-item">
+      <div class="supp-left"><div class="supp-name">🍇 Polyphénols</div><div class="supp-why">Extrait de pépins de raisin, resvératrol, extrait d'écorce de pin, thé vert, berbérine, cacao, cannelle, grenades</div></div>
+      <div class="supp-dose">100 mg/jour</div>
+    </div>
+    <div class="supp-item">
+      <div class="supp-left"><div class="supp-name">🌿 Composés phytochimiques verts</div><div class="supp-why">Épinards (réduit envies de sucre), DIM (brocoli, immunostimulant), pectine de citron modifiée</div></div>
+      <div class="supp-dose">500 mg x2/jour</div>
+    </div>
+    <div class="supp-item">
+      <div class="supp-left"><div class="supp-name">🐟 Oméga 3 (EPA + DHA)</div><div class="supp-why">Le cerveau est composé à 60% de graisses, dont 30% de DHA. Répare la paroi intestinale. Huile de poisson distillée moléculairement (sardines, anchois)</div></div>
+      <div class="supp-dose">1000 mg DHA/jour</div>
+    </div>
+    <div class="supp-item">
+      <div class="supp-left"><div class="supp-name">🦠 Prébiotiques</div><div class="supp-why">Nourrissent les bonnes bactéries. Inuline, FOS, GOS, psyllium. Les probiotiques seuls ne suffisent pas sans leur nourriture.</div></div>
+      <div class="supp-dose">Psyllium : 1 c.à.s/jour<br>Inuline : en complément</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><div class="icon">🛡️</div>Inhibiteurs de lectines</div>
+    <p>Pour les repas où vous ne pouvez pas contrôler les ingrédients (restaurants, repas de famille...), des composés peuvent absorber les lectines avant qu'elles n'atteignent votre paroi intestinale : glucosamine, MSM, D-mannose (aussi utile contre les infections urinaires), et des formules combinées incluant 9 ingrédients anti-lectines.</p>
+  </div>
+</div>
+
+<!-- ===== CAS CLINIQUES ===== -->
+<div class="section" id="stories">
+  <div class="section-title">Cas <span>Cliniques</span></div>
+  <p class="section-desc">Des témoignages réels de patients du Dr Gundry qui ont guéri grâce au Programme du Paradoxe des Plantes.</p>
+
+  <div class="story-card">
+    <div class="story-name">Jill W., 20 ans — Maladie de Crohn</div>
+    <p>Étudiante boursière souffrant de maladie de Crohn traitée par immunosuppresseurs. Son médecin affirme que c'est génétique et qu'aucun régime ne peut aider. Elle essaie le PPP. Deux semaines plus tard : premières selles normales de sa vie. Mange deux cookies de Noël par curiosité — crampes et diarrhées reprennent violemment. Elle reprend le PPP. Tout rentre dans l'ordre.</p>
+  </div>
+
+  <div class="story-card">
+    <div class="story-name">Michael V., 13 ans — Maladie de Crohn + cachexie</div>
+    <p>Ado de 49 kg, maladie de Crohn causée par des années d'antibiotiques pour amygdales. Le PPP associé à vitamine D3, prébiotiques et probiotiques guérit ses diarrhées sanglantes en 3 mois. Il commence à prendre du poids. Aujourd'hui champion de lutte de Californie à l'université avec une bourse sportive.</p>
+  </div>
+
+  <div class="story-card">
+    <div class="story-name">Sara Y., 71 ans — Maladie de Crohn induite par antibiotiques</div>
+    <p>6 semaines d'antibiotiques pour infection urinaire → maladie de Crohn sévère. Son médecin lui prescrit des immunosuppresseurs. Elle refuse et vient voir le Dr Gundry. Résultat en 6 mois avec le PPP : guérison complète. "Je n'en parle pas à mon médecin, il ne me croirait pas."</p>
+  </div>
+
+  <div class="story-card">
+    <div class="story-name">Emily J. — Syndrome de Raynaud</div>
+    <p>Chute de varappe → ibuprofène et naproxène pendant 6 mois → mains et pieds bleus. Incapable de tenir un stylo, doit arrêter ses études. Le Dr Gundry identifie que les AINS ont percé sa barrière intestinale. PPP + probiotiques + vitamine D à 100 ng/ml. En 2 semaines : changement de couleur. En 6 semaines : retour à la normale. Reprend ses études.</p>
+  </div>
+
+  <div class="story-card">
+    <div class="story-name">Elena J., 67 ans — Œsophage de Barrett (précancéreux)</div>
+    <p>Brûlures d'estomac chroniques, traitée par doubles doses d'IPP. Plus elle prend de médicaments, plus elle va mal. Le Dr Gundry lui prescrit d'arrêter les IPP et de suivre le PPP. En 6 mois : protéines revenues à la normale, brûlures disparues. Un an plus tard : son gastro-entérologue constate la disparition totale de l'œsophage de Barrett.</p>
+  </div>
+
+  <div class="story-card">
+    <div class="story-name">Jennifer U., 76 ans — Arthrite rhumatoïde</div>
+    <p>Sous PPP, tous ses marqueurs inflammatoires et rhumatismaux étaient revenus à la normale. Commence à consommer du pain bio aux 21 céréales complètes, convaincu d'être sain. Résultat immédiat : tous les marqueurs remontent en flèche, douleurs articulaires sévères reprennent. Suppression du pain → retour à la normale.</p>
+  </div>
+
+  <div class="story-card">
+    <div class="story-name">Patiente vegan de 80 ans — Lupus + maladie cœliaque</div>
+    <p>Auteure de livres de cuisine vegan, alimentation à base de céréales et légumineuses. Lupus sévère et maladie cœliaque. Le PPP fait disparaître le lupus et les marqueurs cœliaques rapidement. Revient à son régime vegan "normal" → marqueurs du lupus multipliés par 10, insuffisance cardiaque aggravée. Retour au PPP : tout se résout à nouveau.</p>
+  </div>
+</div>
+
+</div><!-- end .content -->
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showSubTab(id) {
+  // Hide all sub-sections
+  document.querySelectorAll('.sub-section').forEach(s => { s.style.display = 'none'; });
+  // Show requested
+  const el = document.getElementById(id);
+  if (el) el.style.display = 'block';
+  // Update sub tab buttons
+  const btns = document.querySelectorAll('#menus .tab-btn');
+  btns.forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function toggleAccordion(header) {
+  const body = header.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('open'));
+  if (!isOpen) { body.classList.add('open'); header.classList.add('open'); }
+}
+
+function toggleRecipe(header) {
+  const body = header.nextElementSibling;
+  const chevron = header.querySelector('.recipe-chevron');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  if (chevron) chevron.classList.toggle('open', !isOpen);
+}
+</script>
+</body>
+</html>
+</body>

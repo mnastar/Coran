@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sourate 2 — Al-Baqara — La Vache</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --rose-fonce:    #7B1D4A;
+  --rose-med:      #B84C72;
+  --rose-vif:      #D4607E;
+  --rose-clair:    #F2C4D0;
+  --rose-pale:     #FBF0F4;
+  --rose-tres-pale:#FDF7F9;
+  --or:            #C49A6C;
+  --or-clair:      #E8C99A;
+  --or-pale:       #F5EDE0;
+  --gris-texte:    #2D1A22;
+  --gris-moyen:    #6B4555;
+  --bordure:       #E0A8BB;
+  --blanc:         #FFFFFF;
+  --shadow:        rgba(123,29,74,0.12);
+  --shadow-fort:   rgba(123,29,74,0.22);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Lora', Georgia, serif;
+  background: var(--rose-tres-pale);
+  color: var(--gris-texte);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 15% 20%, rgba(180,76,114,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 85% 75%, rgba(196,154,108,0.06) 0%, transparent 55%);
+  pointer-events: none; z-index: 0;
+}
+
+.side-bar {
+  position: fixed; left: 0; top: 0; bottom: 0; width: 6px;
+  background: linear-gradient(180deg, var(--rose-fonce), var(--or), var(--rose-med), var(--or), var(--rose-fonce));
+  z-index: 100;
+}
+.side-bar-right {
+  position: fixed; right: 0; top: 0; bottom: 0; width: 3px;
+  background: linear-gradient(180deg, transparent, var(--rose-clair), transparent);
+  z-index: 100;
+}
+
+/* ══ HERO ══════════════════════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, var(--rose-fonce) 0%, #9B2D5A 40%, #6B1540 100%);
+  border-radius: 0 0 40px 40px;
+  padding: 56px 48px 48px;
+  margin-bottom: 48px;
+  position: relative; overflow: hidden;
+  box-shadow: 0 12px 48px var(--shadow-fort);
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(196,154,108,0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 40%);
+}
+.hero::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, transparent, var(--or), var(--or-clair), var(--or), transparent);
+}
+.hero-ornement {
+  text-align: center; color: var(--or-clair);
+  font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
+  margin-bottom: 20px; opacity: 0.8; position: relative;
+}
+.hero-ornement::before, .hero-ornement::after { content: '✦'; margin: 0 12px; color: var(--or); }
+.hero-arabe {
+  font-family: 'Amiri', serif; font-size: 42px;
+  text-align: center; color: var(--or-clair);
+  line-height: 1.5; margin-bottom: 16px;
+  position: relative; text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+.hero-titre {
+  font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700;
+  text-align: center; color: var(--blanc); margin-bottom: 6px;
+  letter-spacing: 1px; position: relative;
+}
+.hero-sous-titre {
+  font-family: 'Playfair Display', serif; font-style: italic; font-size: 18px;
+  text-align: center; color: var(--rose-clair); margin-bottom: 28px; position: relative;
+}
+.hero-meta {
+  display: flex; justify-content: center; gap: 32px;
+  flex-wrap: wrap; position: relative;
+}
+.hero-meta-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.hero-meta-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--rose-clair); opacity: 0.7; }
+.hero-meta-val { font-family: 'Playfair Display', serif; font-size: 14px; color: var(--or-clair); font-weight: 600; }
+.hero-sep { width: 1px; background: rgba(255,255,255,0.15); align-self: stretch; }
+
+/* ══ PAGE ═══════════════════════════════════════════════════════ */
+.page {
+  position: relative; z-index: 1;
+  max-width: 900px; margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* ══ NAVIGATION ═════════════════════════════════════════════════ */
+.nav-wrap {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(253,247,249,0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rose-clair);
+  padding: 10px 0;
+  margin-bottom: 32px;
+}
+.nav-versets {
+  display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;
+  max-width: 900px; margin: 0 auto; padding: 0 24px;
+}
+.nav-btn {
+  padding: 5px 12px; border-radius: 20px;
+  border: 1.5px solid var(--bordure); background: var(--blanc);
+  color: var(--rose-fonce); font-family: 'Playfair Display', serif;
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  transition: all 0.22s; white-space: nowrap;
+}
+.nav-btn:hover, .nav-btn.active {
+  background: var(--rose-fonce); color: var(--or-clair);
+  border-color: var(--rose-fonce); transform: translateY(-1px);
+}
+.nav-btn-retour {
+  background: var(--or-pale); border-color: var(--or);
+  color: var(--gris-texte);
+}
+.nav-btn-retour:hover { background: var(--or); color: var(--blanc); border-color: var(--or); }
+
+/* ══ SECTION LABEL ══════════════════════════════════════════════ */
+.section-label {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 18px;
+}
+.section-label::before { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--or)); }
+.section-label::after  { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--or), transparent); }
+.section-label span {
+  font-family: 'Playfair Display', serif; font-size: 11px;
+  letter-spacing: 3px; text-transform: uppercase; color: var(--or); white-space: nowrap;
+}
+
+/* ══ INTRO ══════════════════════════════════════════════════════ */
+.intro-card {
+  background: var(--blanc); border: 1px solid var(--bordure);
+  border-radius: 20px; padding: 28px 32px; margin-bottom: 40px;
+  box-shadow: 0 4px 24px var(--shadow); position: relative; overflow: hidden;
+}
+.intro-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--rose-fonce), var(--or), var(--rose-med));
+}
+.intro-card p { font-size: 15px; line-height: 1.85; color: var(--gris-texte); text-align: justify; }
+
+/* ══ BISMILLAH BLOC ════════════════════════════════════════════ */
+.bismillah-bloc {
+  text-align: center; padding: 20px;
+  background: var(--or-pale); border: 1px solid var(--or);
+  border-radius: 14px; margin-bottom: 32px;
+}
+.bismillah-arabe {
+  font-family: 'Amiri', serif; font-size: 28px;
+  color: var(--rose-fonce); direction: rtl; line-height: 1.8;
+}
+.bismillah-trad {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 14px; color: var(--gris-moyen); margin-top: 8px;
+}
+
+/* ══ CARTE VERSET ═══════════════════════════════════════════════ */
+.verset-card {
+  background: var(--blanc); border-radius: 20px;
+  box-shadow: 0 4px 24px var(--shadow); margin-bottom: 32px;
+  overflow: hidden; border: 1px solid var(--bordure);
+  animation: fadeUp 0.4s ease both;
+  transition: box-shadow 0.3s ease;
+}
+.verset-card:hover { box-shadow: 0 8px 40px var(--shadow-fort); }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Header */
+.verset-header {
+  background: linear-gradient(135deg, var(--rose-fonce), #9B2D5A);
+  padding: 13px 22px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.verset-num-badge {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 2px solid var(--or); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: var(--or-clair);
+}
+.verset-num-label {
+  font-family: 'Playfair Display', serif; font-size: 13px; color: var(--rose-clair);
+}
+.verset-transliteration {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 11.5px; color: var(--or-clair); text-align: right;
+  opacity: 0.85; max-width: 52%; line-height: 1.5;
+}
+
+/* Corps */
+.verset-body {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--rose-clair);
+}
+.verset-traduction {
+  padding: 20px 24px; display: flex; align-items: center;
+  border-right: 1px solid var(--rose-clair);
+}
+.verset-traduction p {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 15px; color: var(--rose-fonce); line-height: 1.7;
+}
+.verset-arabe-bloc {
+  padding: 20px 24px; display: flex; align-items: center;
+  justify-content: center; background: var(--or-pale);
+}
+.verset-arabe-txt {
+  font-family: 'Amiri', serif; font-size: 22px;
+  color: var(--rose-fonce); text-align: center; line-height: 1.8; direction: rtl;
+}
+
+/* ══ ONGLETS ════════════════════════════════════════════════════ */
+.tabs-nav { display: flex; border-bottom: 1px solid var(--rose-clair); }
+.tab-btn {
+  flex: 1; padding: 12px 16px; background: var(--rose-pale);
+  border: none; cursor: pointer; font-family: 'Lora', serif; font-size: 13px;
+  color: var(--gris-moyen); letter-spacing: 0.5px; transition: all 0.2s;
+  border-bottom: 3px solid transparent;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.tab-btn:hover { background: var(--rose-clair); }
+.tab-btn.active {
+  background: var(--blanc); color: var(--rose-fonce);
+  border-bottom: 3px solid var(--rose-fonce); font-weight: 600;
+}
+.tab-panel { display: none; padding: 24px; }
+.tab-panel.active { display: block; }
+
+/* ══ GLOSSAIRE ══════════════════════════════════════════════════ */
+.glossaire-item {
+  display: grid; grid-template-columns: 210px 1fr;
+  margin-bottom: 10px; border-radius: 10px; overflow: hidden;
+  border: 1px solid var(--rose-clair);
+}
+.glossaire-terme {
+  background: var(--rose-fonce); color: var(--or-clair);
+  padding: 12px 14px; font-family: 'Playfair Display', serif;
+  font-style: italic; font-size: 13px; line-height: 1.5;
+  display: flex; align-items: center;
+}
+.glossaire-def {
+  background: var(--blanc); padding: 12px 16px;
+  font-size: 13.5px; line-height: 1.75; color: var(--gris-texte); text-align: justify;
+}
+.ref { color: var(--rose-med); font-style: italic; font-size: 12px; }
+
+/* ══ ACCORDÉON ══════════════════════════════════════════════════ */
+.accordeon-item {
+  border: 1px solid var(--rose-clair); border-radius: 10px;
+  margin-bottom: 8px; overflow: hidden;
+}
+.accordeon-btn {
+  width: 100%; background: linear-gradient(90deg, var(--rose-pale), var(--blanc));
+  border: none; padding: 13px 16px; text-align: left; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  transition: background 0.2s;
+}
+.accordeon-btn:hover, .accordeon-btn.open { background: var(--rose-clair); }
+.accordeon-titre {
+  font-family: 'Playfair Display', serif; font-size: 13.5px; font-weight: 600;
+  color: var(--rose-fonce); display: flex; align-items: center; gap: 8px;
+}
+.accordeon-titre::before { content: '▸'; color: var(--or); font-size: 11px; transition: transform 0.3s; }
+.accordeon-btn.open .accordeon-titre::before { transform: rotate(90deg); }
+.accordeon-chevron { color: var(--rose-med); font-size: 11px; transition: transform 0.3s; }
+.accordeon-btn.open .accordeon-chevron { transform: rotate(180deg); }
+.accordeon-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.accordeon-body.open { max-height: 2000px; }
+.accordeon-contenu {
+  padding: 14px 18px 14px 32px; font-size: 14px; line-height: 1.85;
+  color: var(--gris-texte); text-align: justify;
+  border-top: 1px solid var(--rose-clair); background: var(--blanc);
+}
+.ref-inline { color: var(--rose-med); font-style: italic; font-size: 12.5px; }
+
+/* ══ BADGE PARTIEL ══════════════════════════════════════════════ */
+.badge-partiel {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: linear-gradient(90deg, var(--or-pale), #FFF8EE);
+  border: 1px solid var(--or); border-radius: 24px;
+  padding: 8px 18px; margin-bottom: 28px;
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 13px; color: #7A5C3A;
+}
+
+/* ══ SCROLL TOP ═════════════════════════════════════════════════ */
+.scroll-top {
+  position: fixed; bottom: 28px; right: 20px;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--rose-fonce); color: var(--or-clair);
+  border: none; cursor: pointer; font-size: 18px;
+  box-shadow: 0 4px 16px var(--shadow-fort);
+  transition: all 0.25s; opacity: 0; pointer-events: none; z-index: 200;
+  display: flex; align-items: center; justify-content: center;
+}
+.scroll-top.visible { opacity: 1; pointer-events: auto; }
+.scroll-top:hover { transform: translateY(-3px); background: var(--rose-med); }
+
+/* ══ FOOTER ═════════════════════════════════════════════════════ */
+.footer { text-align: center; padding: 40px 0 20px; color: var(--gris-moyen); font-style: italic; font-size: 13px; }
+.footer-or { color: var(--or); font-size: 20px; letter-spacing: 8px; margin-bottom: 10px; }
+
+/* ══ RESPONSIVE ═════════════════════════════════════════════════ */
+@media (max-width: 680px) {
+  .hero { padding: 40px 20px 36px; border-radius: 0 0 28px 28px; }
+  .hero-arabe { font-size: 28px; }
+  .hero-titre { font-size: 22px; }
+  .hero-sep { display: none; }
+  .verset-body { grid-template-columns: 1fr; }
+  .verset-traduction { border-right: none; border-bottom: 1px solid var(--rose-clair); }
+  .glossaire-item { grid-template-columns: 1fr; }
+  .verset-transliteration { display: none; }
+  .page { padding: 0 12px 60px; }
+}
+</style>
+</head>
+<body>
+<div class="side-bar"></div>
+<div class="side-bar-right"></div>
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<div class="hero">
+  <div class="hero-ornement">Tafsir · Traduction & Commentaire</div>
+  <div class="hero-arabe">سُورَةُ الْبَقَرَةِ</div>
+  <div class="hero-titre">Sourate 2 — Al-Baqara</div>
+  <div class="hero-sous-titre">La Vache · Souwrat-ou Âl-Baqarat-i</div>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Révélation</span>
+      <span class="hero-meta-val">Médinoise</span>
+    </div>
+    <div class="hero-sep"></div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Versets</span>
+      <span class="hero-meta-val">286 Âyât</span>
+    </div>
+    <div class="hero-sep"></div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Numéro</span>
+      <span class="hero-meta-val">Sourate 2</span>
+    </div>
+    <div class="hero-sep"></div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Nom</span>
+      <span class="hero-meta-val">Réf. V67–V71</span>
+    </div>
+  </div>
+</div>
+
+<div class="nav-wrap">
+  <div class="nav-versets">
+    <a href="index_coran.html" class="nav-btn nav-btn-retour">← Index</a>
+    <button class="nav-btn" onclick="scrollToId('intro')">✦ Intro</button>
+    <button class="nav-btn" onclick="scrollToId('v1')">V1</button>
+    <button class="nav-btn" onclick="scrollToId('v2')">V2</button>
+    <button class="nav-btn" onclick="scrollToId('v3')">V3</button>
+    <button class="nav-btn" onclick="scrollToId('v4')">V4</button>
+    <button class="nav-btn" onclick="scrollToId('v5')">V5</button>
+    <button class="nav-btn" onclick="scrollToId('v6')">V6–V7</button>
+    <button class="nav-btn" onclick="scrollToId('v8')">V8–V20</button>
+    <button class="nav-btn" onclick="scrollToId('v21')">V21–V25</button>
+    <button class="nav-btn" onclick="scrollToId('v26')">V26–V33</button>
+    <button class="nav-btn" style="opacity:0.5;cursor:default;">V34–V286 →</button>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- ══ INTRO ══════════════════════════════════════════════════ -->
+  <div id="intro">
+    <div class="section-label"><span>Présentation de la Sourate</span></div>
+    <div class="intro-card">
+      <p>La Sourate Al-Baqara (La Vache) est la deuxième et la plus longue sourate du Coran avec 286 versets. Elle a été révélée à Médine. Son nom fait référence aux versets S2-V67 à V71 qui racontent l'histoire de la vache ordonnée aux Fils d'Israël. Cette sourate couvre des thèmes fondamentaux : la foi, la guidance, les trois groupes d'humains, la création d'Adam, les lois de l'Islam et bien d'autres enseignements essentiels.</p>
+    </div>
+  </div>
+
+  <!-- BISMILLAH -->
+  <div class="bismillah-bloc">
+    <div class="bismillah-arabe">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <div class="bismillah-trad">Bi-Smi Âllah-i Âlr-RaHhmân-i Âlr-RaHhiym-i</div>
+  </div>
+
+  <div class="badge-partiel">⏳ Sourate en cours de complétion — Versets V1 à V33 disponibles (V34–V286 à venir)</div>
+
+  <!-- ══ V1 ══════════════════════════════════════════════════════ -->
+  <div id="v1" class="verset-card">
+    <div class="verset-header">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="verset-num-badge">1</div>
+        <div class="verset-num-label">S2 — V1 · Les Lettres Mystérieuses</div>
+      </div>
+      <div class="verset-transliteration">Alif Lâm Miym (A / L / M)</div>
+    </div>
+    <div class="verset-body">
+      <div class="verset-traduction"><p>Alif · Lâm · Miym</p></div>
+      <div class="verset-arabe-bloc"><div class="verset-arabe-txt">الٓمٓ</div></div>
+    </div>
+    <div class="tabs-wrap">
+      <div class="tabs-nav">
+        <button class="tab-btn active" onclick="switchTab(this,'glos-v1')">🔤 Analyse</button>
+        <button class="tab-btn" onclick="switchTab(this,'com-v1')">📖 Commentaire</button>
+      </div>
+      <div id="glos-v1" class="tab-panel active">
+        <div class="glossaire-item">
+          <div class="glossaire-terme">Alif Lâm Miym</div>
+          <div class="glossaire-def">Ce sont trois lettres de l'alphabet arabe composé de vingt-huit lettres. Elles en sont respectivement la première, la vingt-troisième et la vingt-quatrième lettre. Ces trois lettres ouvrent six sourates, constituant à chaque fois leur premier verset : outre la présente sourate, S3, S29, S30, S31 et S32. <span class="ref">Ces lettres demeurent à ce jour une énigme. Voir les commentaires de S38-V1, S50-V1 et S68-V1.</span></div>
+        </div>
+      </div>
+      <div id="com-v1" class="tab-panel">
+        <div class="accordeon-item">
+          <button class="accordeon-btn" onclick="toggleAccordeon(this)">
+            <span class="accordeon-titre">Une énigme du Coran</span>
+            <span class="accordeon-chevron">▾</span>
+          </button>
+          <div class="accordeon-body">
+            <div class="accordeon-contenu">Ces lettres isolées, appelées « Hurouf Mouqattaaat », ouvrent plusieurs sourates du Coran. Leur signification exacte demeure à ce jour une énigme que nul commentateur n'a pu résoudre de façon définitive. Elles constituent l'une des manifestations du caractère inimitable du Coran. <span class="ref-inline">Voir les commentaires de S38-V1, S50-V1 et S68-V1.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ V2 ══════════════════════════════════════════════════════ -->
+  <div id="v2" class="verset-card">
+    <div class="verset-header">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="verset-num-badge">2</div>
+        <div class="verset-num-label">S2 — V2 · Le Livre sans incertitude</div>
+      </div>
+      <div class="verset-transliteration">Dhâlik-a Âl-Kitâb-ou · Lâ Rayb-a Fiy-hi · Houd-an L-lil-Mouttaqiyn</div>
+    </div>
+    <div class="verset-body">
+      <div class="verset-traduction"><p>Voici le Livre — dans lequel il n'y a aucune incertitude — guidance pour les Mouttaqiyn</p></div>
+      <div class="verset-arabe-bloc"><div class="verset-arabe-txt">ذَٰلِكَ ٱلْكِتَـٰبُ لَا رَيْبَ فِيهِ هُدًى لِّلْمُتَّقِينَ</div></div>
+    </div>
+    <div class="tabs-wrap">
+      <div class="tabs-nav">
+        <button class="tab-btn active" onclick="switchTab(this,'glos-v2')">🔤 Analyse</button>
+        <button class="tab-btn" onclick="switchTab(this,'com-v2')">📖 Commentaire</button>
+      </div>
+      <div id="glos-v2" class="tab-panel active">
+        <div class="glossaire-item">
+          <div class="glossaire-terme">Dhâlik-a Âl-Kitâb-ou</div>
+          <div class="glossaire-def"><strong>Voici le Livre / ceci est le Livre</strong>, s'agissant du présent livre, le Coran.</div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">Lâ Rayb-a Fiy-hi</div>
+          <div class="glossaire-def"><strong>Dans lequel il n'y a aucune incertitude.</strong> Tout comme il ne peut y avoir la moindre incertitude concernant la mort, aussi bien que la fin inéluctable de la Terre, du soleil et de l'univers observable. <span class="ref">Voir S10-V37 et V38, S32-V2, ainsi que les commentaires de S2-V23 et S39-V6.</span></div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">Houd-an</div>
+          <div class="glossaire-def"><strong>Houdâ : guidance / bonne direction</strong>, c'est-à-dire que le Coran est le mode d'emploi pour une marche réussie et pour une protection efficace. <span class="ref">Voir S39-V23 et S76-V3.</span></div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">L-Lil-Moutta-wQiyn-a</div>
+          <div class="glossaire-def"><strong>Pour les Mouttaqiyn / ceux qui font la Taqwâ</strong> : une double obligation pour ceux qui ont la foi, consistant à se prémunir / se protéger soi-même et protéger les siens du feu de l'Enfer, conformément à S66-V6. <span class="ref">Voir S2-V177, ainsi que les commentaires de S24-V52, S29-V45, S31-V5 et S66-V6.</span></div>
+        </div>
+      </div>
+      <div id="com-v2" class="tab-panel">
+        <div class="accordeon-item">
+          <button class="accordeon-btn" onclick="toggleAccordeon(this)">
+            <span class="accordeon-titre">Le Coran, réponse à la demande de guidance de S1-V6</span>
+            <span class="accordeon-chevron">▾</span>
+          </button>
+          <div class="accordeon-body">
+            <div class="accordeon-contenu">Le présent verset constitue la réponse d'Allah à ceux qui L'ont sollicité, à S1-V6, Lui demandant : « guide-nous ». Sa réponse consiste à indiquer que le Coran est guidance pour les « Mouttaqiyn ». Cette précision signifie que le Coran n'est véritablement guidance que pour ceux qui font la « Taqwâ ». <span class="ref-inline">Voir S3-V138, S5-V46, S19-V97, S24-V3 et S69-V48.</span></div>
+          </div>
+        </div>
+        <div class="accordeon-item">
+          <button class="accordeon-btn" onclick="toggleAccordeon(this)">
+            <span class="accordeon-titre">Le Coran : guidance pour tous, mais conditionnée</span>
+            <span class="accordeon-chevron">▾</span>
+          </button>
+          <div class="accordeon-body">
+            <div class="accordeon-contenu">Certes, le Coran est adressé à tous les êtres humains pour qu'il leur serve de guidance <span class="ref-inline">(voir S2-V185)</span>. Mais, pour que sa guidance devienne effective, il est requis de gravir l'échelle de la foi. <span class="ref-inline">Voir le commentaire de S59-V18.</span> En d'autres termes, le Créateur a mis à la disposition de tous les humains l'outil de guidance, mais encore faut-il en faire un usage sérieux.<br/><br/>Il est ainsi ordonné, à S6-V153, de suivre le « SsirâTt Moustaqiym (la voie droite / la route rectiligne) ». Consentir des efforts pour marcher sur cette voie ouvre la porte à la « Taqwâ », étant donné que le verset précise : « peut-être feriez-vous la Taqwâ ». Et, il est également ordonné, à S6-V155, de « suivre le Livre », c'est-à-dire le Coran, doublé d'un second ordre : « et faites la Taqwâ ». <span class="ref-inline">Voir S1-V1 et le commentaire de S6-V165.</span></div>
+          </div>
+        </div>
+        <div class="accordeon-item">
+          <button class="accordeon-btn" onclick="toggleAccordeon(this)">
+            <span class="accordeon-titre">« Lâ Rayb-a Fiy-hi » : l'absence d'incertitude dans le Coran</span>
+            <span class="accordeon-chevron">▾</span>
+          </button>
+          <div class="accordeon-body">
+            <div class="accordeon-contenu">L'expression « Lâ Rayb-a Fiy-hi » est confirmée à deux autres reprises dans le Coran : à S32-V2 (évoquant la descente du Livre) et à S10-V37. Elle apparaît également six fois au sujet du Jour de la Résurrection, et quatre fois concernant « Als-Sâaat (l'Heure) » du cataclysme.<br/><br/>Le phénomène de la mort, aussi bien que celui de la fin inéluctable de la Terre, du soleil et de l'univers observable ne fait nul doute — la science l'a confirmé, alors que le Coran l'avait prévenu. Par conséquent, cette même expression, employée à l'égard du Coran, démontre, à toute véritable intelligence, qu'effectivement nul doute n'existe en son sein. <span class="ref-inline">Voir les commentaires de S10-V57, S14-V52, S39-V28 et S41-V26.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ V3 ══════════════════════════════════════════════════════ -->
+  <div id="v3" class="verset-card">
+    <div class="verset-header">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="verset-num-badge">3</div>
+        <div class="verset-num-label">S2 — V3 · Les qualités des Mouttaqiyn (1/2)</div>
+      </div>
+      <div class="verset-transliteration">Âl-LA-dhiyna You-Âmin-ouwna Bi-Âl-Ghayb-i · Wa YouQiym-ouwna Âls-Ssalât</div>
+    </div>
+    <div class="verset-body">
+      <div class="verset-traduction"><p>Ceux qui ont la foi au Ghayb, accomplissent la Ssalât, et dépensent de ce que Nous leur avons accordé</p></div>
+      <div class="verset-arabe-bloc"><div class="verset-arabe-txt">ٱلَّذِينَ يُؤْمِنُونَ بِٱلْغَيْبِ وَيُقِيمُونَ ٱلصَّلَوٰةَ وَمِمَّا رَزَقْنَـٰهُمْ يُنفِقُونَ</div></div>
+    </div>
+    <div class="tabs-wrap">
+      <div class="tabs-nav">
+        <button class="tab-btn active" onclick="switchTab(this,'glos-v3')">🔤 Analyse</button>
+        <button class="tab-btn" onclick="switchTab(this,'com-v3')">📖 Commentaire</button>
+      </div>
+      <div id="glos-v3" class="tab-panel active">
+        <div class="glossaire-item">
+          <div class="glossaire-terme">You-Âmin-ouwna Bi-Âl-Ghayb-i</div>
+          <div class="glossaire-def">Ceux qui ont <strong>l'Iymân : la foi dans le cœur</strong> <span class="ref">(voir S49-V14 et S8-V4)</span> <strong>au Ghayb : l'inconnu / l'invisible</strong>. <span class="ref">Voir S6-V59 et S36-V11.</span></div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">YouQiym-ouwna Âls-Ssalât-a</div>
+          <div class="glossaire-def">Et ils <strong>accomplissent / ils veillent à faire accomplir / ils établissent la Ssalât</strong> : prière rituelle obligatoire. <span class="ref">Voir S23-V1 à V11, S70-V22 à V35, ainsi que les commentaires de S3-V113 et S29-V45.</span></div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">Mim-mâ Razaq-nâhoum You-Nfiq-ouwna</div>
+          <div class="glossaire-def">Et de ce que Nous leur avons attribué / accordé comme <strong>Rizq : tout don divin en biens matériels et immatériels</strong> <span class="ref">(voir S15-V21)</span>, <strong>ils dépensent / ils font largesse</strong>. <span class="ref">Voir S8-V3 et V4, S22-V35, S28-V54, S32-V16, ainsi que le commentaire de S2-V261.</span></div>
+        </div>
+      </div>
+      <div id="com-v3" class="tab-panel">
+        <div class="accordeon-item">
+          <button class="accordeon-btn" onclick="toggleAccordeon(this)">
+            <span class="accordeon-titre">Le repère à plusieurs dimensions</span>
+            <span class="accordeon-chevron">▾</span>
+          </button>
+          <div class="accordeon-body">
+            <div class="accordeon-contenu">Le présent verset cite trois qualités principales des « Mouttaqiyn ». Elles constituent les éléments clés d'un repère à plusieurs dimensions. La principale dimension, <strong>verticale</strong>, est celle de la foi au « Ghayb (l'inconnu / l'invisible) ». Elle constitue l'axe qui relie tout individu à son Créateur. <span class="ref-inline">Voir les commentaires de S1-V5 et S2-V37.</span><br/><br/>Le centre du repère précité est un point — celui de la réalité de toute âme humaine. Il symbolise le divin en tout individu. La <strong>deuxième dimension</strong>, intérieure, permet, à travers la foi véridique, un difficile mouvement vers le centre du repère. La « Ssalât (prière rituelle obligatoire) » est le symbole visible de ces actes. Ces mouvements permettent la consolidation de l'axe vertical de la foi qui relie l'individu à son Créateur.<br/><br/>En somme, voyager vers son propre intérieur à travers les actes de la foi est corrélé au rapprochement vers le Créateur, verticalement. C'est cela qui permet la réconciliation avec soi-même, sans laquelle aucun changement véridique ne peut être possible.</div>
+          </div>
+        </div>
+        <div class="accordeon-item">
+          <button class="accordeon-btn" onclick="toggleAccordeon(this)">
+            <span class="accordeon-titre">Le Ghayb (l'inconnu / l'invisible) : pilier fondamental de la foi</span>
+            <span class="accordeon-chevron">▾</span>
+          </button>
+          <div class="accordeon-body">
+            <div class="accordeon-contenu">La foi au « Ghayb » constitue le pilier fondamental de la foi. Le « Ghayb » représente la limite de la connaissance — une sorte de mur pour toutes les créatures. <span class="ref-inline">Voir S2-V33, S35-V38 et S49-V18.</span> Au-delà de cette limite, seule la « Taqwâ » permet d'accéder à certaines connaissances, mais jamais toutes, selon S79-V43. Car le Créateur est le Seul Connaisseur intégral. Il détient les clefs des connaissances, d'après S6-V59.<br/><br/>C'est ainsi, à titre d'exemple, que le Paradis devient réalité, selon S19-V61, aux yeux de ceux qui en acquièrent la conviction. Il en est de même d'autres réalités, telles celles du Créateur Lui-même, de Ses anges, du Jour de la Résurrection, ou encore de l'Enfer. <span class="ref-inline">Voir S35-V18, S36-V11, S50-V33, S57-V25, S67-V12 et le commentaire de S2-V29.</span></div>
+          </div>
+        </div>
+        <div class="accordeon-item">
+          <button class="accordeon-btn" onclick="toggleAccordeon(this)">
+            <span class="accordeon-titre">La Ssalât : bien plus qu'une simple prière</span>
+            <span class="accordeon-chevron">▾</span>
+          </button>
+          <div class="accordeon-body">
+            <div class="accordeon-contenu">La « Ssalât » est le deuxième pilier de l'Islam. Elle n'est pas une simple prière. Il s'agit d'un rituel complexe qui n'a plus son semblable depuis bien longtemps. <span class="ref-inline">Voir S19-V59, ainsi que les commentaires de S3-V113 et S17-V111.</span> La prière ou l'invocation est, quant à elle, désignée en arabe par le mot « Douaa ». Le mot « Ssalât » est en réalité intraduisible.<br/><br/>Les « Ssalât » quotidiennes obligatoires sont au nombre de cinq : celle du « SsoubHh » (le matin), du « TDouhr » (le milieu de journée), du « AaSsr » (le milieu de l'après-midi), du « Maghrib » (le coucher du soleil), et du « Iishâ » (la nuit). L'accomplissement de la « Ssalât » est obligatoire pour tout musulman, dès l'âge de la puberté, jusqu'au dernier instant de la vie.<br/><br/>Sur le plan philosophique : il est recommandé d'accueillir tout nouveau-né par un « Adhân (appel à la Ssalât) » puis une « Iqâma », sans être suivis immédiatement d'une « Ssalât ». C'est à la fin de la vie du nouveau-né que la « Ssalât Al-Janâza (prière funéraire) » sera accomplie. Ce qui signifie que la durée de la vie, quelle que soit sa longueur, se réduit au laps de temps qui sépare toute « Ssalât » du deuxième appel qui la précède — soit l'équivalent d'environ une seconde. De quoi méditer sur le caractère éphémère de la vie terrestre.</div>
+          </div>
+        </div>
+        <div class="accordeon-item">
+          <button class="accordeon-btn" onclick="toggleAccordeon(this)">
+            <span class="accordeon-titre">La troisième dimension : les dépenses et la Zakât</span>
+            <span class="accordeon-chevron">▾</span>
+          </button>
+          <div class="accordeon-body">
+            <div class="accordeon-contenu">La porte s'ouvre pour nourrir toutes sortes d'autres liens que l'individu est amené à tisser au nom de cette même foi, tout au long de sa vie. Ces liens constituent la <strong>troisième dimension</strong> — la dimension extérieure du repère — dont font partie, selon le présent verset, les dépenses pour les bonnes causes. La « Zakât » étant le principal composant de cette dernière dimension. <span class="ref-inline">Voir S2-V43. Voir également les commentaires de S29-V45 et S30-V41.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ V4 ══════════════════════════════════════════════════════ -->
+  <div id="v4" class="verset-card">
+    <div class="verset-header">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="verset-num-badge">4</div>
+        <div class="verset-num-label">S2 — V4 · Les qualités des Mouttaqiyn (2/2)</div>
+      </div>
+      <div class="verset-transliteration">Wa Âl-La-dhiyna You-Âmin-ouwna Bi-mâ Ou-Nzil-a · Wa Bi-Âl-Âkhirat-i Houm YouQin-ouwna</div>
+    </div>
+    <div class="verset-body">
+      <div class="verset-traduction"><p>Et ceux qui ont la foi en ce qui a été descendu à toi et avant toi — et en la Âkhira ils ont la certitude</p></div>
+      <div class="verset-arabe-bloc"><div class="verset-arabe-txt">وَٱلَّذِينَ يُؤْمِنُونَ بِمَآ أُنزِلَ إِلَيْكَ وَمَآ أُنزِلَ مِن قَبْلِكَ وَبِٱلْـَٔاخِرَةِ هُمْ يُوقِنُونَ</div></div>
+    </div>
+    <div class="tabs-wrap">
+      <div class="tabs-nav">
+        <button class="tab-btn active" onclick="switchTab(this,'glos-v4')">🔤 Analyse</button>
+        <button class="tab-btn" onclick="switchTab(this,'com-v4')">📖 Commentaire</button>
+      </div>
+      <div id="glos-v4" class="tab-panel active">
+        <div class="glossaire-item">
+          <div class="glossaire-terme">Bi-mâ Ou-Nzil-a Ilay-ka</div>
+          <div class="glossaire-def"><strong>En ce qui a été descendu à toi</strong>, le Coran, qui est descendu au prophète Mohamed.</div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">Wa Mâ Ou-Nzil-a Min Qabl-ika</div>
+          <div class="glossaire-def"><strong>Et en ce qui a été descendu avant toi.</strong> Il est question de tous les Livres précédents de la Parole divine. <span class="ref">Voir S2-V136 et S46-V12.</span> Parmi eux, « Âl-Injiyl (l'Évangile) » donné au prophète « Iiysa (Jésus) » et « Âlt-Tawrât (la Torah) » transmise au prophète « Mouwsâ (Moïse) ». <span class="ref">Voir S2-V136 à V138, S29-V46.</span> La foi en tous ces Livres est exigée, aussi bien que la foi en tous les messagers. <span class="ref">Voir S2-V285, S4-V150 à V152, S40-V70, ainsi que S42-V15.</span></div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">Wa Bi-Âl-Âkhirat-i Houm YouQin-ouwna</div>
+          <div class="glossaire-def"><strong>Et en la Âkhira : la vie dernière / la demeure dernière / l'ultime séjour, ils ont la certitude / ils ont la conviction.</strong> <span class="ref">Voir S2-V62 et V260, S102-V5 et le commentaire de S44-V7.</span></div>
+        </div>
+      </div>
+      <div id="com-v4" class="tab-panel">
+        <div class="accordeon-item">
+          <button class="accordeon-btn" onclick="toggleAccordeon(this)">
+            <span class="accordeon-titre">La quatrième dimension : l'axe du temps</span>
+            <span class="accordeon-chevron">▾</span>
+          </button>
+          <div class="accordeon-body">
+            <div class="accordeon-contenu">Le présent verset ajoute une dimension supplémentaire au repère évoqué au commentaire de S2-V3. Il s'agit de <strong>l'axe du temps</strong>, une direction à double flèche, c'est-à-dire à deux sens. Cette dimension relie tout être humain ayant la foi à son propre passé — un passé incarné notamment par « Maryam (Marie) », les prophètes « Iiysa (Jésus) », « Mouwsa (Moïse) », « Ibrâhiym (Abraham) », « NouwHh (Noé) » et des dizaines de milliers d'autres prophètes, en remontant jusqu'au père de l'humanité, « Âdam (Adam) ».<br/><br/>Mais cette dimension projette aussi l'être humain vers l'avenir et la survenue inéluctable du Jour du Jugement. <span class="ref-inline">Voir le commentaire au sujet du « Diyn » commun, à S98-V5.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ V5 ══════════════════════════════════════════════════════ -->
+  <div id="v5" class="verset-card">
+    <div class="verset-header">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="verset-num-badge">5</div>
+        <div class="verset-num-label">S2 — V5 · Les Mouttaqiyn : les MoufliHhouwn</div>
+      </div>
+      <div class="verset-transliteration">Ouwlâyi-ka Aalâ Houd-an · Wa Ouwlâyi-ka Houm-ou Âl-Mou-FliHhouwn</div>
+    </div>
+    <div class="verset-body">
+      <div class="verset-traduction"><p>Ceux-là sont sur le Houdâ de la part de leur Seigneur-Maître — et ceux-là ce sont eux les MoufliHhouwn</p></div>
+      <div class="verset-arabe-bloc"><div class="verset-arabe-txt">أُو۟لَـٰٓئِكَ عَلَىٰ هُدًى مِّن رَّبِّهِمْ وَأُو۟لَـٰٓئِكَ هُمُ ٱلْمُفْلِحُونَ</div></div>
+    </div>
+    <div class="tabs-wrap">
+      <div class="tabs-nav">
+        <button class="tab-btn active" onclick="switchTab(this,'glos-v5')">🔤 Analyse</button>
+        <button class="tab-btn" onclick="switchTab(this,'com-v5')">📖 Commentaire</button>
+      </div>
+      <div id="glos-v5" class="tab-panel active">
+        <div class="glossaire-item">
+          <div class="glossaire-terme">Ouwlâyi-ka Aalâ Houd-an</div>
+          <div class="glossaire-def">Ceux-là sont sur le <strong>Houdâ : la guidance / la bonne direction</strong>. <span class="ref">Voir S76-V3.</span></div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">M-Min R-Rabb-ihim</div>
+          <div class="glossaire-def"><strong>De la part de leur Rabb : Seigneur-Maître.</strong></div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">Âl-Mou-FliHhouwn</div>
+          <div class="glossaire-def">Les <strong>MoufliHhouwn : ceux qui ont réussi / ont récolté le succès / ont triomphé.</strong> <span class="ref">Voir S3-V104, S58-V22, S87-V14 et S91-V9. Voir également le commentaire de S8-V4.</span> Il s'agit de l'opposé des « Khâsirouwn », voir S2-V27, S18-V103 et V104, S22-V11, ainsi que S39-V15.</div>
+        </div>
+      </div>
+      <div id="com-v5" class="tab-panel">
+        <div class="accordeon-item">
+          <button class="accordeon-btn" onclick="toggleAccordeon(this)">
+            <span class="accordeon-titre">L'évolution des Mouttaqiyn selon le repère</span>
+            <span class="accordeon-chevron">▾</span>
+          </button>
+          <div class="accordeon-body">
+            <div class="accordeon-contenu">Le présent verset est identique à S31-V5. D'après lui, l'évolution des « Mouttaqiyn », évoqués à S2-V2, va leur permettre un voyage dont l'issue sera la récolte du succès, à condition qu'ils inscrivent leur évolution dans le repère présenté à S2-V3 et V4. <span class="ref-inline">Voir les commentaires de S6-V165, S14-V52, S31-V5 et S56-V10.</span><br/><br/>Les versets précédents (S2-V2 à S2-V5) ont présenté le <strong>premier groupe d'êtres humains</strong> — les Mouttaqiyn, ceux sur la guidance. Le deuxième groupe suit à partir de S2-V6.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ V6–V20 : 2e et 3e groupes ════════════════════════════ -->
+  <div id="v6">
+    <div class="section-label"><span>Les Trois Groupes d'Êtres Humains — V6 à V20</span></div>
+  </div>
+
+  <div class="verset-card">
+    <div class="verset-header">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="verset-num-badge" style="font-size:12px;">6–7</div>
+        <div class="verset-num-label">S2 — V6 à V7 · Le deuxième groupe : les Kâfiriyn</div>
+      </div>
+      <div class="verset-transliteration">Inna Âl-La-dhiyna Kafar-ouw · Khatam-a Âllah-ou Aalâ Qoulouwb-ihim</div>
+    </div>
+    <div class="verset-body">
+      <div class="verset-traduction"><p>V6 : Certes ceux qui font le Koufr — que tu les avertisses ou non, ils n'auront pas l'Iymân<br/><br/>V7 : Allah a marqué sur leurs cœurs, sur leur ouïe et sur leurs yeux — un voile — et ils auront un châtiment énorme</p></div>
+      <div class="verset-arabe-bloc">
+        <div>
+          <div class="verset-arabe-txt" style="font-size:18px;margin-bottom:12px;">إِنَّ ٱلَّذِينَ كَفَرُوا۟ سَوَآءٌ عَلَيْهِمْ ءَأَنذَرْتَهُمْ أَمْ لَمْ تُنذِرْهُمْ لَا يُؤْمِنُونَ</div>
+          <div class="verset-arabe-txt" style="font-size:18px;">خَتَمَ ٱللَّهُ عَلَىٰ قُلُوبِهِمْ وَعَلَىٰ سَمْعِهِمْ وَعَلَىٰ أَبْصَـٰرِهِمْ غِشَـٰوَةٌ وَلَهُمْ عَذَابٌ عَظِيمٌ</div>
+        </div>
+      </div>
+    </div>
+    <div class="tabs-wrap">
+      <div class="tabs-nav">
+        <button class="tab-btn active" onclick="switchTab(this,'glos-v67')">🔤 Analyse</button>
+        <button class="tab-btn" onclick="switchTab(this,'com-v67')">📖 Commentaire</button>
+      </div>
+      <div id="glos-v67" class="tab-panel active">
+        <div class="glossaire-item">
+          <div class="glossaire-terme">Kafar-ouw</div>
+          <div class="glossaire-def">Font le <strong>Koufr : le déni du Créateur / l'ingratitude vis-à-vis de Ses bienfaits.</strong> <span class="ref">Voir S76-V3.</span></div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">Khatam-a Âllah-ou</div>
+          <div class="glossaire-def"><strong>Allah a marqué</strong> <span class="ref">(voir S6-V46, S45-V23 et le commentaire de S4-V155)</span> sur leurs cœurs — des cœurs à cadenas, selon S47-V24.</div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">Ghishâwat-oun</div>
+          <div class="glossaire-def"><strong>Une couverture / un voile</strong> : une sorte de couverture d'isolement / un écran obscur / un voile épais.</div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">Aadhâb-ou AaTDiym-oun</div>
+          <div class="glossaire-def"><strong>Un châtiment / un tourment énorme / immense / colossal.</strong></div>
+        </div>
+      </div>
+      <div id="com-v67" class="tab-panel">
+        <div class="accordeon-item">
+          <button class="accordeon-btn" onclick="toggleAccordeon(this)">
+            <span class="accordeon-titre">Le deuxième groupe : ceux qui se déclarent négateurs du divin</span>
+            <span class="accordeon-chevron">▾</span>
+          </button>
+          <div class="accordeon-body">
+            <div class="accordeon-contenu">Le présent verset et celui qui le précède présentent un deuxième groupe d'êtres humains. Deux versets seulement leur sont consacrés. Il s'agit de gens qui ne cherchent à tromper personne — eux-mêmes se déclarent négateurs du divin. À ce propos, différents degrés de négation existent, tout comme il existe différents niveaux de foi.<br/><br/>Le Coran décrit les individus du deuxième groupe comme étant des gens qui vivent derrière « un écran d'isolement ». En astrophysique, cet écran est représenté par « le mur de Planck » devant lequel leur intelligence, aussi bien que leur âme, s'arrêtent. Il est donc question de gens qui ont des cœurs, des oreilles et des yeux comme tout autre individu, et même beaucoup d'intelligence pour certains — mais une intelligence au seul service du visible et de l'observable. <span class="ref-inline">Voir S2-V3.</span></div>
+          </div>
+        </div>
+        <div class="accordeon-item">
+          <button class="accordeon-btn" onclick="toggleAccordeon(this)">
+            <span class="accordeon-titre">Le filtre de l'âme et l'accès à l'invisible</span>
+            <span class="accordeon-chevron">▾</span>
+          </button>
+          <div class="accordeon-body">
+            <div class="accordeon-contenu">L'âme de l'être humain est, en quelque sorte, dotée d'un filtre qui permet d'avoir accès à l'invisible, dans une certaine mesure. <span class="ref-inline">Voir les commentaires de S53-V14 à V16, ainsi que de S91-V10.</span> Les gens du deuxième groupe sont dépourvus de cet accès en raison du dysfonctionnement de leur âme — leur filtre s'étant totalement bouché.<br/><br/>C'est pourquoi tout débat avec eux à ce sujet se résume en une perte de temps. À titre d'illustration, débattre avec eux revient à chercher à faire comprendre à un bébé dans l'utérus qu'il n'a pas été créé pour rester dans le noir de son univers. Pour tout bébé dans l'utérus, les couleurs et la clarté du jour sont des notions absurdes.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ V8–V20 : 3e groupe ════════════════════════════════════ -->
+  <div id="v8" class="verset-card">
+    <div class="verset-header">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="verset-num-badge" style="font-size:11px;">8–20</div>
+        <div class="verset-num-label">S2 — V8 à V20 · Le troisième groupe : les Hypocrites</div>
+      </div>
+      <div class="verset-transliteration">Wa Min-a Âln-Nâs-i Man YaQouwl-ou · Aman-nâ Bi-Âllah-i … Wa Mâ Houm Bi-Mou-Aminiyn</div>
+    </div>
+    <div class="verset-body">
+      <div class="verset-traduction"><p>V8 : Et parmi les humains il en est qui disent « nous avons la foi en Allah et au Jour dernier » — mais ils n'ont pas la foi<br/><br/>V9–V20 : Ils cherchent à tromper, ont une maladie du cœur, voient l'ordre dans le désordre, traitent les croyants d'insensés, ont un double langage…</p></div>
+      <div class="verset-arabe-bloc">
+        <div class="verset-arabe-txt" style="font-size:18px;">وَمِنَ ٱلنَّاسِ مَن يَقُولُ ءَامَنَّا بِٱللَّهِ وَبِٱلْيَوْمِ ٱلْءَاخِرِ وَمَا هُم بِمُؤْمِنِينَ</div>
+      </div>
+    </div>
+    <div class="tabs-wrap">
+      <div class="tabs-nav">
+        <button class="tab-btn active" onclick="switchTab(this,'glos-v8')">🔤 Analyse V8–V20</button>
+        <button class="tab-btn" onclick="switchTab(this,'com-v8')">📖 Commentaire</button>
+      </div>
+      <div id="glos-v8" class="tab-panel active">
+        <div class="glossaire-item">
+          <div class="glossaire-terme">V8 — Wa Mâ Houm Bi-Mou-Âminiyn</div>
+          <div class="glossaire-def">Et <strong>ils ne sont pas Mouàminiyn : ils n'ont pas la foi.</strong> <span class="ref">Voir S12-V106. Les Mouàminiyn sont ceux qui ont l'Iymân dans le cœur, voir S49-V14 et S8-V4.</span></div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">V9 — You-Khâdioo-ouwna</div>
+          <div class="glossaire-def">Ils <strong>cherchent à tromper / à abuser</strong> Allah et ceux qui ont l'Iymân. <span class="ref">Voir S4-V142.</span> Mais ils ne trompent qu'eux-mêmes, sans s'en apercevoir.</div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">V10 — Fiy Qoulouwb-ihim MaraDH-oun</div>
+          <div class="glossaire-def">Dans leurs cœurs il y a <strong>une maladie / un mal</strong>, s'agissant ici de musulmans dont la foi est fragile. <span class="ref">Voir S24-V50, S33-V60 et S74-V31.</span> Et Allah leur a fait croître une maladie, maux sur maux.</div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">V11–V12 — Lâ Tou-Fsid-ouw</div>
+          <div class="glossaire-def"><strong>Ne faites pas le Fasâd : le désordre / la désolation / la corruption / la pollution / le gâchis / la destruction</strong> sur la Terre. Ils répondent : « certes nous ne sommes que des MouSsliHhouwn : des réformateurs ». Or, ce sont effectivement eux les Moufsidouwn, mais ils n'en ont pas conscience. <span class="ref">Voir S11-V116, S28-V77 et le commentaire de S30-V41.</span></div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">V13 — Ka-mâ Âman-a Âln-Nâs</div>
+          <div class="glossaire-def">Lorsqu'on leur dit « ayez l'Iymân comme ont l'Iymân les gens », ils disent : « allons-nous avoir l'Iymân comme les <strong>Soufahâ : les insensés / les irresponsables / les faibles d'esprit</strong> ? ». Or, ce sont effectivement eux les Soufahâ. <span class="ref">Voir S8-V49.</span></div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">V14 — ShayâTtiyn-ihim</div>
+          <div class="glossaire-def">Leurs <strong>ShayâTtiyn : démons / diables</strong>. <span class="ref">Voir le commentaire de S2-V34.</span> Lorsqu'ils s'isolent avec eux, ils disent : « nous sommes effectivement avec vous, certes nous ne sommes que des moqueurs ».</div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">V15–V16 — Yasta-Hzi-ou / Â-Shtar-awou</div>
+          <div class="glossaire-def"><strong>Allah se moque d'eux</strong> et les prolonge dans leur Ttoughyân : démesure / pouvoir abusif. Ils ont <strong>acheté / troqué l'égarement contre le Houdâ</strong>. Leur commerce n'a pas eu de gain et ils ne sont pas sur le Houdâ.</div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">V17–V18 — Mathal-ouhoum ka-Mathal</div>
+          <div class="glossaire-def"><strong>Leur image / semblance</strong> est comme celle de celui qui allume un feu — lorsqu'il éclaire autour de lui, Allah emporte leur lumière et les abandonne dans des ténèbres. <strong>Sourds, muets, aveugles</strong> vis-à-vis de la Parole du Créateur — ils ne reviennent pas.</div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">V19 — Ka-Ssayyib-in Min-a Âls-Samâ</div>
+          <div class="glossaire-def">Ou comme <strong>une nuée du ciel chargée de ténèbres, de tonnerre et d'éclairs</strong>. Ils mettent leurs doigts dans leurs oreilles à cause des foudres par crainte de la mort. <strong>Et Allah environne / cerne / entoure les Kâfiriyn.</strong> <span class="ref">Voir S57-V3 et S65-V12.</span></div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">V20 — Ya-Kâd-ou Âl-Barq-ou</div>
+          <div class="glossaire-def"><strong>L'éclair faillit emporter leurs regards.</strong> Chaque fois qu'il les éclaire ils y marchent, et lorsqu'il les plonge dans l'obscurité ils se tiennent debout. Et si Allah voulait, Il aurait certainement emporté leur ouïe et leurs yeux. <strong>Certes Allah est de toute chose Capable / Omnipotent.</strong></div>
+        </div>
+      </div>
+      <div id="com-v8" class="tab-panel">
+        <div class="accordeon-item">
+          <button class="accordeon-btn" onclick="toggleAccordeon(this)">
+            <span class="accordeon-titre">Le troisième groupe : le premier grand ensemble fondamental</span>
+            <span class="accordeon-chevron">▾</span>
+          </button>
+          <div class="accordeon-body">
+            <div class="accordeon-contenu">Le présent verset présente le troisième groupe d'humains, les deux premiers groupes ayant été décrits dans les versets qui précèdent. <strong>Treize versets</strong> sont consacrés aux gens du troisième groupe, soit bien plus que le nombre de versets consacrés aux deux autres groupes. Ce qui constitue déjà un indice du manque de clarté de ces gens.<br/><br/>Il est question de gens qui déclarent : « nous avons la foi en Allah », alors qu'ils n'ont, en réalité, rien à voir avec le Créateur. Ces individus appartiennent à différentes communautés religieuses. Les « <strong>Mounâfiqiyn (hypocrites musulmans)</strong> » font partie de ce troisième groupe. <span class="ref-inline">Voir S9-V66 à V69, S9-V74, ainsi que les commentaires de S4-V61 et S9-V67.</span></div>
+          </div>
+        </div>
+        <div class="accordeon-item">
+          <button class="accordeon-btn" onclick="toggleAccordeon(this)">
+            <span class="accordeon-titre">Les six caractéristiques du troisième groupe</span>
+            <span class="accordeon-chevron">▾</span>
+          </button>
+          <div class="accordeon-body">
+            <div class="accordeon-contenu"><strong>1ère caractéristique (V9)</strong> : Ils cherchent à tromper ceux qui ont la foi — mais ne trompent qu'eux-mêmes sans s'en apercevoir.<br/><br/><strong>2ème caractéristique (V10)</strong> : Ils sont malades du cœur. La manifestation apparente de leur maladie est le mensonge. Un châtiment proportionnel à leurs mensonges leur est réservé.<br/><br/><strong>3ème caractéristique (V11–V12)</strong> : Leur vision est totalement floue. Ils voient de l'ordre là où il n'y a que la désolation, sans en avoir conscience.<br/><br/><strong>4ème caractéristique (V13)</strong> : Ils traitent d'insensés les gens qui ont la foi innée sincère. Or, ce sont eux-mêmes les véritables insensés, car ils ne cherchent pas à comprendre le Coran ni à réfléchir au sens de leur présence sur terre.<br/><br/><strong>5ème caractéristique (V14)</strong> : Ils sont parfaitement conscients de leur jeu avec la foi — double langage selon l'interlocuteur, et rapport d'intimité avec les diables.<br/><br/><strong>6ème caractéristique (V15–V16)</strong> : L'état de « l'arroseur arrosé » — Allah les enfonce dans leur démesure à tel point que leur vie devient une marche à l'aveuglette.</div>
+          </div>
+        </div>
+        <div class="accordeon-item">
+          <button class="accordeon-btn" onclick="toggleAccordeon(this)">
+            <span class="accordeon-titre">Les onze ensembles fondamentaux d'êtres humains</span>
+            <span class="accordeon-chevron">▾</span>
+          </button>
+          <div class="accordeon-body">
+            <div class="accordeon-contenu">Lors du passage terrestre, les êtres humains peuvent être répartis en trois groupes, tel que précédemment souligné. Mais ils peuvent également être classifiés en <strong>onze ensembles fondamentaux</strong>. Le premier ensemble fondamental contient le troisième groupe d'êtres humains, tout en s'avérant plus large. D'autres personnes s'y ajoutent, s'agissant de certains individus appartenant au deuxième groupe qui affichent épisodiquement une apparence de « foi ».<br/><br/>Quant aux dix autres ensembles fondamentaux, ils se trouvent décrits à <span class="ref-inline">S2-V165, V200, V201, V204 et V207, S22-V3, V8 et V11, S29-V10, S31-V6 et V20</span>, étant précisé que l'ensemble de S31-V20 est le même que celui de S22-V8.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ V21–V25 ═══════════════════════════════════════════════ -->
+  <div id="v21">
+    <div class="section-label"><span>S'adresser à toute l'humanité — V21 à V25</span></div>
+  </div>
+
+  <div class="verset-card">
+    <div class="verset-header">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="verset-num-badge" style="font-size:11px;">21–25</div>
+        <div class="verset-num-label">S2 — V21 à V25 · La raison d'être des humains · Le Paradis</div>
+      </div>
+      <div class="verset-transliteration">Yâ-Ayy-ouhâ Âln-Nâs-ou Â-Âàboud-ouw Rabb-akoum</div>
+    </div>
+    <div class="verset-body">
+      <div class="verset-traduction"><p>V21 : Vous les humains — faites la Iibâda de votre Seigneur-Maître qui vous a créés — peut-être feriez-vous la Taqwâ<br/><br/>V22–V24 : Preuves de l'Unicité divine — Le défi du Coran — V25 : La bonne annonce du Paradis</p></div>
+      <div class="verset-arabe-bloc"><div class="verset-arabe-txt" style="font-size:18px;">يَـٰٓأَيُّهَا ٱلنَّاسُ ٱعْبُدُوا۟ رَبَّكُمُ ٱلَّذِى خَلَقَكُمْ وَٱلَّذِينَ مِن قَبْلِكُمْ لَعَلَّكُمْ تَتَّقُونَ</div></div>
+    </div>
+    <div class="tabs-wrap">
+      <div class="tabs-nav">
+        <button class="tab-btn active" onclick="switchTab(this,'glos-v21')">🔤 Analyse V21–V25</button>
+        <button class="tab-btn" onclick="switchTab(this,'com-v21')">📖 Commentaire</button>
+      </div>
+      <div id="glos-v21" class="tab-panel active">
+        <div class="glossaire-item">
+          <div class="glossaire-terme">V21 — Â-Âàboud-ouw Rabb-akoum</div>
+          <div class="glossaire-def"><strong>Faites la Iibâda</strong> : l'application du Diyn du Créateur en tant que système de vie. <span class="ref">Voir les commentaires de S1-V4, S1-V5, S2-V132, S3-V19, S3-V85, S6-V165, S17-V44, S61-V9, S82-V19 et S98-V5.</span> <strong>La'aall-akoum Tatta-wQouw-na</strong> : peut-être feriez-vous la Taqwâ : se prémunir / se protéger d'Allah. <span class="ref">Voir les commentaires de S24-V52, S29-V45, S31-V5 et S66-V6.</span></div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">V22 — Âl-ArDH-a Firâsh-an</div>
+          <div class="glossaire-def">Allah a fait pour vous <strong>la terre couverte / étendue, comme un lit / un tapis</strong> <span class="ref">(voir S51-V48 et le miracle de la création de la Terre à S79-V29)</span>, <strong>et le ciel une construction</strong> <span class="ref">(voir S2-V29, S21-V32)</span>, et a fait descendre du ciel de l'eau faisant sortir parmi les fruits un <strong>Rizq : tout don divin</strong> pour vous. <strong>Ne placez donc pas des égaux à Allah</strong> alors que vous savez.</div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">V23–V24 — Le troisième défi du Coran</div>
+          <div class="glossaire-def">Si vous êtes dans l'incertitude de ce que Nous avons fait descendre sur Notre Aabd (Mohamed), <strong>faites donc venir une sourate de semblable à lui</strong>, et appelez vos témoins en dehors d'Allah si vous êtes véridiques. <strong>Et si vous ne le faites pas — et vous ne le ferez pas</strong> — alors faites la Taqwâ du Feu dont le combustible est les humains et les pierres, préparé aux Kâfiriyn. <span class="ref">Voir S10-V38, S11-V13, S17-V88 et S29-V51.</span></div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">V25 — Jannât-in Ta-Jriy Min TaHht-ihâ Âl-A-Nhâr</div>
+          <div class="glossaire-def">Pour ceux qui ont l'Iymân et font les SsâliHhât : <strong>certes il y a pour eux des jardins sous lesquels coulent les rivières</strong>. À chaque fois qu'on leur attribue un Rizq, ils disent : « c'est celui-là même qu'on nous a attribué avant ». Il leur est donné des choses semblables d'apparence mais de nature différente. <strong>Ils y auront des A-Zwâj purifiés et seront éternels / immortels dans les jardins du Paradis.</strong></div>
+        </div>
+      </div>
+      <div id="com-v21" class="tab-panel">
+        <div class="accordeon-item">
+          <button class="accordeon-btn" onclick="toggleAccordeon(this)">
+            <span class="accordeon-titre">V21 : La raison d'être des humains sur terre</span>
+            <span class="accordeon-chevron">▾</span>
+          </button>
+          <div class="accordeon-body">
+            <div class="accordeon-contenu">Après avoir présenté les trois sortes possibles d'êtres humains, le Coran s'adresse à l'humanité tout entière. Le prophète « MouHhammad (Mohamed) » a été envoyé à l'humanité entière, selon S4-V79 et S34-V28, aussi bien que le Coran, d'après S39-V41.<br/><br/>Ce verset rappelle le but de la création humaine : la « Iibâda ». Les êtres humains ont été créés pour l'application du « Diyn » du Créateur, conformément à <span class="ref-inline">S9-V31, S12-V40, S17-V23, S30-V43, S51-V56 et S98-V5</span>. Ce verset précise aussi l'objectif : faire la « Taqwâ », c'est-à-dire se prémunir soi-même et protéger les siens du feu de l'Enfer, conformément à S66-V6. En atteignant les degrés de la « Taqwâ », l'être humain entre dans le premier groupe d'êtres humains.</div>
+          </div>
+        </div>
+        <div class="accordeon-item">
+          <button class="accordeon-btn" onclick="toggleAccordeon(this)">
+            <span class="accordeon-titre">V23–V24 : Le défi impossible à relever</span>
+            <span class="accordeon-chevron">▾</span>
+          </button>
+          <div class="accordeon-body">
+            <div class="accordeon-contenu">Le verset S2-V24 affirme qu'il est impossible de relever le défi lancé au verset précédent. Le Coran précise à S17-V88 que relever ce défi restera toujours du domaine de l'impossible, même dans le cas où les êtres humains s'uniraient aux « Jinn ».<br/><br/>Il s'agit en réalité du <strong>troisième défi</strong> lancé. À S17-V88, un premier défi est adressé aux « Jinn » et aux humains, leur demandant d'apporter « un coran semblable ». Puis le défi est allégé à S11-V13 : apporter « dix sourates semblables ». Enfin, dans le présent verset, il ne s'agit plus que de tenter d'apporter une seule sourate « semblable » au Coran.</div>
+          </div>
+        </div>
+        <div class="accordeon-item">
+          <button class="accordeon-btn" onclick="toggleAccordeon(this)">
+            <span class="accordeon-titre">V25 : Les A-Zwâj purifiés — notion de couple à la vie dernière</span>
+            <span class="accordeon-chevron">▾</span>
+          </button>
+          <div class="accordeon-body">
+            <div class="accordeon-contenu">Le mot « A-Zwâj » est le pluriel de « Zawj » qui désigne indifféremment l'un des deux éléments d'un quelconque couple ou d'une quelconque paire. <span class="ref-inline">Voir S13-V3, S36-V36, S43-V12, S51-V49, S53-V45 et le commentaire de S75-V39.</span><br/><br/>Le présent verset enseigne qu'il y aura à la vie dernière des « A-Zwâj » purifiés — des éléments purifiés pour permettre la formation de couples avec les âmes humaines destinées au Paradis. Le Coran expose à S81-V7 que les âmes des êtres humains, sans exception, seront mises en couples à la vie dernière.<br/><br/>La récompense méritée par toute âme est promise par le Créateur, tant aux femmes qu'aux hommes, d'une manière parfaitement égale, conformément à <span class="ref-inline">S3-V195, S4-V124, S33-V35 et S48-V5</span>. Les récompenses ne dépendent aucunement du genre mais uniquement du mérite de chaque âme. <span class="ref-inline">Voir S16-V97 et S40-V40.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ V26–V33 ═══════════════════════════════════════════════ -->
+  <div id="v26">
+    <div class="section-label"><span>La Parabole du Moustique · Adam et les Anges — V26 à V33</span></div>
+  </div>
+
+  <div class="verset-card">
+    <div class="verset-header">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="verset-num-badge" style="font-size:11px;">26–33</div>
+        <div class="verset-num-label">S2 — V26 à V33 · La parabole du moustique · La création d'Adam</div>
+      </div>
+      <div class="verset-transliteration">Inna Âllah-a Lâ Yasta-Hhyi An Ya-DHrib-a Mathal-an · Wa Idh Qâl-a Rabb-ouka Lil-Malâyikat-i</div>
+    </div>
+    <div class="verset-body">
+      <div class="verset-traduction"><p>V26–V27 : Certes Allah ne se gêne point de citer une parabole d'un moustique — V28 : Comment faites-vous le Koufr — V29 : La création des sept cieux — V30–V33 : Allah annonce aux anges la création d'Adam sur Terre</p></div>
+      <div class="verset-arabe-bloc"><div class="verset-arabe-txt" style="font-size:18px;">وَإِذْ قَالَ رَبُّكَ لِلْمَلَـٰٓئِكَةِ إِنِّى جَاعِلٌ فِى ٱلْأَرْضِ خَلِيفَةً</div></div>
+    </div>
+    <div class="tabs-wrap">
+      <div class="tabs-nav">
+        <button class="tab-btn active" onclick="switchTab(this,'glos-v26')">🔤 Analyse V26–V33</button>
+        <button class="tab-btn" onclick="switchTab(this,'com-v26')">📖 Commentaire</button>
+      </div>
+      <div id="glos-v26" class="tab-panel active">
+        <div class="glossaire-item">
+          <div class="glossaire-terme">V26 — Mathal-an M-Mâ Baoo'ouwDHat</div>
+          <div class="glossaire-def">Certes Allah ne se gêne point de <strong>citer une parabole d'un moustique et quoi que ce soit au-dessus de lui</strong>. La valeur d'un argument ne dépend pas de la grosseur de l'objet auquel il fait référence. Ceux qui ont la foi savent que c'est le Hhaqq (Vrai) venant de leur Seigneur-Maître. Ceux qui font le Koufr disent : « que voulait Allah avec un tel exemple ? ». Allah égare par lui beaucoup de gens et en guide beaucoup. Il n'égare par lui que les <strong>Fâsiqiyn : libertins / débauchés / pervers / immoraux.</strong> <span class="ref">Voir S2-V26-V27, S9-V67 et V80, ainsi que S57-V16.</span></div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">V27 — Âl-La-dhiyna Ya-NqouDH-ouwna Aahd-a Âllah</div>
+          <div class="glossaire-def">Les Fâsiqiyn sont ceux qui <strong>violent le pacte d'Allah</strong> — le pacte originel (voir S7-V172) — <strong>après l'avoir contracté</strong>, et qui <strong>rompent ce qu'Allah a ordonné qu'il continue</strong> (la lignée parentale et prophétique), et qui <strong>font le Fasâd sur / dans la Terre</strong>. Ce sont eux les <strong>Khâsirouwn : les perdants</strong>. <span class="ref">Voir S4-V27, S13-V20 à V25 et S43-V23.</span></div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">V28 — Kayfa Ta-Kfour-ouwna Bi-Âllah-i</div>
+          <div class="glossaire-def"><strong>Comment faites-vous le Koufr vis-à-vis d'Allah alors que vous étiez des morts</strong> (avant la conception dans l'utérus maternel), <strong>puis Il vous a donné la vie</strong> (la vie terrestre), <strong>puis Il vous fera mourir, puis Il vous fera revivre</strong> (vie au Barzakh), <strong>puis vous serez retournés à Lui</strong> (le Jour de la Résurrection). <span class="ref">Voir les commentaires de S2-V28, S40-V46 et S55-V20.</span></div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">V29 — Âl-La-dhiy Khalaq-a La-koum Mâ Fiy Âl-ArDH Jamiyaa-an</div>
+          <div class="glossaire-def">C'est Lui, Allah, <strong>qui a créé pour vous ce qui est sur / dans la Terre dans sa totalité</strong>, puis Il, <strong>s'est manifesté avec équilibre / avec précision et volonté vers le ciel</strong>, et Il, Allah, <strong>les a Sawwâ : ajustés / égalisés / équilibrés — sept cieux</strong>. <span class="ref">Voir S67-V3.</span> Et Il, Allah, est de toute chose <strong>Connaissant / Omniscient.</strong></div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">V30 — Inn-iy Jâiil-oun Fiy Âl-ArDH Khaliyfa</div>
+          <div class="glossaire-def">Allah dit aux Malâyika (anges) : <strong>« certes Je vais placer sur la Terre un Khaliyfa : représentant / successeur / gérant »</strong>. <span class="ref">Voir S6-V165, S27-V62 et S33-V72.</span> Les anges disent : « y places-Tu celui qui y fera le Fasâd et versera le sang, alors que nous faisons le TasbiyHh pour Ton Hhamd et proclamons Ta Pureté ? ». Allah dit : <strong>« certes Je sais ce que vous ne savez pas ».</strong></div>
+        </div>
+        <div class="glossaire-item">
+          <div class="glossaire-terme">V31–V33 — Wa Aallam-a Âdam-a Âl-A-Smâ Koull-ahâ</div>
+          <div class="glossaire-def">Allah <strong>a enseigné à Adam les noms dans leur totalité / tous les noms</strong> (connaissances de tout ordre, en rapport avec le dépôt terrestre de S33-V72), puis les a présentées aux Malâyika. Les anges disent : <strong>« le TasbiyHh est à Toi, Allah — nous n'avons pas de savoir que ce que Tu nous as appris — certes Tu es l'Omniscient, le Sage suprême ».</strong> Adam les informe de leurs noms — confirmant que <strong>l'être humain a été doté de connaissances dont les Malâyika ont été privés.</strong></div>
+        </div>
+      </div>
+      <div id="com-v26" class="tab-panel">
+        <div class="accordeon-item">
+          <button class="accordeon-btn" onclick="toggleAccordeon(this)">
+            <span class="accordeon-titre">V26 : La parabole du moustique</span>
+            <span class="accordeon-chevron">▾</span>
+          </button>
+          <div class="accordeon-body">
+            <div class="accordeon-contenu">Des milliers de siècles ont été nécessaires aux humains pour réussir à fabriquer des objets volants volumineux, tels que les avions, les hélicoptères et les drones. Mais fabriquer un engin aussi minuscule que le moustique ou la mouche, qui serait auto-reproductif et autonome, est en dehors des capacités et même de l'imagination des humains. Cette constatation devrait faire réaliser, à toute intelligence saine, la portée du présent verset.<br/><br/>La science des humains se trouve bien démunie devant certaines situations causées par un simple moustique. À titre d'exemple, le cas de la mort de l'orgueilleux Nemrod, roi de Ninive, causée par l'entrée d'un moustique dans son nez. <span class="ref-inline">Voir S2-V258.</span> Un défi est également lancé par le Coran à S22-V73, concernant cette fois la mouche.</div>
+          </div>
+        </div>
+        <div class="accordeon-item">
+          <button class="accordeon-btn" onclick="toggleAccordeon(this)">
+            <span class="accordeon-titre">V28 : La mort et la revivification — le « traçage humain »</span>
+            <span class="accordeon-chevron">▾</span>
+          </button>
+          <div class="accordeon-body">
+            <div class="accordeon-contenu">Le présent verset s'adresse à des êtres humains en vie sur terre et leur affirme : « vous étiez des morts ». Les êtres humains ont effectivement eu une vie avant leur vie terrestre. Le Coran donne un aperçu de cette vie prénatale à S7-V172.<br/><br/>Le verset décrit ensuite un parcours : mort (état avant la conception) → vie terrestre (conception dans l'utérus) → mort terrestre → vie intermédiaire au Barzakh → retour à Allah au Jour de la Résurrection.<br/><br/>À S40-V11, les concernés confirment deux revivifications et deux « mises à mort ». Avant de rejoindre l'une ou l'autre des destinations finales, chaque être humain passe par la vie intermédiaire du « Barzakh ». <span class="ref-inline">Voir les commentaires de S40-V46 et S55-V20.</span></div>
+          </div>
+        </div>
+        <div class="accordeon-item">
+          <button class="accordeon-btn" onclick="toggleAccordeon(this)">
+            <span class="accordeon-titre">V29 : Les sept cieux — la lumière blanche et l'arc-en-ciel</span>
+            <span class="accordeon-chevron">▾</span>
+          </button>
+          <div class="accordeon-body">
+            <div class="accordeon-contenu">Le Coran évoque « les sept cieux » au total sept fois : à S2-V29, S17-V44, S23-V86, S41-V12, S65-V12, S67-V3 et S71-V15. Le présent verset précise qu'Allah « À-Staw-â vers le ciel » — le ciel existait donc avant la création des biens de la terre. Il n'est pas question de la création du ciel, mais de sa <strong>manifestation en sept cieux</strong>.<br/><br/>Un exemple de ce phénomène est disponible en sciences physiques dans le domaine de l'optique : la lumière blanche est une dans sa réalité, mais sa manifestation est multicolore, comptant sept couleurs exactement — les sept couleurs de l'arc-en-ciel. Où est la lumière blanche ? Sa manifestation multiple démontre son existence bien que demeurant invisible. En d'autres termes, le blanc est la somme de toutes les couleurs. Comme quoi la réalité est essentiellement « Ghayb (invisible / inconnu) ». <span class="ref-inline">Voir le commentaire de S24-V35.</span></div>
+          </div>
+        </div>
+        <div class="accordeon-item">
+          <button class="accordeon-btn" onclick="toggleAccordeon(this)">
+            <span class="accordeon-titre">V30–V33 : Adam, le professeur des anges — le fantastique cerveau humain</span>
+            <span class="accordeon-chevron">▾</span>
+          </button>
+          <div class="accordeon-body">
+            <div class="accordeon-contenu">Dans la scène rapportée par le présent verset, « Âdam (Adam) » a l'honneur de jouer le rôle de professeur face aux « Malâyika (anges) ». Ce privilège est immense. Le message de ce verset est que l'être humain est, toutes proportions gardées, capable de dépasser, sous certaines conditions, les créatures pures que sont les anges — avec l'accord du Créateur. À l'autre extrême, il est tout autant capable de s'égarer bien plus que des bestiaux, selon S25-V44.<br/><br/>Le Créateur a enseigné à Adam des connaissances de tout ordre. D'après les connaissances scientifiques les plus récentes, le cerveau humain contient quelques centaines de milliards de neurones, et plus de cent mille milliards de synapses — tous les ordinateurs du monde connectés ensemble n'auraient pas sa puissance de traitement de l'information. Dès la conception et jusqu'à l'âge d'environ deux ans, le cerveau humain vit une période de plasticité cérébrale intense et unique où sept cents nouvelles connexions synaptiques se forment chaque seconde. Durant cette période, la taille du cerveau est multipliée par cinq.<br/><br/>En un mot, le cerveau humain est un réseau capable de se poser des questions sur la création et le Créateur, et d'y apporter les réponses adéquates. C'est sa principale raison d'être sur terre. <span class="ref-inline">Voir S9-V31, S12-V40, S17-V23, S30-V43, S51-V56, S98-V5 et le commentaire de S96-V1.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SUITE ══════════════════════════════════════════════════ -->
+  <div style="background:var(--or-pale);border:1px solid var(--or);border-radius:16px;padding:28px 32px;text-align:center;margin-top:16px;">
+    <div style="font-family:'Playfair Display',serif;font-size:18px;color:var(--rose-fonce);margin-bottom:8px;">⏳ Suite en cours de préparation</div>
+    <p style="color:var(--gris-moyen);font-size:14px;line-height:1.7;">Les versets V34 à V286 seront ajoutés au fur et à mesure de l'envoi des scans suivants.<br/>Cette sourate compte 286 versets et couvrira notamment : Adam & Ibliys, les Fils d'Israël, la Qibla, le jeûne, le mariage, les successions, le ribâ, et bien d'autres thèmes essentiels.</p>
+  </div>
+
+  <div class="footer">
+    <div class="footer-or">✦ ✦ ✦</div>
+    <p>Sourate 2 · Al-Baqara · La Vache · 286 versets · Médinoise</p>
+    <p style="margin-top:6px;">Versets V1–V33 commentés · Suite à venir</p>
+  </div>
+
+</div><!-- .page -->
+
+<script>
+function switchTab(btn, panelId) {
+  const wrap = btn.closest('.tabs-wrap');
+  wrap.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  wrap.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+
+function toggleAccordeon(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  const panel = btn.closest('.tab-panel');
+  panel.querySelectorAll('.accordeon-body.open').forEach(b => b.classList.remove('open'));
+  panel.querySelectorAll('.accordeon-btn.open').forEach(b => b.classList.remove('open'));
+  if (!isOpen) { body.classList.add('open'); btn.classList.add('open'); }
+}
+
+function scrollToId(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+}
+
+const scrollTopBtn = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => {
+  scrollTopBtn.classList.toggle('visible', window.scrollY > 300);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protocole Capillaire Complet</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --rose: #c8476a;
+  --rose-deep: #8b2252;
+  --rose-light: #f2c4d0;
+  --rose-pale: #fdf0f3;
+  --gold: #c9954a;
+  --gold-light: #fef3e2;
+  --green: #3d7a5e;
+  --green-light: #e8f5ee;
+  --blue: #3a6fa8;
+  --blue-light: #e8f0f8;
+  --cream: #faf6f1;
+  --brown: #2a1515;
+  --muted: #8a6e6e;
+  --border: rgba(200,71,106,0.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-size: 17px; font-family: 'Noto Sans', sans-serif; background: var(--cream); color: var(--brown); min-height: 100vh; }
+
+/* HEADER */
+header {
+  background: linear-gradient(135deg, var(--rose-deep) 0%, var(--rose) 60%, #e05580 100%);
+  color: white; padding: 2rem 1.5rem 1.5rem; text-align: center; position: relative; overflow: hidden;
+}
+header::before { content:''; position:absolute; top:-50px; right:-50px; width:220px; height:220px; background:rgba(255,255,255,0.06); border-radius:50%; }
+header::after { content:''; position:absolute; bottom:-70px; left:-30px; width:200px; height:200px; background:rgba(255,255,255,0.04); border-radius:50%; }
+header h1 { font-family:'Lora',Georgia,serif; font-size:clamp(1.6rem,5vw,2.6rem); font-weight:700; line-height:1.2; }
+header p { margin-top:.5rem; opacity:.85; font-size:0.97rem; font-weight:300; }
+.header-badges { display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap; margin-top:1rem; }
+.hbadge { background:rgba(255,255,255,0.18); padding:.3rem .9rem; border-radius:20px; font-size:0.88rem; font-weight:500; }
+
+/* TABS */
+.tabs-wrap { background:white; border-bottom:2px solid var(--rose-light); overflow-x:auto; -webkit-overflow-scrolling:touch; position:sticky; top:0; z-index:100; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+.tabs { display:flex; min-width:max-content; padding:0 .5rem; }
+.tab-btn { padding:.85rem 1.1rem; border:none; background:none; font-family:'Noto Sans',sans-serif; font-size:0.88rem; font-weight:500; color:var(--muted); cursor:pointer; white-space:nowrap; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all .2s; display:flex; align-items:center; gap:.35rem; }
+.tab-btn.active { color:var(--rose); border-bottom-color:var(--rose); }
+.tab-btn:hover { color:var(--rose); }
+
+/* PANELS */
+.tab-panel { display:none; padding:1.5rem 1rem 4rem; max-width:720px; margin:0 auto; animation:fadeUp .3s ease; }
+.tab-panel.active { display:block; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+/* SHARED */
+.section-intro { font-size:0.97rem; color:var(--muted); line-height:1.9; margin-bottom:1.3rem; padding:.9rem 1rem; background:white; border-radius:12px; border-left:3px solid var(--rose); }
+.card { background:white; border-radius:16px; padding:1.4rem; margin-bottom:1rem; box-shadow:0 2px 14px rgba(200,71,106,0.07); border:1px solid var(--border); }
+.card-title { font-family:'Lora',Georgia,serif; font-size:1.08rem; font-weight:700; color:var(--rose); margin-bottom:.9rem; display:flex; align-items:center; gap:.5rem; }
+.step-list { }
+.step { display:flex; gap:.9rem; padding:.8rem 0; border-bottom:1px solid var(--rose-pale); align-items:flex-start; }
+.step:last-child { border-bottom:none; }
+.step-num { width:26px; height:26px; border-radius:50%; background:var(--rose); color:white; font-size:0.88rem; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+.step-text { font-size:0.97rem; line-height:1.9; color:var(--brown); flex:1; }
+.step-text strong { color:var(--rose); }
+.tip-box { background:linear-gradient(135deg,#fef9e7,#fdecc8); border:1px solid var(--gold); border-radius:10px; padding:.8rem 1rem; margin-top:.8rem; font-size:0.90rem; color:#7a5a1e; line-height:1.9; }
+.tip-box strong { display:block; margin-bottom:.25rem; color:var(--gold); font-size:0.93rem; }
+.warn-box { background:#fff3e0; border:1px solid #ffb74d; border-radius:10px; padding:.7rem 1rem; margin:.8rem 0; font-size:0.90rem; color:#e65100; display:flex; align-items:flex-start; gap:.5rem; }
+.info-box { background:var(--blue-light); border:1px solid #90afd4; border-radius:10px; padding:.7rem 1rem; margin:.8rem 0; font-size:0.90rem; color:#1e3a5f; line-height:1.9; }
+.green-box { background:var(--green-light); border:1px solid #7fb89e; border-radius:10px; padding:.7rem 1rem; margin:.8rem 0; font-size:0.90rem; color:#1e4d38; line-height:1.9; }
+
+/* CHOICE BUTTONS */
+.choice-grid { display:grid; grid-template-columns:1fr 1fr; gap:.7rem; }
+.choice-btn { padding:1rem; border:2px solid var(--rose-light); border-radius:12px; background:var(--rose-pale); cursor:pointer; font-family:'Noto Sans',sans-serif; font-size:0.93rem; font-weight:500; color:var(--brown); text-align:left; transition:all .2s; line-height:1.9; }
+.choice-btn:hover,.choice-btn.selected { border-color:var(--rose); background:white; color:var(--rose); box-shadow:0 0 0 3px rgba(200,71,106,0.1); }
+.choice-btn .emoji { display:block; font-size:1.45rem; margin-bottom:.35rem; }
+.intensity-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:.6rem; }
+.int-btn { padding:.9rem .5rem; border:2px solid #e8ddd0; border-radius:10px; background:#faf6f1; cursor:pointer; font-family:'Noto Sans',sans-serif; font-size:0.90rem; font-weight:500; color:var(--brown); text-align:center; transition:all .2s; }
+.int-btn:hover,.int-btn.selected { border-color:var(--gold); background:white; color:var(--gold); box-shadow:0 0 0 3px rgba(201,149,74,0.12); }
+.dot { display:block; width:10px; height:10px; border-radius:50%; margin:0 auto .35rem; }
+
+/* RESULT */
+.result-box { background:linear-gradient(135deg,var(--rose-deep),var(--rose)); color:white; border-radius:16px; padding:1.5rem; margin-top:1rem; display:none; }
+.result-box.visible { display:block; animation:fadeUp .4s ease; }
+.result-box h3 { font-family:'Lora',Georgia,serif; font-size:1.35rem; margin-bottom:.9rem; }
+.rtags { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:.9rem; }
+.rtag { background:rgba(255,255,255,.22); padding:.3rem .8rem; border-radius:20px; font-size:0.88rem; font-weight:500; }
+.result-desc { font-size:0.97rem; opacity:.92; margin-bottom:1rem; line-height:1.9; }
+.btn-white { background:white; color:var(--rose); border:none; padding:.7rem 1.4rem; border-radius:8px; font-family:'Noto Sans',sans-serif; font-weight:600; cursor:pointer; font-size:0.97rem; transition:all .2s; margin-right:.5rem; margin-top:.3rem; display:inline-block; }
+.btn-white:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,.2); }
+
+/* ACCORDION */
+.acc-card { background:white; border-radius:14px; overflow:hidden; margin-bottom:.8rem; border:1px solid var(--border); box-shadow:0 2px 8px rgba(0,0,0,.04); }
+.acc-header { padding:1rem 1.2rem; display:flex; align-items:center; gap:.8rem; cursor:pointer; user-select:none; transition:background .15s; }
+.acc-header:hover { background:var(--rose-pale); }
+.acc-icon { width:42px; height:42px; border-radius:11px; display:flex; align-items:center; justify-content:center; font-size:1.35rem; flex-shrink:0; }
+.acc-title { font-weight:600; font-size:1.02rem; flex:1; }
+.acc-sub { font-size:0.84rem; color:var(--muted); margin-top:.1rem; }
+.acc-arrow { font-size:0.78rem; color:var(--muted); transition:transform .2s; }
+.acc-arrow.open { transform:rotate(180deg); }
+.acc-body { display:none; padding:0 1.2rem 1.2rem; border-top:1px solid var(--rose-pale); }
+.acc-body.open { display:block; animation:fadeUp .25s ease; }
+
+/* SCORE */
+.score-table { width:100%; border-collapse:collapse; font-size:0.88rem; margin-top:.5rem; }
+.score-table th { background:var(--rose); color:white; padding:.5rem .4rem; text-align:center; font-weight:600; font-size:0.84rem; }
+.score-table td { padding:.5rem .4rem; text-align:center; border-bottom:1px solid var(--rose-pale); font-size:0.88rem; }
+.score-table td:first-child { text-align:left; font-weight:500; color:var(--brown); background:white!important; border-right:2px solid var(--rose-light); padding-left:.7rem; }
+.score-table tr:nth-child(even) td { background:var(--rose-pale); }
+.score-input { width:55px; border:1.5px solid var(--rose-light); border-radius:6px; padding:.3rem .4rem; font-size:0.88rem; text-align:center; font-family:'Noto Sans',sans-serif; outline:none; }
+.score-input:focus { border-color:var(--rose); }
+.score-result { padding:1rem; border-radius:12px; margin-top:1rem; text-align:center; display:none; }
+.score-result.show { display:block; }
+.score-result.green { background:var(--green-light); border:2px solid var(--green); color:#1e4d38; }
+.score-result.orange { background:#fff8e1; border:2px solid var(--gold); color:#7a5a1e; }
+.score-result.red { background:#ffebee; border:2px solid #ef9a9a; color:#c62828; }
+.score-big { font-size:1.6rem; font-weight:700; margin-bottom:.3rem; }
+.score-label { font-size:0.97rem; font-weight:600; margin-bottom:.3rem; }
+.score-advice { font-size:0.90rem; line-height:1.9; }
+
+/* PRODUCTS */
+.prod-grid { display:grid; grid-template-columns:1fr 1fr; gap:.7rem; margin-top:.7rem; }
+.prod-card { border-radius:12px; padding:.9rem; border:1.5px solid var(--border); background:white; }
+.prod-card h4 { font-size:0.93rem; font-weight:600; color:var(--rose); margin-bottom:.5rem; }
+.prod-card p { font-size:0.88rem; color:var(--muted); line-height:1.9; }
+.prod-tag { display:inline-block; background:var(--rose-pale); color:var(--rose); border-radius:6px; padding:.15rem .5rem; font-size:0.80rem; font-weight:500; margin:.15rem .1rem; }
+.ingr-tag { display:inline-block; background:var(--blue-light); color:var(--blue); border-radius:6px; padding:.15rem .5rem; font-size:0.80rem; font-weight:500; margin:.15rem .1rem; }
+.oil-tag { display:inline-block; background:#f0f7f4; color:var(--green); border-radius:6px; padding:.15rem .5rem; font-size:0.80rem; font-weight:500; margin:.15rem .1rem; border:1px solid #b0d9c5; }
+
+/* CHECKLIST */
+.check-item { display:flex; gap:.8rem; align-items:flex-start; padding:.7rem 0; border-bottom:1px solid var(--rose-pale); }
+.check-item:last-child { border-bottom:none; }
+.check-box { width:22px; height:22px; border-radius:5px; border:2px solid var(--rose-light); cursor:pointer; flex-shrink:0; margin-top:1px; display:flex; align-items:center; justify-content:center; transition:all .2s; }
+.check-box.checked { background:var(--rose); border-color:var(--rose); }
+.check-box.checked::after { content:'✓'; color:white; font-size:0.84rem; font-weight:700; }
+.check-label { font-size:0.93rem; line-height:1.9; }
+.check-label.checked { text-decoration:line-through; color:var(--muted); }
+
+/* DENSITY TEST */
+.density-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:.6rem; margin-top:.7rem; }
+.density-col { border-radius:12px; padding:.9rem; text-align:center; border:2px solid; }
+.density-col.green { border-color:#81c784; background:#f1f8f2; }
+.density-col.orange { border-color:#ffb74d; background:#fffbf0; }
+.density-col.red { border-color:#e57373; background:#fff5f5; }
+.density-col .icon { font-size:1.45rem; margin-bottom:.4rem; }
+.density-col .label { font-size:0.88rem; font-weight:700; margin-bottom:.35rem; }
+.density-col .desc { font-size:0.80rem; color:var(--muted); line-height:1.9; }
+.density-col .action { font-size:0.84rem; font-weight:600; margin-top:.5rem; padding:.3rem .5rem; border-radius:6px; }
+.density-col.green .action { background:#e8f5e9; color:#2e7d32; }
+.density-col.orange .action { background:#fff3e0; color:#e65100; }
+.density-col.red .action { background:#ffebee; color:#c62828; }
+
+/* ERRORS */
+.error-card { background:white; border-radius:14px; overflow:hidden; margin-bottom:.8rem; border:1px solid var(--border); }
+.error-header { padding:1rem 1.2rem; background:linear-gradient(135deg,var(--rose-pale),white); display:flex; align-items:center; gap:.8rem; }
+.error-num { width:32px; height:32px; border-radius:50%; background:var(--rose); color:white; font-weight:700; font-size:0.97rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.error-title { font-weight:600; font-size:0.97rem; flex:1; }
+.error-body { padding:1rem 1.2rem; }
+.why-box { background:#fff5f7; border-radius:8px; padding:.8rem; margin-bottom:.7rem; border-left:3px solid var(--rose); }
+.fix-box { background:var(--green-light); border-radius:8px; padding:.8rem; border-left:3px solid var(--green); }
+.box-label { font-size:0.80rem; font-weight:700; text-transform:uppercase; letter-spacing:.07em; margin-bottom:.35rem; }
+.why-box .box-label { color:var(--rose); }
+.fix-box .box-label { color:var(--green); }
+
+/* INGREDIENTS REF */
+.ingr-table { width:100%; border-collapse:collapse; font-size:0.88rem; margin-top:.5rem; }
+.ingr-table th { background:var(--rose); color:white; padding:.5rem .6rem; text-align:left; font-weight:600; }
+.ingr-table th.blue-h { background:var(--blue); }
+.ingr-table th.green-h { background:var(--green); }
+.ingr-table th.gold-h { background:var(--gold); }
+.ingr-table td { padding:.5rem .6rem; border-bottom:1px solid var(--rose-pale); vertical-align:top; line-height:1.9; }
+.ingr-table tr:nth-child(even) td { background:#fafafa; }
+.ingr-table code { background:var(--rose-pale); color:var(--rose); padding:.1rem .4rem; border-radius:4px; font-family:monospace; font-size:0.84rem; }
+.ingr-table code.blue { background:var(--blue-light); color:var(--blue); }
+.ingr-table code.green { background:var(--green-light); color:var(--green); }
+.ingr-table code.gold { background:var(--gold-light); color:var(--gold); }
+
+/* OIL TABLE */
+.oil-table { width:100%; border-collapse:collapse; font-size:0.88rem; margin-top:.5rem; }
+.oil-table th { background:var(--green); color:white; padding:.5rem .5rem; text-align:left; font-weight:600; }
+.oil-table td { padding:.5rem .5rem; border-bottom:1px solid #e0f0e8; vertical-align:middle; }
+.oil-table tr:nth-child(even) td { background:#f5fbf7; }
+.pct-bar-wrap { background:#e0f0e8; border-radius:4px; height:8px; width:80px; overflow:hidden; display:inline-block; vertical-align:middle; margin-right:5px; }
+.pct-bar { height:100%; border-radius:4px; background:var(--green); }
+.cap-badge { padding:.2rem .5rem; border-radius:6px; font-size:0.78rem; font-weight:600; }
+.cap-excellent { background:#e8f5e9; color:#2e7d32; }
+.cap-good { background:#fff3e0; color:#e65100; }
+.cap-avg { background:#fff8e1; color:#f57f17; }
+.cap-low { background:#ffebee; color:#c62828; }
+
+/* NAV PILL */
+.nav-pill { display:flex; gap:.5rem; margin-bottom:1rem; flex-wrap:wrap; }
+.pill { padding:.35rem .9rem; border-radius:20px; font-size:0.88rem; font-weight:500; cursor:pointer; border:1.5px solid var(--rose-light); background:white; color:var(--muted); transition:all .15s; }
+.pill.active { background:var(--rose); color:white; border-color:var(--rose); }
+
+/* PROGRESS BAR */
+.progress-strip { height:4px; background:var(--rose-light); border-radius:2px; margin:.5rem 0 1.2rem; }
+.progress-fill { height:100%; background:var(--rose); border-radius:2px; }
+
+/* DIVIDER */
+.divider { border:none; border-top:1px solid var(--rose-pale); margin:1rem 0; }
+
+/* RECOMMENDATIONS */
+.rec-list { margin:.5rem 0; }
+.rec-item { padding:.5rem 0; border-bottom:1px dashed var(--rose-light); font-size:0.93rem; display:flex; align-items:center; gap:.5rem; }
+.rec-item:last-child { border-bottom:none; }
+.rec-item::before { content:'→'; color:var(--rose); font-weight:700; flex-shrink:0; }
+
+/* ROUTINE TABLE */
+.r-table { width:100%; border-collapse:collapse; font-size:0.88rem; margin-top:.5rem; }
+.r-table th { color:white; padding:.5rem .4rem; text-align:center; font-weight:600; font-size:0.84rem; }
+.r-table th.h-head { background:var(--rose); }
+.r-table th.p-head { background:var(--blue); }
+.r-table th.empty { background:white; border:none; }
+.r-table td { padding:.5rem .4rem; text-align:center; border-bottom:1px solid var(--rose-pale); }
+.r-table td.row-label { text-align:left; font-weight:500; background:white!important; border-right:2px solid var(--rose-light); padding-left:.7rem; }
+.r-table tr:nth-child(even) td { background:var(--rose-pale); }
+.chk { color:var(--green); font-weight:700; font-size:1.05rem; }
+.dsh { color:#ccc; }
+
+@media(max-width:480px) {
+  .choice-grid,.prod-grid { grid-template-columns:1fr; }
+  .density-grid { grid-template-columns:1fr; }
+  .intensity-grid { grid-template-columns:repeat(3,1fr); }
+}
+
+/* ── IDENTIQUE CARNET CORAN ── */
+body { font-family: 'Noto Sans', sans-serif !important; font-size: 17px !important; line-height: 1.9 !important; }
+p, li, td { font-family: 'Lora', Georgia, serif !important; font-size: 1.05rem !important; line-height: 1.9 !important; }
+em, i { font-family: 'Lora', Georgia, serif !important; font-size: 1.05rem !important; font-style: italic; line-height: 1.9 !important; }
+h1, h2, h3, h4, .section-title, .card-title, .step-title { font-family: 'Lora', Georgia, serif !important; }
+.tab-btn, .badge, .tag, .label, small, .caption, button { font-family: 'Noto Sans', sans-serif !important; }
+.content-text, .desc, .detail, .note, .tip, .info { font-family: 'Lora', Georgia, serif !important; font-size: 1.05rem !important; line-height: 1.9 !important; }
+
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🌿 Protocole Capillaire Complet</h1>
+  <p>Formation complète · Du diagnostic à la routine · Tous chapitres</p>
+  <div class="header-badges">
+    <span class="hbadge">📋 Diagnostic</span>
+    <span class="hbadge">✂️ Préparation</span>
+    <span class="hbadge">🛡️ Protection</span>
+    <span class="hbadge">🧴 Produits</span>
+    <span class="hbadge">💆 Gestes</span>
+    <span class="hbadge">✨ Routine</span>
+  </div>
+</header>
+
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('etape1')">✂️ Préparer</button>
+    <button class="tab-btn" onclick="showTab('etape2')">🛡️ Fondations</button>
+    <button class="tab-btn" onclick="showTab('etape3')">🧴 Produits</button>
+    <button class="tab-btn" onclick="showTab('etape4')">🔍 Diagnostic</button>
+    <button class="tab-btn" onclick="showTab('etape5')">✨ Routine</button>
+    <button class="tab-btn" onclick="showTab('gestes')">💆 Gestes</button>
+    <button class="tab-btn" onclick="showTab('erreurs')">⚠️ 7 Erreurs</button>
+    <button class="tab-btn" onclick="showTab('refs')">📚 Références</button>
+  </div>
+</div>
+
+<!-- ===================== TAB 1 : PRÉPARER ===================== -->
+<div id="tab-etape1" class="tab-panel active">
+  <div class="section-intro">
+    <strong>Étape 1 du protocole :</strong> Avant de commencer toute routine, il faut évaluer l'état des longueurs existantes. Le cheveu est fait de kératine — une matière inerte qui <em>ne peut pas se réparer</em>. Les longueurs abîmées doivent être éliminées pour débloquer la pousse.
+  </div>
+
+  <!-- TEST 1 : DENSITÉ -->
+  <div class="card">
+    <div class="card-title">🔎 Test 1 — Perte de densité</div>
+    <div class="info-box">À réaliser sur <strong>cheveux secs et étirés</strong>. Accessoires : miroir, peigne, élastiques (facultatif).</div>
+    <div class="step-list">
+      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Préparation :</strong> Divise tes cheveux en 4 sections égales. Utilise des élastiques si tu le souhaites pour les maintenir séparées.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Observation :</strong> Prends une section et applique une légère tension pour l'étirer. Cela permettra de visualiser la densité de la mèche de la racine jusqu'aux pointes.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Analyse :</strong> Observe attentivement la répartition des cheveux sur toute la longueur. Remarque s'il y a des variations de densité, des zones clairsemées ou des longueurs inégales.</div></div>
+    </div>
+    <hr class="divider">
+    <p style="font-size:0.90rem;font-weight:600;color:var(--muted);margin-bottom:.7rem;">RÉSULTATS ET ACTIONS</p>
+    <div class="density-grid">
+      <div class="density-col green">
+        <div class="icon">💚</div>
+        <div class="label">Densité faible</div>
+        <div class="desc">Densité uniforme de la racine aux pointes. Cheveux en bon état.</div>
+        <div class="action">✂️ Rafraîchir les pointes si besoin</div>
+      </div>
+      <div class="density-col orange">
+        <div class="icon">🟡</div>
+        <div class="label">Densité modérée</div>
+        <div class="desc">Densité plus importante aux racines, aspect transparent aux pointes.</div>
+        <div class="action">✂️ Couper au changement de densité</div>
+      </div>
+      <div class="density-col red">
+        <div class="icon">🔴</div>
+        <div class="label">Perte importante</div>
+        <div class="desc">Densité non uniforme, signes de casse visibles sur toute la longueur.</div>
+        <div class="action">✂️ Couper au changement de densité</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST 2 : DÉNATURATION -->
+  <div class="card">
+    <div class="card-title">🌀 Test 2 — Dénaturation des boucles</div>
+    <div class="info-box">Ce test révèle des dommages <strong>internes</strong> de la fibre (chimiques ou thermiques). À réaliser sur cheveux mouillés.</div>
+    <div class="step-list">
+      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Préparation :</strong> Divise tes cheveux en 4 sections. Attache chaque section avec un élastique si tu le souhaites.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Observation :</strong> Observe attentivement la texture des cheveux en partant de la racine jusqu'aux pointes. Cherche une différence de texture entre racine et pointes.</div></div>
+    </div>
+    <hr class="divider">
+    <p style="font-size:0.90rem;font-weight:600;color:var(--muted);margin-bottom:.7rem;">RÉSULTATS ET ACTIONS</p>
+    <div class="density-grid">
+      <div class="density-col green">
+        <div class="icon">💚</div>
+        <div class="label">Aucune dénaturation</div>
+        <div class="desc">Texture uniforme de la racine aux pointes.</div>
+        <div class="action">✂️ Couper les pointes si besoin</div>
+      </div>
+      <div class="density-col orange">
+        <div class="icon">🟡</div>
+        <div class="label">Dénaturation faible</div>
+        <div class="desc">Longueurs légèrement détendues, faible différence de texture.</div>
+        <div class="action">✂️ Couper au-dessus du changement</div>
+      </div>
+      <div class="density-col red">
+        <div class="icon">🔴</div>
+        <div class="label">Dénaturation forte</div>
+        <div class="desc">Longueurs presque lisses, forte différence entre racine et pointes.</div>
+        <div class="action">✂️ Couper au-dessus de la partie altérée</div>
+      </div>
+    </div>
+    <div class="tip-box" style="margin-top:.8rem;">
+      <strong>💡 Où couper exactement ?</strong>
+      Coupe toujours <em>au-dessus</em> du changement de texture ou densité. Le point de jonction entre tissu sain et altéré est une zone de fragilité extrême — il faut l'éliminer pour repartir sur une base solide.
+    </div>
+  </div>
+
+  <!-- CHECKLIST COUPE -->
+  <div class="card">
+    <div class="card-title">✅ Checklist avant la coupe</div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-label">J'ai réalisé le test de perte de densité sur cheveux secs et étirés</div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-label">J'ai réalisé le test de dénaturation des boucles sur cheveux mouillés</div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-label">J'ai identifié les sections à couper et repéré le niveau de changement de densité/texture</div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-label">J'ai du matériel adapté : ciseaux propres, miroir, bon éclairage</div>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box"></div>
+      <div class="check-label">Si besoin, j'ai pris rendez-vous chez un coiffeur pour uniformiser les longueurs</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TAB 2 : FONDATIONS ===================== -->
+<div id="tab-etape2" class="tab-panel">
+  <div class="section-intro">
+    <strong>Étape 2 :</strong> La majorité des dommages capillaires sont <em>auto-induits</em>. L'objectif est de fixer des limites d'exposition à chaque type d'agression pour préserver ta fibre sur le long terme.
+  </div>
+
+  <!-- 4 sources -->
+  <div class="card">
+    <div class="card-title">💥 Les 4 sources de dommages</div>
+    <div class="acc-card" style="margin-top:.5rem;box-shadow:none;">
+      <div class="acc-header" onclick="toggleAcc(this)" style="background:#fff0f3;">
+        <div class="acc-icon" style="background:#fce4ec;">⚗️</div>
+        <div><div class="acc-title">Dommages chimiques</div><div class="acc-sub">Colorations, défrisants, lissages</div></div>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <p style="font-size:0.93rem;line-height:1.9;margin:.8rem 0;">Les plus <strong>agressifs</strong> : ils modifient à la fois la structure interne ET externe du cheveu avec une forte intensité. Les dommages sont souvent irréversibles.</p>
+        <div class="warn-box">⚠️ <span><strong>Limite maximale :</strong> 1 traitement chimique par an maximum.</span></div>
+        <p style="font-size:0.90rem;color:var(--muted);margin-top:.5rem;"><strong>Exemples :</strong> colorations permanentes, décolorations, patines, défrisants, lissages brésiliens/japonais.</p>
+        <div class="tip-box" style="margin-top:.7rem;">
+          <strong>💡 Actions possibles</strong>
+          <strong>Réduire :</strong> utiliser une marque pro à faible teneur en ammoniaque, faire un soin profond réparateur après.<br>
+          <strong>Espacer :</strong> retoucher uniquement les racines, max 1 fois/an.<br>
+          <strong>Remplacer :</strong> coloration végétale, soin repigmentant, masques colorants sans oxydant.
+        </div>
+      </div>
+    </div>
+    <div class="acc-card" style="box-shadow:none;">
+      <div class="acc-header" onclick="toggleAcc(this)" style="background:#fffde7;">
+        <div class="acc-icon" style="background:#fff9c4;">🔥</div>
+        <div><div class="acc-title">Dommages thermiques</div><div class="acc-sub">Lisseurs, sèche-cheveux, boucleurs</div></div>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <p style="font-size:0.93rem;line-height:1.9;margin:.8rem 0;">Modifient la structure interne et externe. Faible intensité par usage unique, mais <strong>dommages cumulatifs</strong> visibles à l'usage répété.</p>
+        <div class="warn-box">⚠️ <span><strong>Limite maximale :</strong> 1 lissage + 2 sèche-cheveux par mois.</span></div>
+        <div class="tip-box" style="margin-top:.7rem;">
+          <strong>💡 Actions possibles</strong>
+          <strong>Réduire :</strong> toujours utiliser un protecteur thermique, ne pas dépasser 180°C, sécher à 80% avant d'utiliser le lisseur.<br>
+          <strong>Espacer :</strong> 1 à 2 fois/mois pour lisseur, 1 fois/semaine pour sèche-cheveux.<br>
+          <strong>Remplacer :</strong> méthodes sans chaleur (banding, twist out, tresses, rouleaux souples), séchage à l'air libre avec serviette microfibre.
+        </div>
+      </div>
+    </div>
+    <div class="acc-card" style="box-shadow:none;">
+      <div class="acc-header" onclick="toggleAcc(this)" style="background:#f0faf3;">
+        <div class="acc-icon" style="background:#e0f5e8;">⚙️</div>
+        <div><div class="acc-title">Dommages mécaniques</div><div class="acc-sub">Shampoing, démêlage, coiffure</div></div>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <p style="font-size:0.93rem;line-height:1.9;margin:.8rem 0;"><strong>Les plus fréquents</strong> car la majorité de nos gestes quotidiens en font partie. Brossages répétés, coiffures non-protectrices, manipulations excessives.</p>
+        <div class="warn-box">⚠️ <span><strong>Limite maximale :</strong> 2 shampoings + 2 démêlages par semaine.</span></div>
+        <div class="tip-box" style="margin-top:.7rem;">
+          <strong>💡 Actions possibles</strong>
+          <strong>Réduire :</strong> démêler sur cheveux humides, limiter le brossage, éviter la tension aux racines.<br>
+          <strong>Espacer :</strong> planifier des styles durables 3 à 7 jours, protéger les cheveux la nuit.<br>
+          <strong>Remplacer :</strong> coiffures protectrices (vanilles, chignons doux, nattes), coiffures à manipulation faible.
+        </div>
+      </div>
+    </div>
+    <div class="acc-card" style="box-shadow:none;">
+      <div class="acc-header" onclick="toggleAcc(this)" style="background:#e8f0f8;">
+        <div class="acc-icon" style="background:#dce8f5;">🌿</div>
+        <div><div class="acc-title">Dommages environnementaux</div><div class="acc-sub">UV, pollution, eau chlorée</div></div>
+        <span class="acc-arrow">▼</span>
+      </div>
+      <div class="acc-body">
+        <p style="font-size:0.93rem;line-height:1.9;margin:.8rem 0;">Faible intensité seuls, mais peuvent <strong>accentuer</strong> des dommages existants sur une fibre déjà fragilisée. Considérés comme <em>négligeables</em> si la routine est protectrice.</p>
+        <div class="tip-box" style="margin-top:.7rem;">
+          <strong>💡 Actions possibles</strong>
+          Porter un foulard, chapeau ou bonnet en satin. Appliquer un spray hydratant protecteur UV. Rincer les cheveux après la baignade. Opter pour des coiffures protectrices lors des sorties prolongées.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCORE -->
+  <div class="card">
+    <div class="card-title">📊 Calcule ton score de dommages</div>
+    <p style="font-size:0.93rem;color:var(--muted);margin-bottom:.8rem;line-height:1.9;">Pour chaque ligne, entre le score correspondant à ta fréquence, puis clique sur "Calculer".</p>
+    <div class="green-box" style="margin-bottom:.8rem;">🟢 Score &lt; 7 : Routine protectrice &nbsp;|&nbsp; 🟡 7–18 : Dommages modérés, à ajuster &nbsp;|&nbsp; 🔴 Score &gt; 18 : Réduire l'exposition</div>
+    <table class="score-table">
+      <thead>
+        <tr><th style="text-align:left;">Source</th><th>Fréquent</th><th>Modéré</th><th>Rare</th><th>Ton score</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Coiffure non-protectrice</td><td>10</td><td>5</td><td>1</td><td><input class="score-input" type="number" min="0" max="10" placeholder="–"></td></tr>
+        <tr><td>Décoloration</td><td>10</td><td>5</td><td>1</td><td><input class="score-input" type="number" min="0" max="10" placeholder="–"></td></tr>
+        <tr><td>Coloration</td><td>10</td><td>5</td><td>1</td><td><input class="score-input" type="number" min="0" max="10" placeholder="–"></td></tr>
+        <tr><td>Lissage/permanente chimique</td><td>10</td><td>5</td><td>1</td><td><input class="score-input" type="number" min="0" max="10" placeholder="–"></td></tr>
+        <tr><td>Coupe de cheveux (bonus)</td><td>-3</td><td>-3</td><td>-1</td><td><input class="score-input" type="number" min="-3" max="0" placeholder="–"></td></tr>
+        <tr><td>Lissage thermique</td><td>5</td><td>3</td><td>1</td><td><input class="score-input" type="number" min="0" max="5" placeholder="–"></td></tr>
+        <tr><td>Sèche-cheveux</td><td>3</td><td>2</td><td>1</td><td><input class="score-input" type="number" min="0" max="3" placeholder="–"></td></tr>
+        <tr><td>Brossages/Démêlage</td><td>3</td><td>2</td><td>1</td><td><input class="score-input" type="number" min="0" max="3" placeholder="–"></td></tr>
+        <tr><td>Shampooing</td><td>3</td><td>2</td><td>1</td><td><input class="score-input" type="number" min="0" max="3" placeholder="–"></td></tr>
+        <tr><td>Pré-shampooing (bonus)</td><td>-3</td><td>-2</td><td>-1</td><td><input class="score-input" type="number" min="-3" max="0" placeholder="–"></td></tr>
+        <tr><td>Soins profonds (bonus)</td><td>-5</td><td>-3</td><td>-1</td><td><input class="score-input" type="number" min="-5" max="0" placeholder="–"></td></tr>
+        <tr><td>Après-shampooing (bonus)</td><td>-3</td><td>-2</td><td>-1</td><td><input class="score-input" type="number" min="-3" max="0" placeholder="–"></td></tr>
+        <tr><td>Exposition au soleil (+5h/j)</td><td>5</td><td>3</td><td>1</td><td><input class="score-input" type="number" min="0" max="5" placeholder="–"></td></tr>
+        <tr><td>Protecteur de chaleur (bonus)</td><td>-3</td><td>-2</td><td>-1</td><td><input class="score-input" type="number" min="-3" max="0" placeholder="–"></td></tr>
+      </tbody>
+    </table>
+    <button onclick="calcScore()" style="margin-top:.9rem;background:var(--rose);color:white;border:none;padding:.7rem 1.5rem;border-radius:8px;font-family:'Noto Sans',sans-serif;font-weight:600;cursor:pointer;font-size:0.97rem;">Calculer mon score →</button>
+    <div class="score-result" id="score-result">
+      <div class="score-big" id="score-num"></div>
+      <div class="score-label" id="score-label"></div>
+      <div class="score-advice" id="score-advice"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TAB 3 : PRODUITS ===================== -->
+<div id="tab-etape3" class="tab-panel">
+  <div class="section-intro">
+    <strong>Étape 3 :</strong> Construis ta trousse capillaire. 8 produits essentiels couvrent tous les besoins de ta fibre. Voici les critères pour bien choisir chacun.
+  </div>
+
+  <div class="nav-pill" id="prod-nav">
+    <span class="pill active" onclick="showProd('prepoo',this)">🫙 Pré-shampoing</span>
+    <span class="pill" onclick="showProd('shampoo',this)">🧴 Shampooings</span>
+    <span class="pill" onclick="showProd('cond',this)">💦 Conditionneurs</span>
+    <span class="pill" onclick="showProd('leavein',this)">✨ Leave-in</span>
+    <span class="pill" onclick="showProd('scellant',this)">🛡️ Scellant</span>
+  </div>
+
+  <!-- PRE-SHAMPOO -->
+  <div id="prod-prepoo">
+    <div class="card">
+      <div class="card-title">🫙 Le Pré-shampooing (Prepoo / Bain d'huile)</div>
+      <p style="font-size:0.93rem;line-height:1.9;margin-bottom:.8rem;">Appliqué <strong>avant le lavage</strong>, c'est un corps gras (huile ou beurre végétal) qui prépare la fibre au contact du shampoing en limitant les effets desséchants et en <strong>réduisant la perte de protéines</strong>.</p>
+      <div class="green-box"><strong>Critère clé :</strong> L'huile doit contenir au moins <strong>30% d'acides gras pénétrants</strong> (chaîne ≤ 14 carbones, max 1 insaturation). Ces molécules légères pénètrent la fibre au lieu de rester en surface.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🌿 Tableau des huiles — Pénétration</div>
+      <table class="oil-table">
+        <thead><tr><th>Huile / Beurre</th><th>% AG pénétrants</th><th>Pénétration</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Huile de coco</strong></td><td><div class="pct-bar-wrap"><div class="pct-bar" style="width:90%"></div></div> ≈90%</td><td><span class="cap-badge cap-excellent">✅ Excellente</span></td></tr>
+          <tr><td><strong>Huile de babassu</strong></td><td><div class="pct-bar-wrap"><div class="pct-bar" style="width:90%"></div></div> ≈90%</td><td><span class="cap-badge cap-excellent">✅ Excellente</span></td></tr>
+          <tr><td><strong>Huile de palmiste</strong></td><td><div class="pct-bar-wrap"><div class="pct-bar" style="width:85%"></div></div> ≈85%</td><td><span class="cap-badge cap-excellent">✅ Excellente</span></td></tr>
+          <tr><td><strong>Beurre de murumuru</strong></td><td><div class="pct-bar-wrap"><div class="pct-bar" style="width:85%"></div></div> ≈85%</td><td><span class="cap-badge cap-good">✅ Bonne</span></td></tr>
+          <tr><td><strong>Huile de papaye</strong></td><td><div class="pct-bar-wrap"><div class="pct-bar" style="width:85%"></div></div> ≈85%</td><td><span class="cap-badge cap-good">✅ Bonne</span></td></tr>
+          <tr><td>Huile d'avocat</td><td><div class="pct-bar-wrap"><div class="pct-bar" style="width:25%"></div></div> ≈25%</td><td><span class="cap-badge cap-avg">⚠️ Moyenne</span></td></tr>
+          <tr><td>Huile d'olive</td><td><div class="pct-bar-wrap"><div class="pct-bar" style="width:15%"></div></div> ≈15%</td><td><span class="cap-badge cap-low">❌ Faible</span></td></tr>
+          <tr><td>Beurre de karité</td><td><div class="pct-bar-wrap"><div class="pct-bar" style="width:10%"></div></div> ≈10%</td><td><span class="cap-badge cap-low">❌ Faible</span></td></tr>
+          <tr><td>Huile d'argan</td><td><div class="pct-bar-wrap"><div class="pct-bar" style="width:10%"></div></div> ≈10%</td><td><span class="cap-badge cap-low">❌ Faible</span></td></tr>
+          <tr><td>Huile de ricin</td><td><div class="pct-bar-wrap"><div class="pct-bar" style="width:5%"></div></div> ≈5%</td><td><span class="cap-badge cap-low">❌ Faible</span></td></tr>
+        </tbody>
+      </table>
+      <div class="tip-box" style="margin-top:.8rem;"><strong>💡 Recommandation</strong> Privilégie coco, palmiste, babassu, murumuru ou papaye pour ton bain d'huile. L'huile de ricin et le karité restent utiles comme <em>scellants</em> mais pas comme prépoo.</div>
+    </div>
+  </div>
+
+  <!-- SHAMPOO -->
+  <div id="prod-shampoo" style="display:none;">
+    <div class="card">
+      <div class="card-title">🧴 Les 2 shampooings essentiels</div>
+      <div class="prod-grid">
+        <div class="prod-card">
+          <h4>💧 Shampooing DOUX</h4>
+          <p>Usage <strong>hebdomadaire</strong>. Nettoie sans assécher. Contient tensioactifs doux + humectants + émollients.</p>
+          <div style="margin-top:.6rem;">
+            <div class="prod-tag">Hydratant</div><div class="prod-tag">Moisturizing</div><div class="prod-tag">Nourrissant</div>
+          </div>
+          <p style="margin-top:.6rem;font-size:0.88rem;"><strong>Ingrédients à chercher :</strong></p>
+          <div class="ingr-tag">Coco-Glucoside</div><div class="ingr-tag">Decyl Glucoside</div><div class="ingr-tag">Glycérine</div><div class="ingr-tag">Panthénol</div><div class="ingr-tag">Aloe Vera</div>
+          <p style="margin-top:.6rem;font-size:0.88rem;color:#c62828;"><strong>À éviter :</strong> SLS, SLES en tête de liste</p>
+        </div>
+        <div class="prod-card">
+          <h4>🔍 Shampooing CLARIFIANT</h4>
+          <p>Usage <strong>mensuel</strong>. Élimine résidus de produits, minéraux calcaires, impuretés accumulées.</p>
+          <div style="margin-top:.6rem;">
+            <div class="prod-tag">Clarifiant</div><div class="prod-tag">Purifiant</div><div class="prod-tag">Deep Clean</div>
+          </div>
+          <p style="margin-top:.6rem;font-size:0.88rem;"><strong>Ingrédients à chercher :</strong></p>
+          <div class="ingr-tag">Sodium Laureth Sulfate</div><div class="ingr-tag">Sodium Lauroyl Sarcosinate</div>
+          <p style="margin-top:.6rem;font-size:0.88rem;color:var(--green);"><strong>Peu ou pas</strong> d'humectants/émollients = nettoyage profond</p>
+        </div>
+      </div>
+      <div class="warn-box" style="margin-top:.8rem;">⚠️ <span>Un shampooing doux idéal remplit <strong>3/4 critères</strong>. Un clarifiant idéal remplit <strong>2/3 critères</strong>. Toujours vérifier la liste INCI.</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📋 Recommandations produits</div>
+      <p style="font-size:0.88rem;font-weight:600;color:var(--muted);margin-bottom:.4rem;">SHAMPOOINGS DOUX</p>
+      <div class="rec-list">
+        <div class="rec-item">EvasHair – Shampooing hydratant</div>
+        <div class="rec-item">Kalia Nature – Shampooing à l'Hibiscus</div>
+        <div class="rec-item">Les Secrets de Loly – Sunshine Clean / Perfect Clean</div>
+        <div class="rec-item">Shea Moisture – Raw Shea Butter Moisture Retention</div>
+        <div class="rec-item">Activilong – Natural Touch Gentle Shampoo</div>
+      </div>
+      <hr class="divider">
+      <p style="font-size:0.88rem;font-weight:600;color:var(--muted);margin-bottom:.4rem;">SHAMPOOINGS CLARIFIANTS</p>
+      <div class="rec-list">
+        <div class="rec-item">ApHogee – Deep Clean Shampoo</div>
+        <div class="rec-item">Kinky Curly – Come Clean</div>
+        <div class="rec-item">Aunt Jackie's – Power Wash</div>
+        <div class="rec-item">Shea Moisture – African Black Soap Deep Cleansing</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONDITIONNEURS -->
+  <div id="prod-cond" style="display:none;">
+    <div class="card">
+      <div class="card-title">💦 Les 3 conditionneurs essentiels</div>
+      <div class="acc-card" style="box-shadow:none;margin-top:.5rem;">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-icon" style="background:#e3f2fd;">💧</div>
+          <div><div class="acc-title">Conditionneur hydratant profond</div><div class="acc-sub">Restaure l'eau dans la fibre · souplesse, douceur, brillance</div></div>
+          <span class="acc-arrow">▼</span>
+        </div>
+        <div class="acc-body">
+          <div class="info-box">Usage : 2–5 min sans chaleur (conditioning) ou 10–30 min avec chaleur (masque profond)</div>
+          <p style="font-size:.83rem;margin:.7rem 0;line-height:1.9;"><strong>Ingrédients clés :</strong></p>
+          <p style="font-size:0.90rem;margin-bottom:.3rem;"><strong>Humectants</strong> (en haut de liste INCI) :</p>
+          <div class="ingr-tag">Glycérine</div><div class="ingr-tag">Panthénol (B5)</div><div class="ingr-tag">Aloe Vera</div><div class="ingr-tag">Miel</div>
+          <p style="font-size:0.90rem;margin:.6rem 0 .3rem;"><strong>Agents conditionnants :</strong></p>
+          <div class="ingr-tag">BTMS</div><div class="ingr-tag">Cetrimonium Chloride</div><div class="ingr-tag">Behentrimonium Methosulfate</div><div class="ingr-tag">Polyquaternium</div>
+          <div class="warn-box" style="margin-top:.7rem;">⚠️ <span>Les protéines doivent être en fin de liste (moins de 1%) — sinon c'est un conditionneur protéiné.</span></div>
+          <div class="rec-list" style="margin-top:.7rem;">
+            <div class="rec-item">EvasHair – Masque hydratant 2 en 1</div>
+            <div class="rec-item">Camille Rose – Algae Renew Deep Conditioner</div>
+            <div class="rec-item">Shea Moisture – Manuka Honey & Mafura Oil Masque</div>
+            <div class="rec-item">Les Secrets de Loly – Repair Time</div>
+          </div>
+        </div>
+      </div>
+      <div class="acc-card" style="box-shadow:none;">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-icon" style="background:#e8f5e9;">🔩</div>
+          <div><div class="acc-title">Conditionneur protéiné</div><div class="acc-sub">Renforce la structure interne · solidité, élasticité</div></div>
+          <span class="acc-arrow">▼</span>
+        </div>
+        <div class="acc-body">
+          <div class="warn-box">⚠️ <span>À utiliser <strong>1 à 2 fois/mois max</strong>. Si les cheveux deviennent durs ou cassants, espacer et alterner avec un masque hydratant.</span></div>
+          <p style="font-size:0.90rem;margin:.7rem 0 .3rem;"><strong>Protéines hydrolysées à chercher (dans les 10 premiers INCI) :</strong></p>
+          <div class="ingr-tag">Hydrolyzed Keratin</div><div class="ingr-tag">Hydrolyzed Wheat Protein</div><div class="ingr-tag">Hydrolyzed Silk</div><div class="ingr-tag">Hydrolyzed Rice Protein</div><div class="ingr-tag">Hydrolyzed Collagen</div>
+          <p style="font-size:0.90rem;margin:.6rem 0 .3rem;"><strong>Mentions packaging :</strong></p>
+          <div class="prod-tag">Réparateur</div><div class="prod-tag">Strengthening</div><div class="prod-tag">Fortifiant</div><div class="prod-tag">Repairing</div>
+          <div class="rec-list" style="margin-top:.7rem;">
+            <div class="rec-item">ApHogee Keratin 2 Minute Reconstructor</div>
+            <div class="rec-item">Shea Moisture – Jamaican Black Castor Oil Masque</div>
+            <div class="rec-item">Camille Rose – Nangai & Tsubaki Strength Restore</div>
+          </div>
+        </div>
+      </div>
+      <div class="acc-card" style="box-shadow:none;">
+        <div class="acc-header" onclick="toggleAcc(this)">
+          <div class="acc-icon" style="background:#fce4ec;">🏗️</div>
+          <div><div class="acc-title">Conditionneur reconstructeur</div><div class="acc-sub">Répare en profondeur · après dommages chimiques/thermiques</div></div>
+          <span class="acc-arrow">▼</span>
+        </div>
+        <div class="acc-body">
+          <p style="font-size:.83rem;line-height:1.9;margin:.7rem 0;">Agit à 3 niveaux : <strong>(1)</strong> Réparation interne (comble les brèches kératiniques), <strong>(2)</strong> Renforcement des liaisons disulfures, <strong>(3)</strong> Protection externe (lisse la cuticule).</p>
+          <div class="warn-box">⚠️ <span>Ce soin doit <strong>impérativement être suivi d'un conditionneur hydratant</strong> pour restaurer la souplesse après les protéines concentrées.</span></div>
+          <p style="font-size:0.90rem;margin:.6rem 0 .3rem;"><strong>Mentions packaging :</strong></p>
+          <div class="prod-tag">Repair</div><div class="prod-tag">Reconstruction</div><div class="prod-tag">Bond Repair</div><div class="prod-tag">Reconstructor</div>
+          <div class="rec-list" style="margin-top:.7rem;">
+            <div class="rec-item">ApHogee – Two-Step Protein Treatment</div>
+            <div class="rec-item">Olaplex N°3 – Hair Perfector</div>
+            <div class="rec-item">ORS – Hair Mayonnaise</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEAVE-IN -->
+  <div id="prod-leavein" style="display:none;">
+    <div class="card">
+      <div class="card-title">✨ Le Leave-in conditionneur</div>
+      <p style="font-size:0.93rem;line-height:1.9;margin-bottom:.8rem;">Soin <strong>sans rinçage</strong> appliqué après le lavage. Prolonge l'hydratation, adoucit la fibre, prépare le cheveu à être manipulé et coiffé. Agit comme <strong>barrière protectrice légère</strong> contre l'environnement.</p>
+      <div class="green-box"><strong>Texture selon le type de cheveux :</strong><br>
+        Type 2 (bouclés) → Spray ou lait léger<br>
+        Type 3 (frisés) → Lait ou crème légère<br>
+        Type 4 (crépus) → Crème épaisse ou riche
+      </div>
+      <hr class="divider">
+      <p style="font-size:0.90rem;margin-bottom:.5rem;"><strong>Ingrédients essentiels :</strong></p>
+      <p style="font-size:0.88rem;color:var(--muted);margin-bottom:.3rem;">Humectants (en tête de liste) :</p>
+      <div class="ingr-tag">Glycérine</div><div class="ingr-tag">Aloe Vera</div><div class="ingr-tag">Panthénol</div><div class="ingr-tag">Sorbitol</div><div class="ingr-tag">Propanediol</div>
+      <p style="font-size:0.88rem;color:var(--muted);margin:.6rem 0 .3rem;">Émollients (milieu de liste) :</p>
+      <div class="oil-tag">Huile de coco</div><div class="oil-tag">Huile d'olive</div><div class="oil-tag">Beurres végétaux</div>
+      <hr class="divider">
+      <div class="rec-list">
+        <div class="rec-item">Kinky Curly – Knot Today</div>
+        <div class="rec-item">As I Am – Leave-In Conditioner</div>
+        <div class="rec-item">Les Secrets de Loly – Kurl Nectar</div>
+        <div class="rec-item">Shea Moisture – Jamaican Black Castor Oil Leave-In</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCELLANT -->
+  <div id="prod-scellant" style="display:none;">
+    <div class="card">
+      <div class="card-title">🛡️ Le Scellant (huile ou beurre)</div>
+      <p style="font-size:0.93rem;line-height:1.9;margin-bottom:.8rem;">Dernière étape de la routine. Son rôle est de <strong>retenir l'hydratation à l'intérieur du cheveu</strong> en formant une barrière protectrice sur la fibre.</p>
+      <div class="green-box"><strong>Critère clé :</strong> Acides gras longs ≥ 14 carbones, ≤ 2 insaturations, minimum 30% dans la composition.</div>
+      <p style="font-size:0.90rem;font-weight:600;margin:.8rem 0 .4rem;">Selon ta texture :</p>
+      <p style="font-size:0.90rem;margin-bottom:.3rem;">🔵 <strong>Cheveux crépus/épais</strong> → beurres riches (karité, mangue) ou huiles épaisses (avocat, tournesol)</p>
+      <p style="font-size:0.90rem;">🟢 <strong>Cheveux frisés/bouclés/fins</strong> → huiles légères (macadamia, moringa)</p>
+      <hr class="divider">
+      <table class="oil-table">
+        <thead><tr><th>Huile / Beurre</th><th>AG ≥ 14C</th><th>Particularités</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Beurre de karité</strong></td><td>✅</td><td>Scelle durablement, nourrit, protège. Idéal cheveux très secs/épais.</td></tr>
+          <tr><td><strong>Huile de tournesol</strong></td><td>✅</td><td>Film léger, douceur et souplesse sans alourdir. Bon pour les mélanges.</td></tr>
+          <tr><td><strong>Huile d'olive vierge</strong></td><td>✅</td><td>Scelle efficacement, adoucit et renforce les cuticules.</td></tr>
+          <tr><td><strong>Huile de ricin</strong></td><td>✅</td><td>Très épaisse, renforce la tige et limite la casse. Idéale sur les pointes.</td></tr>
+          <tr><td><strong>Huile d'avocat</strong></td><td>✅</td><td>Riche, renforce les cheveux crépus poreux. Bonne tenue sans effet gras.</td></tr>
+          <tr><td><strong>Beurre de mangue</strong></td><td>✅</td><td>Texture douce et fondante. Scelle efficacement sans alourdir.</td></tr>
+          <tr><td><strong>Huile de macadamia</strong></td><td>✅</td><td>Film très léger. Idéale pour cheveux fins ou mixtes.</td></tr>
+          <tr><td><strong>Huile de moringa</strong></td><td>✅</td><td>Scelle et fortifie, stabilise l'hydratation.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TAB 4 : DIAGNOSTIC ===================== -->
+<div id="tab-etape4" class="tab-panel">
+  <div class="section-intro">
+    <strong>Étape 4 :</strong> Avant chaque rituel hebdomadaire, identifie le besoin dominant de ta fibre capillaire et l'intensité du besoin pour choisir la bonne routine.
+  </div>
+
+  <div class="card">
+    <div class="card-title">Étape A · Quel est le besoin de tes cheveux ?</div>
+    <p style="font-size:0.90rem;color:var(--muted);margin-bottom:.8rem;">Passe une mèche entre tes doigts. Comment se comporte-t-elle ?</p>
+    <div class="choice-grid">
+      <button class="choice-btn" onclick="selectNeed('hydratation',this)">
+        <span class="emoji">💧</span>
+        <strong>Secs, durs, rugueux</strong><br>
+        <small style="color:var(--muted);">Casse nette sans s'étirer → Besoin d'hydratation</small>
+      </button>
+      <button class="choice-btn" onclick="selectNeed('proteines',this)">
+        <span class="emoji">🔩</span>
+        <strong>Mous, sans tenue, élastiques</strong><br>
+        <small style="color:var(--muted);">S'étire excessivement → Besoin de protéines</small>
+      </button>
+    </div>
+    <div class="tip-box" style="margin-top:.8rem;">
+      <strong>💡 Confirme avec le test d'élasticité</strong>
+      Humidifie un cheveu, étire-le entre deux doigts. S'il casse net → hydratation. S'il s'étire à l'excès avant de casser → protéines. En cas de signes contradictoires, <strong>priorise toujours l'hydratation</strong>.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Étape B · Quelle est l'intensité de la casse ?</div>
+    <div class="warn-box">⚠️ <span>Test à réaliser avant le pré-shampooing, sur <strong>cheveux secs</strong>, sans aucun produit appliqué. Travailler au-dessus d'un lavabo ou serviette claire.</span></div>
+    <div class="step-list" style="margin-top:.7rem;">
+      <div class="step"><div class="step-num">1</div><div class="step-text">Sépare tes cheveux en <strong>4 sections</strong>.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-text">Pince une section à la racine entre pouce et index.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-text">Fais glisser <strong>lentement</strong> jusqu'aux pointes avec une pression constante.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-text">Répète exactement <strong>10 fois</strong> ce geste sur la même section.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-text">Répète sur toutes les sections, puis <strong>compte les cheveux cassés</strong> dans le lavabo.</div></div>
+    </div>
+    <div class="green-box" style="margin:.8rem 0;font-size:0.90rem;"><strong>Casse vs Chute :</strong> Un cheveu cassé est court, sans bulbe blanc, avec une extrémité effilée ou irrégulière. Un cheveu tombé naturellement est long, avec un bulbe blanc visible à la racine.</div>
+    <p style="font-size:0.90rem;font-weight:600;color:var(--muted);margin:.7rem 0 .5rem;">Détermine ton niveau (sur cheveux secs) :</p>
+    <div class="intensity-grid">
+      <button class="int-btn" onclick="selectIntensity('faible',this)">
+        <span class="dot" style="background:#4caf50;"></span>
+        <strong>Faible</strong><br><small style="color:var(--muted);">0–10 cassés</small>
+      </button>
+      <button class="int-btn" onclick="selectIntensity('moderee',this)">
+        <span class="dot" style="background:#ff9800;"></span>
+        <strong>Modérée</strong><br><small style="color:var(--muted);">10–20 cassés</small>
+      </button>
+      <button class="int-btn" onclick="selectIntensity('importante',this)">
+        <span class="dot" style="background:#f44336;"></span>
+        <strong>Importante</strong><br><small style="color:var(--muted);">&gt;20 cassés</small>
+      </button>
+    </div>
+  </div>
+
+  <div class="result-box" id="diag-result">
+    <h3>🌟 Ton diagnostic</h3>
+    <div class="rtags" id="diag-tags"></div>
+    <div class="result-desc" id="diag-desc"></div>
+    <button class="btn-white" onclick="showTab('etape5')">Voir ma routine →</button>
+  </div>
+</div>
+
+<!-- ===================== TAB 5 : ROUTINE ===================== -->
+<div id="tab-etape5" class="tab-panel">
+  <div class="section-intro">
+    <strong>Étape 5 :</strong> Le rituel hebdomadaire adapté à ton diagnostic. Fais d'abord ton diagnostic (onglet 🔍) pour voir ta routine personnalisée.
+  </div>
+
+  <!-- TABLEAU SYNTHESE -->
+  <div class="card">
+    <div class="card-title">📋 Tableau de sélection rapide</div>
+    <table class="r-table">
+      <thead>
+        <tr>
+          <th class="empty"></th>
+          <th class="h-head" colspan="3">💧 Besoin d'hydratation</th>
+          <th class="p-head" colspan="3">🔩 Besoin de protéines</th>
+        </tr>
+        <tr>
+          <th class="empty"></th>
+          <th class="h-head">N1 Faible</th><th class="h-head">N2 Modéré</th><th class="h-head">N3 Important</th>
+          <th class="p-head">N1 Faible</th><th class="p-head">N2 Modéré</th><th class="p-head">N3 Important</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="row-label">Pré-poo</td><td>15–30 min</td><td>15–30 min</td><td>15–30 min</td><td class="dsh">–</td><td class="dsh">–</td><td class="dsh">–</td></tr>
+        <tr><td class="row-label">Shampoing</td><td>Doux</td><td>Doux</td><td>Doux</td><td>Clarifiant</td><td>Clarifiant</td><td>Clarifiant</td></tr>
+        <tr><td class="row-label">Cond. protéiné</td><td class="dsh">–</td><td class="dsh">–</td><td class="dsh">–</td><td>Faible</td><td>Moyen</td><td>Très protéiné</td></tr>
+        <tr><td class="row-label">Cond. hydratant</td><td>15 min</td><td>30 min +chaleur</td><td>30 min +chaleur</td><td>15 min</td><td>15 min</td><td>15 min</td></tr>
+        <tr><td class="row-label">Leave-in</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+        <tr><td class="row-label">Scellant</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td><td class="chk">✓</td></tr>
+        <tr><td class="row-label">Répétitions</td><td>1x suffit</td><td colspan="2" style="color:var(--rose);font-weight:600;">À répéter plusieurs fois</td><td colspan="3">1x suffit</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="routine-detail"></div>
+
+  <!-- HYDRATATION DETAIL -->
+  <div id="routine-hydratation">
+    <div class="card" style="border-top:4px solid var(--rose);">
+      <div class="card-title">💧 Routine Hydratation — Étapes détaillées</div>
+      <div class="info-box" style="margin-bottom:.8rem;">Accessoires nécessaires : serviette microfibre ou T-shirt en coton, peigne ou brosse, sac plastique ou charlotte de douche.</div>
+      <div class="step-list">
+        <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Démêlage grossier :</strong> Avant tout, démêle tes cheveux à sec en les séparant grossièrement en sections. Retire les nœuds les plus évidents aux doigts pour éviter la casse lors du rinçage.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Application du pré-shampooing :</strong> Applique une huile pénétrante (coco, palmiste, babassu) sur toute la longueur, mèche par mèche. Laisse poser <strong>au moins 15 minutes</strong> (idéalement 30 min) sous une charlotte pour amplifier l'effet chaleur.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Rinçage du pré-shampooing :</strong> Sature les cheveux avec de l'eau tiède pendant <strong>1 à 2 minutes</strong> pour éliminer tout résidu de produit à la surface des mèches et du cuir chevelu. Ne pas frotter — laisser l'eau ruisseler.</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Application du shampooing doux :</strong> Émulsionne d'abord le shampooing dans tes mains. Répartis sur le cuir chevelu uniquement et masse avec la <strong>pulpe des doigts</strong> (jamais les ongles). Laisse la mousse glisser sur les longueurs sans frotter.</div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-text"><strong>Rinçage du shampooing :</strong> Rince <strong>abondamment</strong>, section par section, pour éviter la formation de nœuds. Utilise de l'eau tiède, pas chaude.</div></div>
+        <div class="step"><div class="step-num">6</div><div class="step-text"><strong>Masque hydratant :</strong> Applique le conditionneur hydratant profond sur toutes les longueurs. Couvre avec une charlotte. <strong>Niveau 1 :</strong> 15 min sans chaleur. <strong>Niveaux 2 et 3 :</strong> 30 min avec source de chaleur (casque chauffant, bonnet vapeur ou sous un sèche-cheveux à faible débit).</div></div>
+        <div class="step"><div class="step-num">7</div><div class="step-text"><strong>Rinçage du masque à l'eau froide :</strong> Attends que les cheveux aient refroidi si tu as utilisé de la chaleur. Rince ensuite à l'eau froide pour <strong>refermer les cuticules</strong> et sceller l'hydratation apportée par le masque.</div></div>
+        <div class="step"><div class="step-num">8</div><div class="step-text"><strong>Séchage doux :</strong> Tamponne les cheveux avec une <strong>serviette microfibre ou un T-shirt en coton</strong> en pressant doucement. Ne jamais frotter — cela abîme les cuticules et crée des frisottis et des nœuds.</div></div>
+        <div class="step"><div class="step-num">9</div><div class="step-text"><strong>Nouveau diagnostic :</strong> Après le lavage, réidentifie les besoins des cheveux. La fibre peut avoir changé après les soins — teste à nouveau l'élasticité sur une mèche humide pour adapter le leave-in.</div></div>
+        <div class="step"><div class="step-num">10</div><div class="step-text"><strong>Application du leave-in :</strong> Applique le leave-in conditionneur adapté (hydratant ou protéiné selon le résultat du nouveau diagnostic) section par section, en répartissant bien sur toute la longueur.</div></div>
+        <div class="step"><div class="step-num">11</div><div class="step-text"><strong>Scellage :</strong> Termine avec une huile scellante (tournesol, karité, olive) pour <strong>emprisonner l'hydratation</strong> à l'intérieur de la fibre. Applique en petite quantité en lissant du milieu vers les pointes.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROTEINES DETAIL -->
+  <div id="routine-proteines">
+    <div class="card" style="border-top:4px solid var(--blue);">
+      <div class="card-title" style="color:var(--blue);">🔩 Routine Protéines — Étapes détaillées</div>
+      <div class="info-box" style="margin-bottom:.8rem;">Accessoires nécessaires : serviette microfibre ou T-shirt en coton, bonnet/sac plastique ou charlotte, peigne ou brosse. <em>Pas de pré-shampooing pour la routine protéines.</em></div>
+      <div class="step-list">
+        <div class="step"><div class="step-num" style="background:var(--blue);">1</div><div class="step-text"><strong>Démêlage grossier :</strong> Sépare les cheveux en sections et retire les nœuds principaux aux doigts avant de mouiller.</div></div>
+        <div class="step"><div class="step-num" style="background:var(--blue);">2</div><div class="step-text"><strong>Shampooing clarifiant :</strong> Pour la routine protéines, on commence directement par un shampooing clarifiant. Émulsionne dans les mains, masse le cuir chevelu avec la pulpe des doigts, laisse ruisseler sur les longueurs sans frotter.</div></div>
+        <div class="step"><div class="step-num" style="background:var(--blue);">3</div><div class="step-text"><strong>Rinçage abondant :</strong> Rince bien section par section à l'eau tiède pour éliminer tout résidu de clarifiant.</div></div>
+        <div class="step"><div class="step-num" style="background:var(--blue);">4</div><div class="step-text"><strong>Application du masque protéiné :</strong> Applique le conditionneur protéiné adapté à ton niveau de casse (faiblement, moyennement ou très protéiné) sur toutes les longueurs, mèche par mèche, en insistant sur les pointes et zones fragilisées.</div></div>
+        <div class="step"><div class="step-num" style="background:var(--blue);">5</div><div class="step-text"><strong>Pose sous bonnet plastique :</strong> Couvre avec un bonnet en plastique hermétique. Si besoin, applique de la chaleur <strong>10 à 15 minutes</strong> (ou selon les instructions du produit). La chaleur est <em>facultative mais recommandée</em> pour maximiser la pénétration des protéines.</div></div>
+        <div class="step"><div class="step-num" style="background:var(--blue);">6</div><div class="step-text"><strong>Rinçage du masque protéiné à l'eau froide :</strong> Si de la chaleur a été utilisée, laisse les cheveux refroidir <strong>plusieurs minutes</strong> avant de rincer. Rince ensuite abondamment à l'eau froide pour refermer les cuticules après les protéines.</div></div>
+        <div class="step"><div class="step-num" style="background:var(--blue);">7</div><div class="step-text"><strong>Après-shampoing hydratant :</strong> Après les protéines, un soin hydratant est <strong>obligatoire</strong> pour rééquilibrer la fibre et lui redonner de la souplesse. Applique pendant <strong>10 à 15 minutes</strong> (chaleur facultative).</div></div>
+        <div class="step"><div class="step-num" style="background:var(--blue);">8</div><div class="step-text"><strong>Rinçage de l'après-shampoing :</strong> Rince soigneusement à l'eau froide. Si de la chaleur a été utilisée, laisse refroidir avant de rincer.</div></div>
+        <div class="step"><div class="step-num" style="background:var(--blue);">9</div><div class="step-text"><strong>Séchage doux :</strong> Tamponne avec une serviette microfibre ou T-shirt en coton en pressant sans frotter.</div></div>
+        <div class="step"><div class="step-num" style="background:var(--blue);">10</div><div class="step-text"><strong>Leave-in protéiné :</strong> Applique un leave-in riche en protéines et humectants pour prolonger le renforcement. Répartis bien sur toute la longueur.</div></div>
+        <div class="step"><div class="step-num" style="background:var(--blue);">11</div><div class="step-text"><strong>Scellage à l'huile :</strong> Termine avec une huile protectrice pour sceller l'ensemble des soins appliqués et protéger la fibre contre la déshydratation.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TAB 6 : GESTES ===================== -->
+<div id="tab-gestes" class="tab-panel">
+  <div class="section-intro">
+    <strong>Étape 5b :</strong> Ces 5 étapes de la routine sont les plus agressives pour la fibre. Chaque geste mal exécuté provoque de la casse excessive. Voici le protocole détaillé pour chacun.
+  </div>
+
+  <div class="acc-card">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-icon" style="background:#fce4ec;">🧴</div>
+      <div><div class="acc-title">1. Le Shampooing — Nettoyer sans fragiliser</div><div class="acc-sub">Le cheveu est le plus fragile lorsqu'il est mouillé</div></div>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="warn-box">⚠️ <span>Les détergents du shampoing soulèvent les écailles. Frotter crée des nœuds et provoque de la casse.</span></div>
+      <div class="step-list">
+        <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Démêle avant de mouiller.</strong> Sépare tes cheveux en 4 à 6 sections et élimine les nœuds avec les doigts sur cheveux secs. Un cheveu noué mouillé = rupture mécanique assurée.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Humidifie à l'eau tiède</strong> en saturant bien chaque section. L'eau tiède ouvre légèrement les cuticules pour faciliter le nettoyage sans les agresser comme l'eau chaude.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Émulsionne le shampoing dans tes mains</strong> avant de l'appliquer. Ne verse jamais le produit directement sur les cheveux — la concentration est trop forte et dessèche localement.</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Masse uniquement le cuir chevelu</strong> avec la pulpe des doigts (jamais les ongles qui créent des micro-lésions). Gestes circulaires doux pour déloger le sébum et les impuretés.</div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-text"><strong>Laisse la mousse glisser sur les longueurs</strong> sans frotter. Les longueurs se nettoient naturellement par ruissellement — inutile de les manipuler.</div></div>
+        <div class="step"><div class="step-num">6</div><div class="step-text"><strong>Rince section par section</strong> en maintenant chaque mèche tendue pour éviter qu'elles s'entremêlent sous l'eau.</div></div>
+        <div class="step"><div class="step-num">7</div><div class="step-text"><strong>Termine avec un conditionneur</strong> immédiatement après le shampoing pour refermer les cuticules et préparer le démêlage.</div></div>
+      </div>
+      <div class="tip-box">
+        <strong>💡 Astuce expert</strong>
+        Si tes cheveux sont épais ou longs, lave-les en <strong>vanilles lâches ou tresses grossières</strong>. Cela réduit la formation de nœuds, limite la casse et facilite le rinçage section par section.
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-card">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-icon" style="background:#e8f5e9;">🪮</div>
+      <div><div class="acc-title">2. Le Démêlage — Séparer sans casser</div><div class="acc-sub">Principale source de casse sur cheveux crépus</div></div>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="warn-box">⚠️ <span>Tirer sur des nœuds secs fragilise la fibre et provoque des ruptures mécaniques irréversibles.</span></div>
+      <div class="step-list">
+        <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Ne jamais démêler à sec.</strong> Travaille toujours sur cheveux <strong>humides ou mouillés</strong>, avec un produit démêlant (après-shampooing, leave-in ou lait). L'eau et le conditionneur créent du glissement et réduisent la résistance du nœud.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Divise en sections</strong> selon ta densité : 4 à 8 sections. Plus tes cheveux sont denses, plus tu en fais. Chaque section doit être gérable sans dépasser 5 cm de largeur.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Commence toujours par les pointes</strong> et remonte progressivement vers les racines. En partant des racines, le peigne rencontre les nœuds qui sont dans les longueurs et les force, provoquant la casse.</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Utilise tes doigts en premier</strong> pour démêler grossièrement. Puis utilise un <strong>peigne à dents larges</strong> ou une brosse flexible (Denman, paddle brush) — jamais un peigne fin sur cheveux crépus.</div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-text"><strong>Ne force jamais sur un nœud.</strong> Si tu rencontres un nœud résistant, isole-le et <strong>défais-le doucement avec tes doigts</strong>, pointe par pointe, en ajoutant du produit si nécessaire. Un nœud forcé = rupture certaine.</div></div>
+      </div>
+      <div class="tip-box">
+        <strong>💡 Astuce expert</strong>
+        Choisis un conditionneur riche en agents démêlants : <strong>BTMS, Cetrimonium Chloride ou Polyquaternium</strong>. Ces ingrédients créent un film glissant sur la cuticule qui réduit drastiquement la friction et facilite le passage du peigne.
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-card">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-icon" style="background:#e3f2fd;">🏻</div>
+      <div><div class="acc-title">3. Le Séchage à la serviette — Préserver la cuticule</div><div class="acc-sub">La friction détruit les cuticules et crée des nœuds</div></div>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="warn-box">⚠️ <span>Frotter avec une serviette en coton crée de la friction : cuticules abîmées, fourches, frisottis, nœuds.</span></div>
+      <div class="step-list">
+        <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Tamponne ou presse — ne frotte jamais.</strong> Applique la serviette microfibre ou le T-shirt en coton sur une section et <strong>presse doucement</strong> pour absorber l'eau. Répète sur chaque section. Le geste doit être vertical, pas de mouvements de va-et-vient.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Pour les cheveux longs ou épais</strong> : enveloppe-les dans la serviette en les rassemblant sur le dessus de la tête, pas plus de <strong>5 à 10 minutes</strong>. Passé ce délai, l'humidité piégée peut favoriser les nœuds.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Détache les sections une par une</strong> pour appliquer ton leave-in immédiatement, pendant que les cheveux sont encore humides — le moment optimal pour l'absorption des actifs hydratants.</div></div>
+      </div>
+      <div class="tip-box">
+        <strong>💡 Pourquoi la microfibre ?</strong>
+        La microfibre absorbe 3x plus d'eau qu'une serviette classique, avec une texture beaucoup plus douce. Le coton d'un T-shirt a des fibres très lisses qui glissent sur la cuticule sans accrocher.
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-card">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-icon" style="background:#fff8e1;">💨</div>
+      <div><div class="acc-title">4. Le Séchage au sèche-cheveux — Limiter les dégâts thermiques</div><div class="acc-sub">La chaleur excessive rend la fibre cassante et poreuse</div></div>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="warn-box">⚠️ <span>L'utilisation d'un peigne soufflant crée des dommages <em>à la fois</em> thermiques ET mécaniques.</span></div>
+      <div class="step-list">
+        <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Applique un protecteur thermique</strong> obligatoirement avant toute exposition à la chaleur. Répartis uniformément sur les longueurs humides.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Utilise un diffuseur</strong> pour répartir le flux d'air uniformément. Le diffuseur évite la concentration de chaleur sur une zone précise et préserve la structure des boucles.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Température basse à moyenne.</strong> Garde l'appareil à <strong>15 à 20 cm minimum</strong> du cheveu. Au-delà de 180°C, les protéines du cheveu commencent à se dénaturer.</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Jamais plus de 3 secondes</strong> au même endroit. Garde l'appareil en mouvement constant — stationner provoque une surchauffe localisée et des dommages irréversibles.</div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-text"><strong>Termine par un jet d'air froid</strong> sur chaque section pour refermer les cuticules et fixer la brillance.</div></div>
+      </div>
+      <div class="tip-box">
+        <strong>💡 Astuce expert</strong>
+        Réserve le sèche-cheveux aux occasions nécessaires (mise en plis, coiffure spéciale). Le reste du temps, préfère le <strong>séchage à l'air libre</strong> en sections. Évite absolument les brosses soufflantes.
+      </div>
+    </div>
+  </div>
+
+  <div class="acc-card">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-icon" style="background:#f3e5f5;">↔️</div>
+      <div><div class="acc-title">5. L'Étirement des cheveux — Allonger sans fragiliser</div><div class="acc-sub">Réduire le shrinkage et faciliter le coiffage</div></div>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="warn-box">⚠️ <span>Étirer sur cheveux mouillés ou sans protection est la cause numéro 1 de rupture mécanique.</span></div>
+      <div class="step-list">
+        <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Hydrate et scelle avant tout étirement.</strong> Applique une noisette de leave-in puis d'huile sur chaque section. Un cheveu bien hydraté a une meilleure élasticité et résiste mieux à la tension.</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Étire sur cheveux secs à 80%</strong> — jamais entièrement mouillés. Un cheveu gonflé d'eau est dans son état le plus vulnérable et se casse facilement sous tension.</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Privilégie les méthodes sans chaleur :</strong>
+          <br>• <strong>Tresses ou vanilles</strong> → stretching naturel, méthode la plus douce
+          <br>• <strong>Méthode du banding</strong> → élastiques doux espacés le long de la mèche
+          <br>• <strong>Tresses aux fils</strong> → élastiques espacés pour un étirement progressif</div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Enveloppe d'un foulard en satin</strong> et laisse sécher complètement à l'air libre. Le foulard maintient l'étirement et limite la friction pendant le séchage.</div></div>
+      </div>
+      <div class="tip-box">
+        <strong>💡 Astuce expert — Alopécie de traction</strong>
+        Ne serre <strong>jamais trop les racines</strong> lors de l'étirement ou du coiffage. Une tension excessive fragilise le bulbe pilaire et peut provoquer de l'alopécie de traction — une perte de cheveux permanente aux tempes et aux bords du visage.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TAB 7 : 7 ERREURS ===================== -->
+<div id="tab-erreurs" class="tab-panel">
+  <div class="section-intro">
+    <strong>Les 7 erreurs qui bloquent la pousse.</strong> Ce ne sont pas tes cheveux qui ne poussent pas — c'est la casse qui efface les longueurs. Voici les erreurs les plus fréquentes et comment les corriger.
+  </div>
+
+  <div class="error-card">
+    <div class="error-header">
+      <div class="error-num">1</div>
+      <div class="error-title">Multiplier les coiffures non-protectrices</div>
+    </div>
+    <div class="error-body">
+      <div class="why-box">
+        <div class="box-label">Pourquoi ça casse ?</div>
+        Ces coiffures exposent les longueurs à des étapes répétées de démêlage, tressage et retrait qui endommagent la fibre. Certaines laissent des zones de cheveux non protégées (tissages ouverts, piqués lâchés). La casse se produit petit à petit, imperceptiblement.
+      </div>
+      <div class="fix-box">
+        <div class="box-label">La solution</div>
+        Garde ces coiffures pour de rares occasions — <strong>2 fois par an maximum</strong>. Le reste du temps, opte pour des coiffures protectrices : tissages fermés, crochet braids, nattes plates, vanilles rangées.
+      </div>
+    </div>
+  </div>
+
+  <div class="error-card">
+    <div class="error-header">
+      <div class="error-num">2</div>
+      <div class="error-title">Espacer les shampoings de plus de 2 semaines</div>
+    </div>
+    <div class="error-body">
+      <div class="why-box">
+        <div class="box-label">Pourquoi ça casse ?</div>
+        Le shampoing sature les cheveux d'eau, ce qui est la seule manière d'hydrater en profondeur la fibre capillaire — bien plus qu'une crème ou un vaporisateur. Espacer de plus de 2 semaines assèche fortement le cheveu, le rendant rigide et très cassant.
+      </div>
+      <div class="fix-box">
+        <div class="box-label">La solution</div>
+        Lave tes cheveux <strong>une fois par semaine</strong> (deux fois maximum) lorsqu'ils sont libres. Si tu portes une coiffure protectrice, tu peux espacer les lavages à 2–3 semaines.
+      </div>
+    </div>
+  </div>
+
+  <div class="error-card">
+    <div class="error-header">
+      <div class="error-num">3</div>
+      <div class="error-title">Frotter les cheveux dans tous les sens au shampoing</div>
+    </div>
+    <div class="error-body">
+      <div class="why-box">
+        <div class="box-label">Pourquoi ça casse ?</div>
+        Les cheveux mouillés sont dans leur état le plus fragile. Les écailles (cuticules) se soulèvent au contact du shampoing. Frotter dans tous les sens abîme ces cuticules ouvertes et crée des nœuds qui conduisent directement à la casse.
+      </div>
+      <div class="fix-box">
+        <div class="box-label">La solution</div>
+        Si tes cheveux sont longs, procède <strong>par sections</strong>. Masse uniquement les racines, puis laisse ruisseler la mousse vers les pointes de la racine vers les pointes — sans jamais frotter.
+      </div>
+    </div>
+  </div>
+
+  <div class="error-card">
+    <div class="error-header">
+      <div class="error-num">4</div>
+      <div class="error-title">Manipuler les cheveux secs sans produit</div>
+    </div>
+    <div class="error-body">
+      <div class="why-box">
+        <div class="box-label">Pourquoi ça casse ?</div>
+        Les cheveux secs sont inélastiques et rigides. Les manipuler sans protection impose une force mécanique que la fibre, surtout si elle est déjà fragilisée, ne peut pas toujours absorber. Elle finit par rompre.
+      </div>
+      <div class="fix-box">
+        <div class="box-label">La solution</div>
+        Applique <strong>toujours un produit contenant de l'eau</strong> avant de manipuler (crème, vaporisateur d'eau, spray leave-in). L'hydratation redonne de la souplesse et de l'élasticité à la fibre.
+      </div>
+    </div>
+  </div>
+
+  <div class="error-card">
+    <div class="error-header">
+      <div class="error-num">5</div>
+      <div class="error-title">Démêler de la racine vers les pointes</div>
+    </div>
+    <div class="error-body">
+      <div class="why-box">
+        <div class="box-label">Pourquoi ça casse ?</div>
+        Les nœuds se forment naturellement dans les longueurs et aux pointes des cheveux crépus. Si on commence à la racine, le peigne accumule tous ces nœuds en descendant et les force, provoquant des ruptures en série.
+      </div>
+      <div class="fix-box">
+        <div class="box-label">La solution</div>
+        Démêle <strong>toujours des pointes vers les racines</strong>. Commence à l'extrémité de la mèche, libère les nœuds progressivement, remonte par petits segments. Fais-le sur cheveux humidifiés avec un produit glissant.
+      </div>
+    </div>
+  </div>
+
+  <div class="error-card">
+    <div class="error-header">
+      <div class="error-num">6</div>
+      <div class="error-title">Dormir les cheveux détachés</div>
+    </div>
+    <div class="error-body">
+      <div class="why-box">
+        <div class="box-label">Pourquoi ça casse ?</div>
+        La nuit, les cheveux s'aplatissent sur l'oreiller. À chaque mouvement, des nœuds se forment et la friction contre le tissu assèche et abîme les longueurs. Au réveil, les cheveux sont emmêlés et durs — le démêlage provoque alors énormément de casse.
+      </div>
+      <div class="fix-box">
+        <div class="box-label">La solution</div>
+        <strong>Attache tes cheveux avant de dormir</strong> : couettes, tresses, vanilles ou méthode du banding. Protège avec un <strong>foulard ou bonnet en satin</strong> pour limiter la friction et préserver l'hydratation pendant la nuit.
+      </div>
+    </div>
+  </div>
+
+  <div class="error-card">
+    <div class="error-header">
+      <div class="error-num">7</div>
+      <div class="error-title">Utiliser la chaleur trop souvent</div>
+    </div>
+    <div class="error-body">
+      <div class="why-box">
+        <div class="box-label">Pourquoi ça casse ?</div>
+        La chaleur dénature les protéines de la fibre capillaire et ouvre les cuticules. Utilisée trop souvent, elle fragilise progressivement la structure interne et provoque une casse cumulative que l'on ne voit pas immédiatement.
+      </div>
+      <div class="fix-box">
+        <div class="box-label">La solution</div>
+        Limite à <strong>2 utilisations d'appareils chauffants par semaine maximum</strong>. Pour étirer sans chaleur : braids out, vanilles, banding. Si tu ne peux pas éviter la chaleur, <strong>applique toujours un protecteur thermique</strong> avant.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== TAB 8 : RÉFÉRENCES ===================== -->
+<div id="tab-refs" class="tab-panel">
+  <div class="section-intro">
+    <strong>Références ingrédients :</strong> Guide pour lire les étiquettes INCI et identifier les ingrédients actifs dans tes produits.
+  </div>
+
+  <div class="nav-pill" id="refs-nav">
+    <span class="pill active" onclick="showRef('tensio',this)">⚡ Tensioactifs</span>
+    <span class="pill" onclick="showRef('humec',this)">💧 Humectants</span>
+    <span class="pill" onclick="showRef('emol',this)">🫙 Émollients</span>
+    <span class="pill" onclick="showRef('cond-ing',this)">✨ Conditionnants</span>
+    <span class="pill" onclick="showRef('prot',this)">🔩 Protéines</span>
+  </div>
+
+  <div id="ref-tensio">
+    <div class="card">
+      <div class="card-title">⚡ Tensioactifs — Agents lavants</div>
+      <p style="font-size:0.90rem;color:var(--muted);margin-bottom:.8rem;">Plus ils sont en haut de la liste INCI, plus leur concentration est élevée.</p>
+      <p style="font-size:0.88rem;font-weight:600;color:var(--green);margin-bottom:.4rem;">TENSIOACTIFS DOUX (shampooing hebdomadaire)</p>
+      <table class="ingr-table">
+        <thead><tr><th>Nom INCI</th><th>Caractéristique</th></tr></thead>
+        <tbody>
+          <tr><td><code>Coco-Glucoside</code></td><td>Très doux, nettoie sans dessécher. Idéal fréquence quotidienne.</td></tr>
+          <tr><td><code>Decyl Glucoside</code></td><td>Respectueux du cuir chevelu, mousse légère et crémeuse.</td></tr>
+          <tr><td><code>Sodium Cocoyl Isethionate</code></td><td>Nettoie en douceur, mousse crémeuse, préserve l'hydratation.</td></tr>
+          <tr><td><code>Sodium Lauroyl Sarcosinate</code></td><td>Équilibre propreté et douceur, dérivé d'acides aminés.</td></tr>
+          <tr><td><code>Cocamidopropyl Betaine</code></td><td>Adoucit les formules, souvent utilisé en complément.</td></tr>
+          <tr><td><code>Sodium Cocoyl Glutamate</code></td><td>Dérivé d'acides aminés, très doux, respecte le pH.</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.88rem;font-weight:600;color:var(--rose);margin:.8rem 0 .4rem;">TENSIOACTIFS FORTS (shampooing clarifiant uniquement)</p>
+      <table class="ingr-table">
+        <thead><tr><th>Nom INCI</th><th>Caractéristique</th></tr></thead>
+        <tbody>
+          <tr><td><code style="background:#ffebee;color:#c62828;">Sodium Lauryl Sulfate (SLS)</code></td><td>Très fort pouvoir lavant, peut fortement assécher.</td></tr>
+          <tr><td><code style="background:#ffebee;color:#c62828;">Sodium Laureth Sulfate (SLES)</code></td><td>Nettoyage profond, usage uniquement occasionnel.</td></tr>
+          <tr><td><code style="background:#ffebee;color:#c62828;">Ammonium Lauryl Sulfate</code></td><td>Dégraissant puissant, adapté aux clarifiants.</td></tr>
+          <tr><td><code style="background:#ffebee;color:#c62828;">Sodium C14-16 Olefin Sulfonate</code></td><td>Très nettoyant, retire les huiles et résidus tenaces.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="ref-humec" style="display:none;">
+    <div class="card">
+      <div class="card-title">💧 Humectants — Agents hydratants</div>
+      <p style="font-size:0.90rem;color:var(--muted);margin-bottom:.8rem;">Attirent et retiennent l'eau dans la fibre capillaire. Essentiels pour les cheveux crépus naturellement secs.</p>
+      <table class="ingr-table">
+        <thead><tr><th>Nom INCI</th><th class="blue-h">Rôle</th><th>Particularité</th></tr></thead>
+        <tbody>
+          <tr><td><code class="blue">Glycerine / Glycerin</code></td><td>Retient l'humidité dans la fibre</td><td>Très hydratante, favorise la souplesse. Souvent en haut de liste.</td></tr>
+          <tr><td><code class="blue">Aloe Barbadensis Leaf Juice</code></td><td>Hydrate et adoucit</td><td>Lisse les cuticules, apporte de la brillance.</td></tr>
+          <tr><td><code class="blue">Panthenol (Provit. B5)</code></td><td>Hydrate et renforce</td><td>Pénètre la fibre, rend les cheveux plus résistants à la casse.</td></tr>
+          <tr><td><code class="blue">Mel / Honey</code></td><td>Humectant naturel et nourrissant</td><td>Apporte douceur, élasticité et brillance.</td></tr>
+          <tr><td><code class="blue">Sorbitol</code></td><td>Retient l'eau dans le cheveu</td><td>Utilisé dans les laits capillaires et leave-in.</td></tr>
+          <tr><td><code class="blue">Propylene Glycol</code></td><td>Facilite pénétration des soins</td><td>Améliore la rétention d'hydratation.</td></tr>
+          <tr><td><code class="blue">Sodium PCA</code></td><td>Composant naturel du NMF</td><td>Maintient une hydratation prolongée entre deux soins.</td></tr>
+          <tr><td><code class="blue">Urea (Urée)</code></td><td>Puissant humectant kératolytique</td><td>Lutte contre la sécheresse extrême du cuir chevelu.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="ref-emol" style="display:none;">
+    <div class="card">
+      <div class="card-title">🫙 Émollients — Agents adoucissants et protecteurs</div>
+      <p style="font-size:0.90rem;color:var(--muted);margin-bottom:.8rem;">Assouplissent la fibre, réduisent la casse et protègent contre la déshydratation. Présents dans masques, leave-in, huiles et beurres.</p>
+      <table class="ingr-table">
+        <thead><tr><th>Nom INCI</th><th class="green-h">Rôle</th><th>Particularité</th></tr></thead>
+        <tbody>
+          <tr><td><code class="green">Cocos Nucifera Oil</code></td><td>Nourrit et pénètre la fibre</td><td>Réduit la casse et la perte de protéines. Excellent prépoo.</td></tr>
+          <tr><td><code class="green">Butyrospermum Parkii Butter</code></td><td>Nourrit, protège, adoucit</td><td>Renforce souplesse et brillance. Parfait scellant.</td></tr>
+          <tr><td><code class="green">Persea Gratissima Oil</code></td><td>Riche en vitamines A, D, E</td><td>Répare les cheveux secs et cassants.</td></tr>
+          <tr><td><code class="green">Ricinus Communis Oil</code></td><td>Émollient dense et fortifiant</td><td>Renforce la fibre. Idéal sur les pointes et longueurs fragilisées.</td></tr>
+          <tr><td><code class="green">Olea Europaea Oil</code></td><td>Adoucit et protège</td><td>Idéale pour le scellage. Cuticule lissée et renforcée.</td></tr>
+          <tr><td><code class="green">Simmondsia Chinensis Oil</code></td><td>Équilibre le cuir chevelu</td><td>Imitation naturelle du sébum. Très légère.</td></tr>
+          <tr><td><code class="green">Dimethicone / Amodimethicone</code></td><td>Protège et réduit frottements</td><td>Lisse les cuticules, prévient la casse et la frizz.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="ref-cond-ing" style="display:none;">
+    <div class="card">
+      <div class="card-title">✨ Agents conditionnants — Démêlants et lissants</div>
+      <p style="font-size:0.90rem;color:var(--muted);margin-bottom:.8rem;">Lissent la cuticule, facilitent le démêlage et retiennent l'hydratation. Cherche-les dans tes conditionneurs et leave-in.</p>
+      <table class="ingr-table">
+        <thead><tr><th>Nom INCI</th><th class="gold-h">Rôle principal</th></tr></thead>
+        <tbody>
+          <tr><td><code class="gold">Behentrimonium Methosulfate (BTMS)</code></td><td>Démêle, adoucit et stabilise sans alourdir. Ingrédient clé conditionneurs DIY.</td></tr>
+          <tr><td><code class="gold">Cetrimonium Chloride</code></td><td>Démêle, lisse la cuticule et réduit l'électricité statique.</td></tr>
+          <tr><td><code class="gold">Behentrimonium Chloride</code></td><td>Lisse et gaine intensément les cheveux épais et secs.</td></tr>
+          <tr><td><code class="gold">Stearamidopropyl Dimethylamine</code></td><td>Démêlant naturel, adoucit et remplace les silicones.</td></tr>
+          <tr><td><code class="gold">Polyquaternium-7 / -10 / -11</code></td><td>Facilite le démêlage, réduit les frisottis, lisse la fibre.</td></tr>
+          <tr><td><code class="gold">Amodimethicone</code></td><td>Répare les zones abîmées, protège contre la chaleur.</td></tr>
+          <tr><td><code class="gold">Hydroxypropyltrimonium Honey</code></td><td>Hydrate, adoucit et lisse la fibre capillaire.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="ref-prot" style="display:none;">
+    <div class="card">
+      <div class="card-title">🔩 Protéines hydrolysées — Agents réparateurs</div>
+      <p style="font-size:0.90rem;color:var(--muted);margin-bottom:.8rem;">Doivent apparaître <strong>avant le parfum</strong> dans la liste INCI pour être présentes en quantité efficace.</p>
+      <table class="ingr-table">
+        <thead><tr><th>Nom courant</th><th>Nom INCI</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>Kératine</td><td><code>Hydrolyzed Keratin</code></td><td>Pénètre profondément et reconstruit les zones fragiles.</td></tr>
+          <tr><td>Collagène</td><td><code>Hydrolyzed Collagen</code></td><td>Film protecteur, renforce la cohésion cuticulaire.</td></tr>
+          <tr><td>Protéines de soie</td><td><code>Hydrolyzed Silk / Silk Amino Acids</code></td><td>Améliorent la surface du cheveu, réduisent la friction.</td></tr>
+          <tr><td>Protéines de blé</td><td><code>Hydrolyzed Wheat Protein</code></td><td>Colmatent les brèches de la cuticule, donnent du corps.</td></tr>
+          <tr><td>Protéines de riz</td><td><code>Hydrolyzed Rice Protein</code></td><td>Gainent la fibre sans alourdir, augmentent la densité visuelle.</td></tr>
+          <tr><td>Protéines de soja</td><td><code>Hydrolyzed Soy Protein</code></td><td>Atténuent la porosité et augmentent la douceur.</td></tr>
+          <tr><td>Protéines d'avoine</td><td><code>Hydrolyzed Oat Protein</code></td><td>Réduisent l'irritation du cuir chevelu, améliorent la douceur.</td></tr>
+          <tr><td>Protéines de quinoa</td><td><code>Hydrolyzed Quinoa</code></td><td>Apportent de la brillance et maintiennent la teinte.</td></tr>
+          <tr><td>Élastine</td><td><code>Hydrolyzed Elastin</code></td><td>Restaure la flexibilité de la fibre capillaire.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+let selectedNeed = null, selectedIntensity = null;
+
+function showTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + id + "'")) b.classList.add('active');
+  });
+  if (id === 'etape5') renderRoutine();
+}
+
+function toggleAcc(header) {
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.acc-arrow');
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+function toggleCheck(item) {
+  const box = item.querySelector('.check-box');
+  const label = item.querySelector('.check-label');
+  box.classList.toggle('checked');
+  label.classList.toggle('checked');
+}
+
+function selectNeed(need, btn) {
+  selectedNeed = need;
+  document.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  updateDiag();
+}
+
+function selectIntensity(intensity, btn) {
+  selectedIntensity = intensity;
+  document.querySelectorAll('.int-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  updateDiag();
+}
+
+function updateDiag() {
+  if (!selectedNeed || !selectedIntensity) return;
+  const box = document.getElementById('diag-result');
+  box.classList.add('visible');
+  const nl = selectedNeed === 'hydratation' ? '💧 Hydratation' : '🔩 Protéines';
+  const il = {'faible':'🟢 Faible','moderee':'🟡 Modérée','importante':'🔴 Importante'}[selectedIntensity];
+  const lv = {faible:1,moderee:2,importante:3}[selectedIntensity];
+  document.getElementById('diag-tags').innerHTML = `<span class="rtag">${nl}</span><span class="rtag">${il}</span><span class="rtag">Niveau ${lv}</span>`;
+  const descs = {
+    'hydratation-faible': 'Niveau 1 — Une seule routine suffit. Pré-shampoing 15–30 min, shampooing doux, conditionneur hydratant 15 min sans chaleur, leave-in + scellant.',
+    'hydratation-moderee': 'Niveau 2 — À répéter plusieurs fois. Pré-shampoing 15–30 min, shampooing doux, conditionneur hydratant 30 min avec chaleur, leave-in + scellant.',
+    'hydratation-importante': 'Niveau 3 — À répéter plusieurs fois jusqu\'à rétablissement. Pré-shampoing 30 min, shampooing doux, conditionneur hydratant 30 min avec chaleur intense, leave-in + scellant.',
+    'proteines-faible': 'Niveau 1 — Une seule routine suffit. Shampooing clarifiant, conditionneur faiblement protéiné (bonnet plastique), conditionneur hydratant 15 min, leave-in + scellant.',
+    'proteines-moderee': 'Niveau 2 — Une seule routine suffit. Shampooing clarifiant, conditionneur moyennement protéiné (bonnet + chaleur si besoin), conditionneur hydratant 15 min, leave-in + scellant.',
+    'proteines-importante': 'Niveau 3 — Une seule routine suffit. Shampooing clarifiant, conditionneur très protéiné (chaleur recommandée), conditionneur hydratant 15 min, conditionneur hydratant supplémentaire, leave-in + scellant.'
+  };
+  document.getElementById('diag-desc').textContent = descs[`${selectedNeed}-${selectedIntensity}`];
+}
+
+function renderRoutine() {
+  const h = document.getElementById('routine-hydratation');
+  const p = document.getElementById('routine-proteines');
+  if (!selectedNeed) {
+    h.style.display = 'none'; p.style.display = 'none';
+    document.getElementById('routine-detail').innerHTML = `
+      <div class="card" style="text-align:center;padding:2rem;">
+        <div style="font-size:2.5rem;margin-bottom:1rem;">🔍</div>
+        <p style="color:var(--muted);">Fais d'abord ton <strong>diagnostic</strong> pour voir ta routine personnalisée.</p>
+        <button onclick="showTab('etape4')" style="margin-top:1rem;background:var(--rose);color:white;border:none;padding:.7rem 1.4rem;border-radius:8px;font-family:'Noto Sans',sans-serif;font-weight:600;cursor:pointer;">Aller au Diagnostic →</button>
+      </div>`;
+    return;
+  }
+  document.getElementById('routine-detail').innerHTML = '';
+  if (selectedNeed === 'hydratation') { h.style.display = 'block'; p.style.display = 'none'; }
+  else { p.style.display = 'block'; h.style.display = 'none'; }
+}
+
+function calcScore() {
+  const inputs = document.querySelectorAll('.score-input');
+  let total = 0;
+  inputs.forEach(i => { const v = parseFloat(i.value); if (!isNaN(v)) total += v; });
+  const res = document.getElementById('score-result');
+  const num = document.getElementById('score-num');
+  const label = document.getElementById('score-label');
+  const advice = document.getElementById('score-advice');
+  res.className = 'score-result show';
+  num.textContent = total;
+  if (total < 7) {
+    res.classList.add('green');
+    label.textContent = '✅ Routine protectrice';
+    advice.textContent = 'Tes dommages sont faibles. Continue sur cette lancée et maintiens une routine équilibrée. Tu peux te concentrer sur l\'optimisation des soins.';
+  } else if (total <= 18) {
+    res.classList.add('orange');
+    label.textContent = '⚠️ Dommages modérés — Ajuster';
+    advice.textContent = 'Ta routine présente des excès à corriger. Identifie les pratiques les plus pénalisantes (coiffure non-protectrice, chaleur) et réduis leur fréquence.';
+  } else {
+    res.classList.add('red');
+    label.textContent = '🔴 Dommages importants — Réduire l\'exposition';
+    advice.textContent = 'Tes cheveux subissent trop d\'agressions. Commence par éliminer ou espacer les pratiques les plus agressives (chimiques, chaleur, coiffures non-protectrices) avant tout autre soin.';
+  }
+}
+
+function showProd(id, el) {
+  ['prepoo','shampoo','cond','leavein','scellant'].forEach(p => {
+    const el2 = document.getElementById('prod-' + p);
+    if (el2) el2.style.display = p === id ? 'block' : 'none';
+  });
+  document.querySelectorAll('#prod-nav .pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function showRef(id, el) {
+  ['tensio','humec','emol','cond-ing','prot'].forEach(r => {
+    const el2 = document.getElementById('ref-' + r);
+    if (el2) el2.style.display = r === id ? 'block' : 'none';
+  });
+  document.querySelectorAll('#refs-nav .pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Al-Qurân — Tableau de bord · Oum Othman</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&family=Amiri:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --rose-fonce:   #7B1D4A;
+  --rose-med:     #B84C72;
+  --rose-vif:     #D4607E;
+  --rose-clair:   #F2C4D0;
+  --rose-pale:    #FBF0F4;
+  --rose-tres-pale:#FDF7F9;
+  --or:           #C49A6C;
+  --or-clair:     #E8C99A;
+  --or-pale:      #F5EDE0;
+  --gris-texte:   #2D1A22;
+  --gris-moyen:   #6B4555;
+  --bordure:      #E0A8BB;
+  --blanc:        #FFFFFF;
+  --shadow:       rgba(123,29,74,0.12);
+  --shadow-fort:  rgba(123,29,74,0.22);
+  --vert-fait:    #2E7D32;
+  --vert-pale:    #E8F5E9;
+  --vert-bordure: #A5D6A7;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Lora', Georgia, serif;
+  background: var(--rose-tres-pale);
+  color: var(--gris-texte);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 15% 20%, rgba(180,76,114,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 85% 75%, rgba(196,154,108,0.06) 0%, transparent 55%);
+  pointer-events: none; z-index: 0;
+}
+
+.side-bar {
+  position: fixed; left: 0; top: 0; bottom: 0; width: 6px;
+  background: linear-gradient(180deg, var(--rose-fonce), var(--or), var(--rose-med), var(--or), var(--rose-fonce));
+  z-index: 100;
+}
+
+/* ══ HERO ══════════════════════════════════════════════════════ */
+.hero {
+  background: linear-gradient(135deg, var(--rose-fonce) 0%, #9B2D5A 40%, #6B1540 100%);
+  padding: 60px 48px 52px;
+  position: relative; overflow: hidden;
+  box-shadow: 0 8px 40px var(--shadow-fort);
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(196,154,108,0.12) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 40%);
+}
+.hero::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, transparent, var(--or), var(--or-clair), var(--or), transparent);
+}
+.hero-inner {
+  position: relative; max-width: 860px; margin: 0 auto; text-align: center;
+}
+.hero-bismillah {
+  font-family: 'Amiri', serif;
+  font-size: 36px; color: var(--or-clair);
+  margin-bottom: 20px; line-height: 1.6;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+.hero-titre {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px; font-weight: 700;
+  color: var(--blanc); margin-bottom: 6px; letter-spacing: 1px;
+}
+.hero-sous {
+  font-family: 'Playfair Display', serif;
+  font-style: italic; font-size: 17px;
+  color: var(--rose-clair); margin-bottom: 32px;
+}
+.hero-stats {
+  display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+}
+.stat { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.stat-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px; font-weight: 700; color: var(--or-clair);
+}
+.stat-label {
+  font-size: 11px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--rose-clair); opacity: 0.8;
+}
+.stat-sep { width: 1px; background: rgba(255,255,255,0.15); align-self: stretch; }
+
+/* ══ CONTENU ═══════════════════════════════════════════════════ */
+.page {
+  position: relative; z-index: 1;
+  max-width: 1000px; margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+/* ══ FILTRES ════════════════════════════════════════════════════ */
+.filtres {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  justify-content: center; margin-bottom: 36px;
+}
+.filtre-btn {
+  padding: 8px 20px;
+  border-radius: 24px;
+  border: 1.5px solid var(--bordure);
+  background: var(--blanc);
+  color: var(--gris-moyen);
+  font-family: 'Lora', serif;
+  font-size: 13px; cursor: pointer;
+  transition: all 0.22s;
+}
+.filtre-btn:hover, .filtre-btn.active {
+  background: var(--rose-fonce);
+  color: var(--or-clair);
+  border-color: var(--rose-fonce);
+}
+
+/* ══ BARRE PROGRESSION ═════════════════════════════════════════ */
+.progression-wrap {
+  background: var(--blanc);
+  border: 1px solid var(--bordure);
+  border-radius: 16px;
+  padding: 24px 28px;
+  margin-bottom: 36px;
+  box-shadow: 0 4px 20px var(--shadow);
+}
+.progression-titre {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px; color: var(--rose-fonce);
+  margin-bottom: 12px; font-weight: 600;
+}
+.barre-outer {
+  height: 10px; background: var(--rose-pale);
+  border-radius: 10px; overflow: hidden; margin-bottom: 8px;
+}
+.barre-inner {
+  height: 100%;
+  background: linear-gradient(90deg, var(--rose-fonce), var(--or));
+  border-radius: 10px;
+  transition: width 1s ease;
+}
+.progression-texte {
+  font-size: 13px; color: var(--gris-moyen);
+  display: flex; justify-content: space-between;
+}
+
+/* ══ SECTION JUZZ ═══════════════════════════════════════════════ */
+.section-label {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 20px; margin-top: 8px;
+}
+.section-label::before {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--or));
+}
+.section-label::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, var(--or), transparent);
+}
+.section-label span {
+  font-family: 'Playfair Display', serif;
+  font-size: 11px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--or); white-space: nowrap;
+}
+
+/* ══ GRILLE SOURATES ════════════════════════════════════════════ */
+.grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.sourate-card {
+  border-radius: 14px;
+  border: 1.5px solid var(--bordure);
+  background: var(--blanc);
+  padding: 16px 14px 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 10px var(--shadow);
+  text-decoration: none;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+.sourate-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--rose-fonce), var(--or));
+  opacity: 0; transition: opacity 0.25s;
+}
+.sourate-card:hover::before { opacity: 1; }
+.sourate-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px var(--shadow-fort);
+  border-color: var(--rose-med);
+}
+
+/* État : fait */
+.sourate-card.fait {
+  border-color: var(--vert-bordure);
+  background: var(--vert-pale);
+}
+.sourate-card.fait::before {
+  background: linear-gradient(90deg, var(--vert-fait), #66BB6A);
+  opacity: 1;
+}
+.sourate-card.fait:hover {
+  border-color: var(--vert-fait);
+  box-shadow: 0 8px 28px rgba(46,125,50,0.15);
+}
+
+/* État : à venir */
+.sourate-card.a-venir {
+  opacity: 0.65;
+  cursor: default;
+}
+.sourate-card.a-venir:hover {
+  transform: none;
+  box-shadow: 0 2px 10px var(--shadow);
+  border-color: var(--bordure);
+}
+
+.s-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 11px; color: var(--or);
+  letter-spacing: 1px; margin-bottom: 4px;
+}
+.s-arabe {
+  font-family: 'Amiri', serif;
+  font-size: 20px; color: var(--rose-fonce);
+  text-align: right; direction: rtl;
+  line-height: 1.4; margin-bottom: 6px;
+}
+.sourate-card.fait .s-arabe { color: var(--vert-fait); }
+
+.s-nom-fr {
+  font-family: 'Playfair Display', serif;
+  font-style: italic; font-size: 13px;
+  color: var(--gris-texte); margin-bottom: 2px;
+}
+.s-meta {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 8px;
+}
+.s-type {
+  font-size: 10px; letter-spacing: 1px;
+  text-transform: uppercase; padding: 2px 8px;
+  border-radius: 10px;
+}
+.s-type.mec { background: var(--or-pale); color: #7A5C3A; }
+.s-type.med { background: var(--rose-pale); color: var(--rose-fonce); }
+.s-versets {
+  font-size: 11px; color: var(--gris-moyen);
+}
+.s-badge-fait {
+  position: absolute; top: 10px; right: 10px;
+  width: 20px; height: 20px;
+  background: var(--vert-fait);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: white;
+}
+.s-badge-fait { display: none; }
+.sourate-card.fait .s-badge-fait { display: flex; }
+
+/* ══ FOOTER ════════════════════════════════════════════════════ */
+.footer {
+  text-align: center; padding: 32px 0 20px;
+  color: var(--gris-moyen); font-style: italic; font-size: 13px;
+}
+.footer-or { color: var(--or); font-size: 20px; letter-spacing: 8px; margin-bottom: 10px; }
+
+/* ══ RESPONSIVE ════════════════════════════════════════════════ */
+@media (max-width: 600px) {
+  .hero { padding: 40px 20px 36px; }
+  .hero-bismillah { font-size: 26px; }
+  .hero-titre { font-size: 26px; }
+  .stat-sep { display: none; }
+  .grille { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  .page { padding: 32px 12px 60px; }
+}
+</style>
+</head>
+<body>
+
+<div class="side-bar"></div>
+
+<!-- ══ HERO ═══════════════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <div class="hero-titre">Al-Qurân — Traduction & Tafsir</div>
+    <div class="hero-sous">Oum Othman · 365 jours avec le Coran</div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-val" id="nb-fait">1</span>
+        <span class="stat-label">Sourates complètes</span>
+      </div>
+      <div class="stat-sep"></div>
+      <div class="stat">
+        <span class="stat-val">114</span>
+        <span class="stat-label">Sourates au total</span>
+      </div>
+      <div class="stat-sep"></div>
+      <div class="stat">
+        <span class="stat-val" id="nb-reste">113</span>
+        <span class="stat-label">À compléter</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PAGE ════════════════════════════════════════════════════ -->
+<div class="page">
+
+  <!-- Progression -->
+  <div class="progression-wrap">
+    <div class="progression-titre">Progression — <span id="pct">0.9%</span> du Coran complété</div>
+    <div class="barre-outer">
+      <div class="barre-inner" id="barre" style="width:0.9%"></div>
+    </div>
+    <div class="progression-texte">
+      <span>Al-Fâtihha ✓</span>
+      <span id="pct2">1 / 114 sourates</span>
+    </div>
+  </div>
+
+  <!-- Filtres -->
+  <div class="filtres">
+    <button class="filtre-btn active" onclick="filtrer('tout',this)">Toutes (114)</button>
+    <button class="filtre-btn" onclick="filtrer('fait',this)">✓ Complètes</button>
+    <button class="filtre-btn" onclick="filtrer('mecquoise',this)">Mecquoises</button>
+    <button class="filtre-btn" onclick="filtrer('medinoise',this)">Médinoises</button>
+  </div>
+
+  <div class="section-label"><span>Les 114 Sourates du Saint Coran</span></div>
+
+  <!-- Grille -->
+  <div class="grille" id="grille"></div>
+
+  <div class="footer">
+    <div class="footer-or">✦ ✦ ✦</div>
+    <p>Al-Qurân · Traduction & Tafsir · Oum Othman</p>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════════════════════════════
+// DONNÉES : toutes les 114 sourates
+// fait: true = HTML disponible, fichier: nom du fichier html
+// ════════════════════════════════════════════════════════════
+const SOURATES = [
+  { n:1,   ar:"الفاتحة",       fr:"L'Ouverture",          type:"mec", v:7,   fait:true,  fichier:"Sourate1_Al-Fatiha.html" },
+  { n:2,   ar:"البقرة",        fr:"La Vache",              type:"med", v:286, fait:true,  fichier:"Sourate2_Al-Baqara.html" },
+  { n:3,   ar:"آل عمران",      fr:"La Famille d'Imrân",   type:"med", v:200, fait:false },
+  { n:4,   ar:"النساء",        fr:"Les Femmes",            type:"med", v:176, fait:false },
+  { n:5,   ar:"المائدة",       fr:"La Table Servie",       type:"med", v:120, fait:false },
+  { n:6,   ar:"الأنعام",       fr:"Les Bestiaux",          type:"mec", v:165, fait:false },
+  { n:7,   ar:"الأعراف",       fr:"Les Murailles",         type:"mec", v:206, fait:false },
+  { n:8,   ar:"الأنفال",       fr:"Le Butin",              type:"med", v:75,  fait:false },
+  { n:9,   ar:"التوبة",        fr:"Le Repentir",           type:"med", v:129, fait:false },
+  { n:10,  ar:"يونس",          fr:"Jonas",                 type:"mec", v:109, fait:false },
+  { n:11,  ar:"هود",           fr:"Hûd",                   type:"mec", v:123, fait:false },
+  { n:12,  ar:"يوسف",          fr:"Joseph",                type:"mec", v:111, fait:false },
+  { n:13,  ar:"الرعد",         fr:"Le Tonnerre",           type:"med", v:43,  fait:false },
+  { n:14,  ar:"إبراهيم",       fr:"Abraham",               type:"mec", v:52,  fait:false },
+  { n:15,  ar:"الحجر",         fr:"Al-Hijr",               type:"mec", v:99,  fait:false },
+  { n:16,  ar:"النحل",         fr:"Les Abeilles",          type:"mec", v:128, fait:false },
+  { n:17,  ar:"الإسراء",       fr:"Le Voyage Nocturne",    type:"mec", v:111, fait:false },
+  { n:18,  ar:"الكهف",         fr:"La Caverne",            type:"mec", v:110, fait:false },
+  { n:19,  ar:"مريم",          fr:"Marie",                 type:"mec", v:98,  fait:false },
+  { n:20,  ar:"طه",            fr:"Tâ-Hâ",                 type:"mec", v:135, fait:false },
+  { n:21,  ar:"الأنبياء",      fr:"Les Prophètes",         type:"mec", v:112, fait:false },
+  { n:22,  ar:"الحج",          fr:"Le Pèlerinage",         type:"med", v:78,  fait:false },
+  { n:23,  ar:"المؤمنون",      fr:"Les Croyants",          type:"mec", v:118, fait:false },
+  { n:24,  ar:"النور",         fr:"La Lumière",            type:"med", v:64,  fait:false },
+  { n:25,  ar:"الفرقان",       fr:"Le Discernement",       type:"mec", v:77,  fait:false },
+  { n:26,  ar:"الشعراء",       fr:"Les Poètes",            type:"mec", v:227, fait:false },
+  { n:27,  ar:"النمل",         fr:"Les Fourmis",           type:"mec", v:93,  fait:false },
+  { n:28,  ar:"القصص",         fr:"Les Récits",            type:"mec", v:88,  fait:false },
+  { n:29,  ar:"العنكبوت",      fr:"L'Araignée",            type:"mec", v:69,  fait:false },
+  { n:30,  ar:"الروم",         fr:"Les Romains",           type:"mec", v:60,  fait:false },
+  { n:31,  ar:"لقمان",         fr:"Luqmân",                type:"mec", v:34,  fait:false },
+  { n:32,  ar:"السجدة",        fr:"La Prosternation",      type:"mec", v:30,  fait:false },
+  { n:33,  ar:"الأحزاب",       fr:"Les Coalisés",          type:"med", v:73,  fait:false },
+  { n:34,  ar:"سبإ",           fr:"Sabâ",                  type:"mec", v:54,  fait:false },
+  { n:35,  ar:"فاطر",          fr:"Le Créateur",           type:"mec", v:45,  fait:false },
+  { n:36,  ar:"يس",            fr:"Yâ-Sîn",                type:"mec", v:83,  fait:false },
+  { n:37,  ar:"الصافات",       fr:"Les Rangées",           type:"mec", v:182, fait:false },
+  { n:38,  ar:"ص",             fr:"Sâd",                   type:"mec", v:88,  fait:false },
+  { n:39,  ar:"الزمر",         fr:"Les Groupes",           type:"mec", v:75,  fait:false },
+  { n:40,  ar:"غافر",          fr:"Le Pardonneur",         type:"mec", v:85,  fait:false },
+  { n:41,  ar:"فصلت",          fr:"Exposées en Détail",    type:"mec", v:54,  fait:false },
+  { n:42,  ar:"الشورى",        fr:"La Consultation",       type:"mec", v:53,  fait:false },
+  { n:43,  ar:"الزخرف",        fr:"Les Ornements",         type:"mec", v:89,  fait:false },
+  { n:44,  ar:"الدخان",        fr:"La Fumée",              type:"mec", v:59,  fait:false },
+  { n:45,  ar:"الجاثية",       fr:"L'Agenouillée",         type:"mec", v:37,  fait:false },
+  { n:46,  ar:"الأحقاف",       fr:"Les Dunes",             type:"mec", v:35,  fait:false },
+  { n:47,  ar:"محمد",          fr:"Muhammad",              type:"med", v:38,  fait:false },
+  { n:48,  ar:"الفتح",         fr:"La Victoire",           type:"med", v:29,  fait:false },
+  { n:49,  ar:"الحجرات",       fr:"Les Appartements",      type:"med", v:18,  fait:false },
+  { n:50,  ar:"ق",             fr:"Qâf",                   type:"mec", v:45,  fait:false },
+  { n:51,  ar:"الذاريات",      fr:"Les Vents Dispersants", type:"mec", v:60,  fait:false },
+  { n:52,  ar:"الطور",         fr:"Le Mont Sinaï",         type:"mec", v:49,  fait:false },
+  { n:53,  ar:"النجم",         fr:"L'Étoile",              type:"mec", v:62,  fait:false },
+  { n:54,  ar:"القمر",         fr:"La Lune",               type:"mec", v:55,  fait:false },
+  { n:55,  ar:"الرحمن",        fr:"Le Très Miséricordieux",type:"med", v:78,  fait:false },
+  { n:56,  ar:"الواقعة",       fr:"L'Événement",           type:"mec", v:96,  fait:false },
+  { n:57,  ar:"الحديد",        fr:"Le Fer",                type:"med", v:29,  fait:false },
+  { n:58,  ar:"المجادلة",      fr:"La Discussion",         type:"med", v:22,  fait:false },
+  { n:59,  ar:"الحشر",         fr:"Le Rassemblement",      type:"med", v:24,  fait:false },
+  { n:60,  ar:"الممتحنة",      fr:"L'Éprouvée",            type:"med", v:13,  fait:false },
+  { n:61,  ar:"الصف",          fr:"Le Rang",               type:"med", v:14,  fait:false },
+  { n:62,  ar:"الجمعة",        fr:"Le Vendredi",           type:"med", v:11,  fait:false },
+  { n:63,  ar:"المنافقون",     fr:"Les Hypocrites",        type:"med", v:11,  fait:false },
+  { n:64,  ar:"التغابن",       fr:"La Déception Mutuelle", type:"med", v:18,  fait:false },
+  { n:65,  ar:"الطلاق",        fr:"Le Divorce",            type:"med", v:12,  fait:false },
+  { n:66,  ar:"التحريم",       fr:"L'Interdiction",        type:"med", v:12,  fait:false },
+  { n:67,  ar:"الملك",         fr:"La Royauté",            type:"mec", v:30,  fait:false },
+  { n:68,  ar:"القلم",         fr:"Le Calame",             type:"mec", v:52,  fait:false },
+  { n:69,  ar:"الحاقة",        fr:"L'Inéluctable",         type:"mec", v:52,  fait:false },
+  { n:70,  ar:"المعارج",       fr:"Les Voies d'Ascension", type:"mec", v:44,  fait:false },
+  { n:71,  ar:"نوح",           fr:"Noé",                   type:"mec", v:28,  fait:false },
+  { n:72,  ar:"الجن",          fr:"Les Djinns",            type:"mec", v:28,  fait:false },
+  { n:73,  ar:"المزمل",        fr:"L'Enveloppé",           type:"mec", v:20,  fait:false },
+  { n:74,  ar:"المدثر",        fr:"Le Revêtu",             type:"mec", v:56,  fait:false },
+  { n:75,  ar:"القيامة",       fr:"La Résurrection",       type:"mec", v:40,  fait:false },
+  { n:76,  ar:"الإنسان",       fr:"L'Être Humain",         type:"med", v:31,  fait:false },
+  { n:77,  ar:"المرسلات",      fr:"Les Envoyés",           type:"mec", v:50,  fait:false },
+  { n:78,  ar:"النبإ",         fr:"La Nouvelle",           type:"mec", v:40,  fait:false },
+  { n:79,  ar:"النازعات",      fr:"Les Arracheurs",        type:"mec", v:46,  fait:false },
+  { n:80,  ar:"عبس",           fr:"Il a Froncé",           type:"mec", v:42,  fait:false },
+  { n:81,  ar:"التكوير",       fr:"L'Enroulement",         type:"mec", v:29,  fait:false },
+  { n:82,  ar:"الانفطار",      fr:"La Fissuration",        type:"mec", v:19,  fait:false },
+  { n:83,  ar:"المطففين",      fr:"Les Fraudeurs",         type:"mec", v:36,  fait:false },
+  { n:84,  ar:"الانشقاق",      fr:"La Déchirure",          type:"mec", v:25,  fait:false },
+  { n:85,  ar:"البروج",        fr:"Les Constellations",    type:"mec", v:22,  fait:false },
+  { n:86,  ar:"الطارق",        fr:"L'Astre Nocturne",      type:"mec", v:17,  fait:false },
+  { n:87,  ar:"الأعلى",        fr:"Le Très-Haut",          type:"mec", v:19,  fait:false },
+  { n:88,  ar:"الغاشية",       fr:"L'Enveloppante",        type:"mec", v:26,  fait:false },
+  { n:89,  ar:"الفجر",         fr:"L'Aurore",              type:"mec", v:30,  fait:false },
+  { n:90,  ar:"البلد",         fr:"La Cité",               type:"mec", v:20,  fait:false },
+  { n:91,  ar:"الشمس",         fr:"Le Soleil",             type:"mec", v:15,  fait:false },
+  { n:92,  ar:"الليل",         fr:"La Nuit",               type:"mec", v:21,  fait:false },
+  { n:93,  ar:"الضحى",         fr:"Le Matin",              type:"mec", v:11,  fait:false },
+  { n:94,  ar:"الشرح",         fr:"L'Ouverture du Cœur",   type:"mec", v:8,   fait:false },
+  { n:95,  ar:"التين",         fr:"Le Figuier",            type:"mec", v:8,   fait:false },
+  { n:96,  ar:"العلق",         fr:"L'Adhérence",           type:"mec", v:19,  fait:false },
+  { n:97,  ar:"القدر",         fr:"La Nuit du Destin",     type:"mec", v:5,   fait:false },
+  { n:98,  ar:"البينة",        fr:"La Preuve Évidente",    type:"med", v:8,   fait:false },
+  { n:99,  ar:"الزلزلة",       fr:"Le Séisme",             type:"med", v:8,   fait:false },
+  { n:100, ar:"العاديات",      fr:"Les Coursiers",         type:"mec", v:11,  fait:false },
+  { n:101, ar:"القارعة",       fr:"La Fracassante",        type:"mec", v:11,  fait:false },
+  { n:102, ar:"التكاثر",       fr:"La Rivalité",           type:"mec", v:8,   fait:false },
+  { n:103, ar:"العصر",         fr:"Le Temps",              type:"mec", v:3,   fait:false },
+  { n:104, ar:"الهمزة",        fr:"Le Calomniateur",       type:"mec", v:9,   fait:false },
+  { n:105, ar:"الفيل",         fr:"L'Éléphant",            type:"mec", v:5,   fait:false },
+  { n:106, ar:"قريش",          fr:"Qouraych",              type:"mec", v:4,   fait:false },
+  { n:107, ar:"الماعون",       fr:"L'Ustensile",           type:"mec", v:7,   fait:false },
+  { n:108, ar:"الكوثر",        fr:"L'Abondance",           type:"mec", v:3,   fait:false },
+  { n:109, ar:"الكافرون",      fr:"Les Infidèles",         type:"mec", v:6,   fait:false },
+  { n:110, ar:"النصر",         fr:"Le Secours",            type:"med", v:3,   fait:false },
+  { n:111, ar:"المسد",         fr:"Les Fibres",            type:"mec", v:5,   fait:false },
+  { n:112, ar:"الإخلاص",       fr:"Le Monothéisme Pur",    type:"mec", v:4,   fait:false },
+  { n:113, ar:"الفلق",         fr:"L'Aube Naissante",      type:"mec", v:5,   fait:false },
+  { n:114, ar:"الناس",         fr:"Les Hommes",            type:"mec", v:6,   fait:false },
+];
+
+// ════════════════════════════════════════════════════════════
+// RENDU
+// ════════════════════════════════════════════════════════════
+let filtreActif = 'tout';
+
+function rendreSourates(filtre) {
+  const grille = document.getElementById('grille');
+  grille.innerHTML = '';
+  const filtered = SOURATES.filter(s => {
+    if (filtre === 'fait') return s.fait;
+    if (filtre === 'mecquoise') return s.type === 'mec';
+    if (filtre === 'medinoise') return s.type === 'med';
+    return true;
+  });
+
+  filtered.forEach(s => {
+    const el = document.createElement(s.fait ? 'a' : 'div');
+    if (s.fait && s.fichier) el.href = s.fichier;
+    el.className = 'sourate-card' + (s.fait ? ' fait' : ' a-venir');
+
+    const typeLabel = s.type === 'mec' ? 'Mecquoise' : 'Médinoise';
+    const typeCls   = s.type === 'mec' ? 'mec' : 'med';
+    const num = String(s.n).padStart(3,'0');
+
+    el.innerHTML = `
+      <div class="s-badge-fait">✓</div>
+      <div class="s-num">Sourate ${num}</div>
+      <div class="s-arabe">${s.ar}</div>
+      <div class="s-nom-fr">${s.fr}</div>
+      <div class="s-meta">
+        <span class="s-type ${typeCls}">${typeLabel}</span>
+        <span class="s-versets">${s.v} v.</span>
+      </div>
+    `;
+    grille.appendChild(el);
+  });
+}
+
+function filtrer(f, btn) {
+  filtreActif = f;
+  document.querySelectorAll('.filtre-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  rendreSourates(f);
+}
+
+// Stats
+function majStats() {
+  const nbFait = SOURATES.filter(s => s.fait).length;
+  const pct = ((nbFait / 114) * 100).toFixed(1);
+  document.getElementById('nb-fait').textContent  = nbFait;
+  document.getElementById('nb-reste').textContent = 114 - nbFait;
+  document.getElementById('pct').textContent  = pct + '%';
+  document.getElementById('pct2').textContent = `${nbFait} / 114 sourates`;
+  document.getElementById('barre').style.width = pct + '%';
+}
+
+// Init
+rendreSourates('tout');
+majStats();
+</script>
+</body>
+</html>
